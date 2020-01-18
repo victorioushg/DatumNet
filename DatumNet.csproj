@@ -1,0 +1,290 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-DatumNet-2F7BC3B3-5B49-422F-B998-583AF0AF3D61</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\syncfusion-javascript\angular2\**" />
+    <Compile Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
+    <Compile Remove="wwwroot\syncfusion-javascript\typescript\**" />
+    <Content Remove="wwwroot\syncfusion-javascript\angular2\**" />
+    <Content Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
+    <Content Remove="wwwroot\syncfusion-javascript\typescript\**" />
+    <EmbeddedResource Remove="wwwroot\syncfusion-javascript\angular2\**" />
+    <EmbeddedResource Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
+    <EmbeddedResource Remove="wwwroot\syncfusion-javascript\typescript\**" />
+    <None Remove="wwwroot\syncfusion-javascript\angular2\**" />
+    <None Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
+    <None Remove="wwwroot\syncfusion-javascript\typescript\**" />
+    <TypeScriptCompile Remove="wwwroot\syncfusion-javascript\angular2\**" />
+    <TypeScriptCompile Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
+    <TypeScriptCompile Remove="wwwroot\syncfusion-javascript\typescript\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\syncfusion-javascript\css\mobile\images\ejmmobilefonts.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\bootstrap-theme\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\bootstrap-theme\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\diagram\Rotate.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\documenteditor\cellbottomalignment.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\documenteditor\cellcenteralignment.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\documenteditor\celltopalignment.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\documenteditor\tablecenteralignment.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\documenteditor\tableleftalignment.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\documenteditor\tablerightalignment.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\ejicons.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\grid\dropPointer.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\kanban\nouser.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\navigationdrawer\icons.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\reportdesigner\ejreportdesigner.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\reportviewer\alertIcon.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\reportviewer\collapse.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\reportviewer\ej-reportviewericons.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\reportviewer\errorIcon.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\reportviewer\expand.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\ribbon\ejrbnicons.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\down_arrow_dark.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\down_arrow_light.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\draw_border_dark.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\draw_border_grid_dark.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\draw_border_grid_light.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\draw_border_light.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\ejxlicons.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\format_painter_dark.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\format_painter_light.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\right_arrow_dark.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\common-images\spreadsheet\right_arrow_light.cur" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\default-theme\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\default-theme\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.reportdesigner.core.bootstrap.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.reportdesigner.core.bootstrap.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.reportdesigner.core.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.reportdesigner.core.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.reportdesigner.core.material.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.reportdesigner.core.material.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.reportdesigner.core.office-365.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.reportdesigner.core.office-365.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.widgets.core.bootstrap.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.widgets.core.bootstrap.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.widgets.core.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.widgets.core.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.widgets.core.material.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.widgets.core.material.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.widgets.core.office-365.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\ej.widgets.core.office-365.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-azure-dark\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-azure-dark\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-lime-dark\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-lime-dark\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-lime\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-lime\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-saffron-dark\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-saffron-dark\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-saffron\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\flat-saffron\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-azure-dark\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-azure-dark\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-azure\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-azure\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-lime-dark\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-lime-dark\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-lime\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-lime\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-saffron-dark\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-saffron-dark\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-saffron\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\gradient-saffron\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\high-contrast-01\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\high-contrast-01\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\high-contrast-02\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\high-contrast-02\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\material\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\material\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\material\icons\ejicons.svg" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\office-365\ej.theme.compatibility.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\office-365\ej.theme.less" />
+    <None Include="wwwroot\syncfusion-javascript\css\web\office-365\icons\ejicons.svg" />
+    <None Include="wwwroot\syncfusion-javascript\external\angular-1.2.16.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\angular-route.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\angular.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\create-react-class.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\excanvas.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\jquery-1.11.3.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\jquery-2.1.4.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\jquery-3.1.1.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\jquery-3.2.1.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\jquery.signalR-1.1.4.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\jquery.validate.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\jsrender.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\knockout.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\react-dom.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\external\react.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.core.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.data.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.draggable.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.globalize.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.scroller.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.touch.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.unobtrusive.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.web.react.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.webform.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.widget.angular.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\common\ej.widget.ko.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.barcode.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.bulletgraph.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.chart.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.circulargauge.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.diagram.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.digitalgauge.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.gauge.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.heatmap.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.lineargauge.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.map.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.rangenavigator.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.sparkline.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.sunburstchart.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\datavisualization\ej.treemap.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\i18n\ej.culture.ar-AE.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\i18n\ej.culture.de-DE.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\i18n\ej.culture.en-GB.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\i18n\ej.culture.en-US.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\i18n\ej.culture.es-ES.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\i18n\ej.culture.fr-FR.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\i18n\ej.culture.vi-VN.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\i18n\ej.culture.zh-CN.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\ej.localetexts.ar-AE.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\ej.localetexts.de-DE.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\ej.localetexts.en-GB.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\ej.localetexts.en-US.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\ej.localetexts.es-ES.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\ej.localetexts.fr-FR.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\ej.localetexts.vi-VN.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\ej.localetexts.zh-CN.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\reportdesigner\ej.localetexts.de-DE.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\reportdesigner\ej.localetexts.en-US.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\reportdesigner\ej.localetexts.es-ES.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\reportdesigner\ej.localetexts.fr-FR.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\l10n\reportdesigner\ej.localetexts.zh-CN.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.accordion.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.all.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.application.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.autocomplete.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.button.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.core.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.datepicker.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.dialog.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.dropdownlist.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.editor.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.groupbutton.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.inputbutton.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.listview.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.menu.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.navigationbar.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.progressbar.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.radialmenu.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.radialslider.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.rating.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.rotator.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.scrollpanel.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.slider.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.splitpane.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.tab.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.tile.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.timepicker.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\mobile\ej.mobile.togglebutton.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.accordion.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.autocomplete.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.button.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.calculate.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.captcha.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.checkbox.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.colorpicker.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.combobox.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.datepicker.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.daterangepicker.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.datetimepicker.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.dialog.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.documenteditor.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.dropdownlist.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.dropdowntree.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.editor.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.excelfilter.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.fileexplorer.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.gantt.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.grid.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.groupbutton.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.kanban.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.listbox.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.listview.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.maskedit.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.mediaplayer.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.menu.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.navigationdrawer.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.olap.base.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pager.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pdfviewer.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pivot.common.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pivotanalysis.base.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pivotchart.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pivotclient.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pivotgauge.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pivotgrid.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pivotpager.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pivotschemadesigner.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.pivottreemap.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.print.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.progressbar.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.radialmenu.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.radialslider.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.radiobutton.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.rating.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.recurrenceeditor.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.reportdesigner.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.reportviewer.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.ribbon.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.rotator.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.rte.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.schedule.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.signature.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.slider.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.spellcheck.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.splitbutton.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.splitter.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.spreadsheet.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.tab.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.tagcloud.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.tile.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.timepicker.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.togglebutton.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.toolbar.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.tooltip.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.treegrid.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.treeview.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.uploadbox.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.waitingpopup.min.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.web.all-vsdoc.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.web.all.min.intellisense.js" />
+    <None Include="wwwroot\syncfusion-javascript\scripts\web\ej.web.all.min.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.7.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MySql.Data" Version="8.0.18" />
+  </ItemGroup>
+
+</Project>
