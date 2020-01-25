@@ -95,7 +95,11 @@ D:\DESARROLLO\WebON_DotNet\DatumNet\bin\Debug\netcoreapp3.1\Dapper.dll
 D:\DESARROLLO\WebON_DotNet\DatumNet\bin\Debug\netcoreapp3.1\DatumNet.Views.pdb
 D:\DESARROLLO\WebON_DotNet\DatumNet\obj\Debug\netcoreapp3.1\DatumNet.Views.pdb
 D:\DESARROLLO\WebON_DotNet\DatumNet\obj\Debug\netcoreapp3.1\Razor\Views\Account\LoginOldest.cshtml.g.cs
+D:\DESARROLLO\WebON_DotNet\DatumNet\obj\Debug\netcoreapp3.1\Razor\Views\Home\uploaderPopup.cshtml.g.cs
+D:\DESARROLLO\WebON_DotNet\DatumNet\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\DESARROLLO\WebON_DotNet\DatumNet\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\DESARROLLO\WebON_DotNet\DatumNet\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\DESARROLLO\WebON_DotNet\DatumNet\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\DESARROLLO\WebON_DotNet\DatumNet\obj\Debug\netcoreapp3.1\DatumNet.MvcApplicationPartsAssemblyInfo.cs
 D:\DESARROLLO\WebON_DotNet\DatumNet\obj\Debug\netcoreapp3.1\DatumNet.MvcApplicationPartsAssemblyInfo.cache
-D:\DESARROLLO\WebON_DotNet\DatumNet\obj\Debug\netcoreapp3.1\Razor\Views\Home\uploaderPopup.cshtml.g.cs
 D:\DESARROLLO\WebON_DotNet\DatumNet\obj\Debug\netcoreapp3.1\DatumNet.csprojAssemblyReference.cache

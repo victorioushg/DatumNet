@@ -16,6 +16,7 @@ class Grid {
         this.enableResponsiveRow = args.enableResponsiveRow !== undefined ? args.enableResponsiveRow : true;
         this.allowSearching = args.allowSearching !== undefined ? args.allowSearching : true;
         this.allowSorting = args.allowSorting !== undefined ? args.allowSorting : true;
+        this.gridLines = args.gridLines !== undefined ? args.gridLines : ej.Grid.GridLines.Both;
         this.allowFiltering = args.allowFiltering !== undefined ? args.allowFiltering : true;
         this.filterSettings = { filterType: "menu" };
         this.query = args.query !== undefined ? args.query : null;
@@ -30,6 +31,7 @@ class Grid {
         this.enableTouch = args.enableTouch !== undefined ? args.enableTouch : false;
         this.allowScrolling = args.allowScrolling !== undefined ? args.allowScrolling : true;
         this.rowDataBound = args.rowDataBound !== undefined ? args.rowDataBound : null;
+        this.queryCellInfo = args.queryCellInfo !== undefined ? args.queryCellInfo : null;
         this.allowTextWrap = args.allowTextWrap !== undefined ? args.allowTextWrap : true;
         this.textWrapSettings = args.textWrapSettings !== undefined ? args.textWrapSettings : { wrapMode: "both" };
 
@@ -71,10 +73,10 @@ class Grid {
             ? { pageSize: 100 } //this.dataSource.length }
             : {}
 
-        var h = $(window).height() - (500 + (this.allowPaging ? 80 : 0));
+        var h = $(window).height() - (300 + (this.allowPaging ? 80 : 0));
 
         this.scrollSettings = {
-            width: "auto",
+            width: "100%",
             height: h,
             allowVirtualScrolling: this.allowVirtualScrolling
             //virtualScrollMode: ej.Grid.VirtualScrollMode.Normal
@@ -144,7 +146,9 @@ class Grid {
             columns: this.columns,
             actionBegin: this.actionBegin, // todo instance of popup
             rowDataBound: this.rowDataBound,
-            pageSettings: this.pageSettings
+            pageSettings: this.pageSettings, 
+            queryCellInfo: this.queryCellInfo,
+             gridLines: this.gridLines
         });
     }
 

@@ -6731,6 +6731,9 @@ jQuery.fn.ejDateTimePicker = function (options) {
 ///Sets the text for the Today button inside the datetime popup.
 ///<br/>today-string	default-
 ///<br/><br/>
+///Disable the list of specified date value.
+///<br/>blackoutDates-any	default-{}
+///<br/><br/>
 ///Set the root class for DateTimePicker theme. This cssClass API helps to use custom skinning option for DateTimePicker control.
 ///<br/>cssClass-string	default-
 ///<br/><br/>
@@ -6742,6 +6745,9 @@ jQuery.fn.ejDateTimePicker = function (options) {
 ///<br/><br/>
 ///Specifies the navigation depth level in DatePicker calendar inside DateTimePicker popup. This option is not applied when start level view option is lower than depth level view. See ej.DatePicker.Level
 ///<br/>depthLevel-ej.DatePicker.Level|string	default-
+///<br/><br/>
+///Specifies the list of time range to be disabled.
+///<br/>disableTimeRanges-any	default-{}
 ///<br/><br/>
 ///Enable or disable the animation effect in DateTimePicker.
 ///<br/>enableAnimation-boolean	default-true
@@ -6793,6 +6799,9 @@ jQuery.fn.ejDateTimePicker = function (options) {
 ///<br/><br/>
 ///Changes the sharped edges into rounded corner for the DateTimePicker textbox and popup.
 ///<br/>showRoundedCorner-boolean	default-false
+///<br/><br/>
+///Specifies the special dates in DateTimePicker.
+///<br/>specialDates-any	default-null
 ///<br/><br/>
 ///Specifies the start day of the week in datepicker inside the DateTimePicker popup.
 ///<br/>startDay-number	default-1
@@ -19647,6 +19656,34 @@ jQuery.fn.ejRecurrenceEditor = function (options) {
 ej.ReportDesigner=function(){};
 ej.ReportDesigner.prototype={
 
+addDataSet:function(dataset){
+/// <summary>
+/// Add a dataset to the report at runtime.
+/// </summary>
+/// <param name="dataset"	type="any">a JSON to define a connection properties for dataset.</param>
+},
+addDataSource:function(datasource){
+/// <summary>
+/// Add a datasource to the report at runtime.
+/// </summary>
+/// <param name="datasource"	type="any">a JSON to define a connection properties for datasource.</param>
+},
+addItem:function(item){
+/// <summary>
+/// Add a report item to the report at runtime.
+/// </summary>
+/// <param name="item"	type="any">JSON for the new report item to be added</param>
+},
+bringForward:function(){
+/// <summary>
+/// Visually move the selected report item over its closest intersected report items.
+/// </summary>
+},
+bringToFront:function(){
+/// <summary>
+/// Visually move the selected report item over all other intersected report items.
+/// </summary>
+},
 canCopy:function(){
 /// <summary>
 /// Determines whether a copy operation is possible.
@@ -19657,11 +19694,6 @@ canCut:function(){
 /// Determines whether a cut operation is possible.
 /// </summary>
 },
-canRemove:function(){
-/// <summary>
-/// Determines whether a delete operation is possible.
-/// </summary>
-},
 canPaste:function(){
 /// <summary>
 /// Determines whether a paste operation is possible.
@@ -19669,47 +19701,59 @@ canPaste:function(){
 },
 canRedo:function(){
 /// <summary>
-/// Returns the bool value indicating whether the user can redo the previous action in the report.
+/// Returns the boolean value indicating whether the user can redo the previous action in the report.
+/// </summary>
+},
+canRemove:function(){
+/// <summary>
+/// Determines whether a delete operation is possible.
 /// </summary>
 },
 canUndo:function(){
 /// <summary>
-/// Returns a bool value indicating whether the user can undo the previous action in the report.
+/// Returns a boolean value indicating whether the user can undo the previous action in the report.
 /// </summary>
+},
+cloneDataSet:function(name){
+/// <summary>
+/// Clone the existing dataset in the report at runtime.
+/// </summary>
+/// <param name="name"	type="string">Name of the existing dataset.</param>
+},
+cloneDataSource:function(name){
+/// <summary>
+/// Clone the existing datasource in the report at runtime.
+/// </summary>
+/// <param name="name"	type="string">Name of the existing datasource.</param>
 },
 copy:function(){
 /// <summary>
-/// Copies the selected ReportItem from design panel to Report Designer internal clipboard.
+/// Copies the selected report item from design panel to the Report Designer internal clipboard.
 /// </summary>
 },
 cut:function(){
 /// <summary>
-/// Cuts the selected ReportItem from design panel to Report Designer internal clipboard.
-/// </summary>
-},
-remove:function(){
-/// <summary>
-/// Deletes the selected item from the report.
+/// Cuts the selected report item from design panel to the Report Designer internal clipboard.
 /// </summary>
 },
 hasReportChanges:function(){
 /// <summary>
-/// Returns the bool value that specifies whether the report has changes or not.
+/// Returns the boolean value that specifies whether the report has changes or not.
 /// </summary>
 },
 isNewReport:function(){
 /// <summary>
-/// Returns the bool value that specifies whether the currently processing report is a new report or not.
+/// Returns the boolean value that specifies whether the currently processing report is a new report or not.
 /// </summary>
 },
 isNewServerReport:function(){
 /// <summary>
-/// Returns the bool value that specifies whether the currently processing report is a new server report or not.
+/// Returns the boolean value that specifies whether the currently processing report is a new server report or not.
 /// </summary>
 },
 isServerReport:function(){
 /// <summary>
-/// Returns the bool value that specifies whether the currently processing report is obtained from the server or local.
+/// Returns the boolean value that specifies whether the currently processing report is obtained from the server or local.
 /// </summary>
 },
 newReport:function(){
@@ -19724,22 +19768,27 @@ newServerReport:function(){
 },
 openReport:function(){
 /// <summary>
-/// This method opens the report from the ReportServer.
+/// This method opens the report from the server.
+/// </summary>
+},
+openReportDefinition:function(){
+/// <summary>
+/// This method opens the report using raw report data.
 /// </summary>
 },
 openReportFromDevice:function(){
 /// <summary>
-/// To open the report client browse dialog.
+/// Opens the client browse dialog to browse the report.
 /// </summary>
 },
 openServerReportDialog:function(){
 /// <summary>
-/// To open the report open server browse dialog.
+/// Opens the report designer browse dialog to browse the available reports in the reportserver.
 /// </summary>
 },
 paste:function(){
 /// <summary>
-/// Pastes the selected ReportItem from Report Designer internal clipboard to design panel.
+/// Pastes the selected report item from the Report Designer internal clipboard to design panel.
 /// </summary>
 },
 redo:function(){
@@ -19747,14 +19796,42 @@ redo:function(){
 /// Reverses the action of the last Undo command.
 /// </summary>
 },
+remove:function(){
+/// <summary>
+/// Deletes the selected report item from the report.
+/// </summary>
+},
+removeDataSet:function(dataset){
+/// <summary>
+/// Remove a dataset from the report at runtime.
+/// </summary>
+/// <param name="dataset"	type="string">Name of the dataset.</param>
+},
+removeDatasource:function(datasource){
+/// <summary>
+/// Remove a datasource from the report at runtime.
+/// </summary>
+/// <param name="datasource"	type="string">Name of the datasource.</param>
+},
+removeItem:function(itemName){
+/// <summary>
+/// Remove the given report item from the report.
+/// </summary>
+/// <param name="itemName"	type="string">Name of the report item to be removed from report</param>
+},
 saveReport:function(){
 /// <summary>
-/// This method saves the report into the ReportServer.
+/// This method saves the report into the server.
+/// </summary>
+},
+saveReportDefinition:function(){
+/// <summary>
+/// This method returns the report in JSON or XML format.
 /// </summary>
 },
 saveServerReportDialog:function(){
 /// <summary>
-/// To open the report save server browse dialog.
+/// Opens the report designer browse dialog to save the report into server.
 /// </summary>
 },
 saveToDevice:function(){
@@ -19762,9 +19839,25 @@ saveToDevice:function(){
 /// To download the designed report.
 /// </summary>
 },
+selectItems:function(itemNames){
+/// <summary>
+/// Update the selection to report items at runtime.
+/// </summary>
+/// <param name="itemNames"	type="any[]">Name of the report items as string array.</param>
+},
+sendBackward:function(){
+/// <summary>
+/// Visually move the selected report item behind its closest intersected report item.
+/// </summary>
+},
+sendToBack:function(){
+/// <summary>
+/// Visually move the selected report item behind all other intersected report items.
+/// </summary>
+},
 showDesign:function(){
 /// <summary>
-/// To show the report design.
+/// Performs switch action from viewer to designer at runtime.
 /// </summary>
 },
 showNewReportDialog:function(){
@@ -19779,13 +19872,27 @@ showOpenSaveReportDialog:function(){
 },
 showPreview:function(){
 /// <summary>
-/// To show the report preview.
+/// Performs switch action from designer to viewer at runtime.
 /// </summary>
 },
 undo:function(){
 /// <summary>
 /// Reverses the last action that was performed.
 /// </summary>
+},
+updateDataset:function(datasetName, dataset){
+/// <summary>
+/// Update the dataset in the report at runtime.
+/// </summary>
+/// <param name="datasetName"	type="string">Name of the existing dataset.</param>
+/// <param name="dataset"	type="any">a JSON to define a connection properties for dataset.</param>
+},
+updateDatasource:function(datasourceName, datasource){
+/// <summary>
+/// Update the datasource in the report at runtime.
+/// </summary>
+/// <param name="datasourceName"	type="string">Name of the existing datasource.</param>
+/// <param name="datasource"	type="any">a JSON to define a connection properties for datasource.</param>
 },
 };
 jQuery.fn.ejReportDesigner=function(){
@@ -19794,23 +19901,80 @@ return this;
 };
 jQuery.fn.ejReportDesigner = function (options) {
 /// <summary><br/>
-///Report Designer allows to design the report that can be published in the Server or downloaded in the local physical path.<br/><br/>
+///Report Designer allows to design the report that can be published in the server or downloaded in the local physical path.<br/><br/>
+///Shows or hides the items of configuration pane in ReportDesigner control.
+///<br/>configurePaneSettings-ConfigurePaneSettings	default-
+///<br/><br/>
+///Shows or hides the grouped items in the configuration pane with the help of enum ej.ReportDesigner.ConfigureItems
+///<br/>items-ej.ReportDesigner.ConfigureItems|string	default-ej.ReportDesigner.ConfigureItems.All
+///<br/><br/>
+///Shows or hides the configuration pane in ReportDesigner control.
+///<br/>showConfigurePane-boolean	default-true
+///<br/><br/>
 ///Specifies the locale for report designer.
 ///<br/>locale-string	default-en-US
 ///<br/><br/>
-///Gets or Sets the report path of server.
+///Shows or hides the create, edit, and delete options in data source and dataset panels.
+///<br/>permissionSettings-PermissionSettings	default-ej.ReportDesigner.Permission.All
+///<br/><br/>
+///Shows or hides the create, edit and delete options in data source pane with the help of ej.ReportDesigner.Permission enum.
+///<br/>dataSource-ej.ReportDesigner.Permission|string	default-ej.ReportDesigner.Permission.All
+///<br/><br/>
+///Gets or sets the list of custom data extension items.
+///<br/>reportDataExtensions-Array&lt;ReportDataExtensions&gt;	default-[]
+///<br/><br/>
+///Gets or sets the name of the datasource type.
+///<br/>name-string	default-empty
+///<br/><br/>
+///Gets or sets the class name of the data extension.
+///<br/>className-string	default-empty
+///<br/><br/>
+///Gets or sets the image class name to load image in data pane tile.
+///<br/>imageClass-string	default-empty
+///<br/><br/>
+///Gets or sets the name for data extension item to display in the data pane tile.
+///<br/>displayName-string	default-empty
+///<br/><br/>
+///Gets or sets the list of custom report items.
+///<br/>reportItemExtensions-Array&lt;ReportItemExtensions&gt;	default-[]
+///<br/><br/>
+///Gets or sets the name for the report item.
+///<br/>name-string	default-empty
+///<br/><br/>
+///Gets or sets the class name of the report item.
+///<br/>className-string	default-empty
+///<br/><br/>
+///Gets or sets the image class name to load image in widgets pane tile.
+///<br/>imageClass-string	default-empty
+///<br/><br/>
+///Gets or sets the name for custom report item to display in the widgets pane tile.
+///<br/>displayName-string	default-empty
+///<br/><br/>
+///Gets or sets the category name for the report item.
+///<br/>category-string	default-empty
+///<br/><br/>
+///Gets information to provide content for custom report item tooltip.
+///<br/>toolTip-any	default-null
+///<br/><br/>
+///Gets or sets the report path of server.
 ///<br/>reportPath-string	default-null
 ///<br/><br/>
-///Gets or Sets the reports server URL.
+///Gets or sets the report type.
+///<br/>reportType-string	default-ej.ReportDesigner.ReportType.RDL
+///<br/><br/>
+///Gets or sets the reports server URL.
 ///<br/>reportServerUrl-string	default-null
 ///<br/><br/>
 ///Gets or sets the serviceAuthorizationToken to access the Report Server API services.
 ///<br/>serviceAuthorizationToken-string	default-empty
 ///<br/><br/>
-///Gets or Sets the URL of the  WebAPI service; it will be used for processing the report.
+///Gets or sets the URL of the  WebAPI service; it will be used for processing the report.
 ///<br/>serviceUrl-string	default-null
 ///<br/><br/>
-///Specifies the toolbar settings.
+///Gets or sets the tenant name of the user groups; it will be used when integrating report designer with server.
+///<br/>tenantName-string	default-null
+///<br/><br/>
+///Defines the settings of the ReportDesigner toolbar.
 ///<br/>toolbarSettings-ToolbarSettings	default-
 ///<br/><br/>
 ///Shows or hides the grouped items in the toolbar with the help of enum ej.ReportDesigner.ToolbarItems.
@@ -19931,6 +20095,12 @@ jQuery.fn.ejReportViewer = function (options) {
 ///Specifies the word export format.
 ///<br/>wordFormat-ej.ReportViewer.WordFormats|string	default-ej.ReportViewer.WordFormats.Doc
 ///<br/><br/>
+///Specifies the ppt export format.
+///<br/>pptFormat-ej.ReportViewer.PPTFormats|string	default-ej.ReportViewer.PPTFormats.PowerPoint97to2003
+///<br/><br/>
+///Add the custom icon item to the export options.
+///<br/>customItems-Array&lt;any&gt;	default-empty
+///<br/><br/>
 ///When set to true, adapts the report layout to fit the screen size of devices on which it renders.
 ///<br/>isResponsive-boolean	default-true
 ///<br/><br/>
@@ -19964,11 +20134,29 @@ jQuery.fn.ejReportViewer = function (options) {
 ///Gets or sets the parameter values.
 ///<br/>values-Array&lt;any&gt;	default-[]
 ///<br/><br/>
+///Specifies the parameter settings.
+///<br/>parameterSettings-ParameterSettings	default-
+///<br/><br/>
+///Sets the separator when the multiSelectMode with delimiter option or checkbox is enabled with the dropdown. When you enter the delimiter value, the texts after the delimiter are considered as a separate word or query. The delimiter string is a single character and must be a symbol. Mostly, the delimiter symbol is used as comma (,) or semi-colon (;) or any other special character.
+///<br/>delimiterChar-string	default-,
+///<br/><br/>
+///Specifies the height of the combobox parameter popup list. By default, the popup height value is "152px".
+///<br/>popupHeight-string	default-152px
+///<br/><br/>
+///Specifies the width of the combobox parameter popup list. By default, the popup width sets based on the width of the component.
+///<br/>popupWidth-string	default-auto
+///<br/><br/>
+///Specifies the width of the parameter item. By default, the item width value is set as "185px".
+///<br/>itemWidth-string	default-185px
+///<br/><br/>
+///Specifies the width of the parameter label. By default, the parameter label width value is set as "110px".
+///<br/>labelWidth-string	default-110px
+///<br/><br/>
 ///Enables and disables the print mode.
 ///<br/>printMode-boolean	default-false
 ///<br/><br/>
 ///Specifies the print option of the report.
-///<br/>printOptions-ej.ReportViewer.PrintOptions|string	default-ej.ReportViewer.PrintOptions.Default
+///<br/>printOption-ej.ReportViewer.PrintOptions|string	default-ej.ReportViewer.PrintOptions.Default
 ///<br/><br/>
 ///Specifies the processing mode of the report.
 ///<br/>processingMode-ej.ReportViewer.ProcessingMode|string	default-ej.ReportViewer.ProcessingMode.Remote
@@ -20003,11 +20191,41 @@ jQuery.fn.ejReportViewer = function (options) {
 ///Specifies the toolbar template ID.
 ///<br/>templateId-string	default-empty
 ///<br/><br/>
+///Add the custom icon item to the toolbar.
+///<br/>customItems-Array&lt;any&gt;	default-empty
+///<br/><br/>
+///Add the custom icon groups to the toolbar.
+///<br/>customGroups-Array&lt;any&gt;	default-empty
+///<br/><br/>
 ///Gets or sets the zoom factor for report viewer.
 ///<br/>zoomFactor-number	default-1
 ///<br/><br/>
 ///Specifies the token for authorizing reporting service url to process the reports.
 ///<br/>serviceAuthorizationToken-string	default-empty
+///<br/><br/>
+///Enables and disables the parameter block scroller.
+///<br/>enableParameterBlockScroller-boolean	default-true
+///<br/><br/>
+///Enables and disables the data source credential block scroller.
+///<br/>enableDatasourceBlockScroller-boolean	default-true
+///<br/><br/>
+///Render the ReportViewer height based on the report content size.
+///<br/>sizeToReportContent-boolean	default-false
+///<br/><br/>
+///Enables and disables the rendering of Viewer when default values are specified for the parameters.
+///<br/>autoRender-boolean	default-true
+///<br/><br/>
+///Enables and disables the Error Notification bar.
+///<br/>enableNotificationBar-boolean	default-true
+///<br/><br/>
+///Enables and disables the drop-down parameter search.
+///<br/>enableDropDownSearch-boolean	default-false
+///<br/><br/>
+///Enables and disables the PageVirtualization.
+///<br/>enablePageVirtualization-boolean	default-false
+///<br/><br/>
+///Gets or sets the showExceptionsInDialog for report viewer.
+///<br/>showExceptionsInDialog-boolean	default-false
 ///</summary>
 ///<param name="options" type="Object">
 ///The widget configuration options
@@ -22603,10 +22821,10 @@ clearRangeData:function(range, property, cells, skipHiddenRow, status, skipCell)
 /// </summary>
 /// <param name="range"	type="any[]|string">Optional. If range is specified, it will clear data for the specified range else it will use the current selected range. </param>
 /// <param name="property"	type="string">Optional. If property is specified, it will remove the specified property in the range else it will remove default properties </param>
-/// <param name="cells"	type="any">Optional.</param>
+/// <param name="cells"	type="HTMLElement">Optional.</param>
 /// <param name="skipHiddenRow"	type="boolean">Optional. pass {{'`true`' | markdownify}}, if you want to skip the hidden rows </param>
-/// <param name="status"	type="any">Optional. Pass the status to perform undo and redo operation.</param>
-/// <param name="skipCell"	type="any">Optional. It specifies whether to skip element processing or not.</param>
+/// <param name="status"	type="string">Optional. Pass the status to perform undo and redo operation.</param>
+/// <param name="skipCell"	type="boolean">Optional. It specifies whether to skip element processing or not.</param>
 },
 clearUndoRedo:function(){
 /// <summary>
@@ -22645,15 +22863,15 @@ deleteShiftLeft:function(startCell, endCell){
 /// <summary>
 /// This method is used to delete the selected cells and shift the remaining cells to left.
 /// </summary>
-/// <param name="startCell"	type="any">Row index and column index of the starting cell.</param>
-/// <param name="endCell"	type="any">Row index and column index of the ending cell.</param>
+/// <param name="startCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
+/// <param name="endCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
 },
 deleteShiftUp:function(startCell, endCell){
 /// <summary>
 /// This method is used to delete the selected cells and shift the remaining cells up.
 /// </summary>
-/// <param name="startCell"	type="any">Row index and column index of the start cell.</param>
-/// <param name="endCell"	type="any">Row index and column index of the end cell.</param>
+/// <param name="startCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
+/// <param name="endCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
 },
 editRange:function(rangeName, fn){
 /// <summary>
@@ -22748,14 +22966,14 @@ getRangeData:function(options){
 /// <summary>
 /// This method is used to get the data in specified range in Spreadsheet.
 /// </summary>
-/// <param name="options"	type="any">Optional. Pass the range, property, sheetIdx, valueOnly in options. </param>
+/// <param name="options"	type="any">Optional. Pass the range, property, sheetIdx, valueOnly in options</param>
 },
 getRangeDataAsObject:function(startcell, endcell, skipHiddenRow){
 /// <summary>
 /// This method is used to get the data as object in the specified range.
 /// </summary>
-/// <param name="startcell"	type="any">Pass the start cell.</param>
-/// <param name="endcell"	type="any">Pass the end cell.</param>
+/// <param name="startcell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
+/// <param name="endcell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
 /// <param name="skipHiddenRow"	type="boolean">Optional. Pass {{'`true`' | markdownify}}, if you want to skip the hidden rows.</param>
 },
 getRangeIndices:function(range){
@@ -22787,6 +23005,11 @@ gotoPage:function(sheetIdx, newSheet){
 /// </summary>
 /// <param name="sheetIdx"	type="number">Pass the sheet index to perform paging at specified sheet index</param>
 /// <param name="newSheet"	type="boolean">Pass {{'`true`' | markdownify}} to create a new sheet. If the specified sheet index is already exist, it navigate to that sheet else it create a new sheet.</param>
+},
+getVisibleCellDetails:function(){
+/// <summary>
+/// This method is used to get the visible cell details in Spreadsheet.
+/// </summary>
 },
 hideActivationPanel:function(){
 /// <summary>
@@ -22846,27 +23069,27 @@ insertShiftBottom:function(startCell, endCell){
 /// <summary>
 /// This method is used to insert cells in the selected or specified range and shift remaining cells to bottom.
 /// </summary>
-/// <param name="startCell"	type="any">Row index and column index of the start cell.</param>
-/// <param name="endCell"	type="any">Row index and column index of the end cell.</param>
+/// <param name="startCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
+/// <param name="endCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
 },
 insertShiftRight:function(startCell, endCell){
 /// <summary>
 /// This method is used to insert cells in the selected or specified range and shift remaining cells to right.
 /// </summary>
-/// <param name="startCell"	type="any">Row index and column index of the start cell.</param>
-/// <param name="endCell"	type="any">Row index and column index of the end cell.</param>
+/// <param name="startCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
+/// <param name="endCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
 },
 import:function(importRequest){
 /// <summary>
 /// This method is used to import excel file manually by using form data.
 /// </summary>
-/// <param name="importRequest"	type="any">Pass the form data object to import files manually.</param>
+/// <param name="importRequest"	type="Spreadsheet.ImportingOptions">Pass the form data object to import files manually.</param>
 },
 loadFromJSON:function(response){
 /// <summary>
 /// This method is used to load JSON data in Spreadsheet.
 /// </summary>
-/// <param name="response"	type="any">Pass the response that you want to load.</param>
+/// <param name="response"	type="HTMLElement">Pass the response that you want to load.</param>
 },
 lockCells:function(range, isLocked){
 /// <summary>
@@ -22893,8 +23116,8 @@ performSelection:function(startCell, endCell){
 /// <summary>
 /// This method is used to select a cell or range in the Spreadsheet.
 /// </summary>
-/// <param name="startCell"	type="any">Pass the start cell to perform selection.</param>
-/// <param name="endCell"	type="any">Pass the end cell to perform selection.</param>
+/// <param name="startCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
+/// <param name="endCell"	type="Spreadsheet.CellIndex">Pass the Object "CellIndex"</param>
 },
 protectSheet:function(isProtected){
 /// <summary>
@@ -22937,7 +23160,7 @@ removeHyperlink:function(range, isClearHLink, status, cells, skipHiddenRow){
 /// <param name="range"	type="string">Hyperlink remove from the specified range.</param>
 /// <param name="isClearHLink"	type="boolean">Optional. If it is {{'`true`' | markdownify}}, It will clear link only not format.</param>
 /// <param name="status"	type="boolean">Optional. Pass the status to perform undo and redo operations.</param>
-/// <param name="cells"	type="any">Optional. Pass the cells that you want to remove hyperlink.</param>
+/// <param name="cells"	type="string|any[]">Optional. Pass the cells that you want to remove hyperlink.</param>
 /// <param name="skipHiddenRow"	type="boolean">Optional. Pass {{'`true`' | markdownify}}, if you want to skip the hidden rows.</param>
 },
 removeRange:function(rangeName){
@@ -22981,7 +23204,7 @@ setBorder:function(property, range){
 /// <summary>
 /// This method is used to set border for the specified range of cells in the Spreadsheet.
 /// </summary>
-/// <param name="property"	type="any">Pass the border properties that you want to set.</param>
+/// <param name="property"	type="Spreadsheet.BorderOptions">Pass the Object "BorderOptions".</param>
 /// <param name="range"	type="string">Optional. If range is specified, it will set border for the specified range else it will use the selected range.</param>
 },
 setHeightToRows:function(heightColl){
@@ -22995,7 +23218,7 @@ setHyperlink:function(range, link, sheetIdx){
 /// This method is used to set the hyperlink in selected cells of the current sheet.
 /// </summary>
 /// <param name="range"	type="string|any[]">If range is specified, it will set the hyperlink in range of the cells.</param>
-/// <param name="link"	type="any">Pass cellAddress or webAddress</param>
+/// <param name="link"	type="Spreadsheet.LinkOptions">Pass the Object "LinkOptions"</param>
 /// <param name="sheetIdx"	type="number">If we pass cellAddress then which sheet to be navigate in the applied link.</param>
 },
 setReadOnly:function(range){
@@ -23097,7 +23320,7 @@ updateData:function(data, range){
 /// <summary>
 /// This method is used to update the data for the specified range of cells in the Spreadsheet.
 /// </summary>
-/// <param name="data"	type="any">Pass the cells data that you want to update.</param>
+/// <param name="data"	type="Spreadsheet.DataOptions">Pass the Object "DataOptions"</param>
 /// <param name="range"	type="any[]|string">Optional. If range is specified, it will update data for the specified range  else it will use the current selected range. </param>
 },
 updateFormulaBar:function(){
@@ -23110,37 +23333,27 @@ updateRange:function(sheetIdx, settings){
 /// This method is used to update the range of cells based on the specified settings which we want to update in the Spreadsheet.
 /// </summary>
 /// <param name="sheetIdx"	type="number">Pass the sheet index that you want to update.</param>
-/// <param name="settings"	type="any">Pass the dataSource, startCell and showHeader values as settings.</param>
+/// <param name="settings"	type="Spreadsheet.RangeOptions">Pass the Object "RangeOptions"</param>
 },
 updateUndoRedoCollection:function(details){
 /// <summary>
 /// This method is used to update the details for custom undo and redo operations.
 /// </summary>
-/// <param name="details"	type="any">Pass the details to update undo and redo collection</param>
+/// <param name="details"	type="Spreadsheet.UndoRedoOptions">Pass the Object "UndoRedoOptions"</param>
 },
 updateUniqueData:function(data, range, skipCell){
 /// <summary>
 /// This method is used to update the unique data for the specified range of cells in Spreadsheet.
 /// </summary>
-/// <param name="data"	type="any">Pass the  data that you want to update in the particular range</param>
+/// <param name="data"	type="Spreadsheet.DataOptions">Pass the Object "DataOptions"</param>
 /// <param name="range"	type="any[]|string">Optional. If range is specified, it will update data for the specified range else it will use the current selected range.</param>
-/// <param name="skipCell"	type="any">Optional. It specifies whether to skip element processing or not.</param>
+/// <param name="skipCell"	type="boolean">Optional. It specifies whether to skip element processing or not.</param>
 },
 wrapText:function(range){
 /// <summary>
 /// This method is used to wrap the selected range of cells in the Spreadsheet.
 /// </summary>
 /// <param name="range"	type="any[]|string">Optional. If the range is specified, then it will update wrap in the specified  range else it will use the current selected range.</param>
-},
-getExportProps:function(){
-/// <summary>
-/// This method is used to get the export properties in the Spreadsheet.
-/// </summary>
-},
-unfreezePanes:function(){
-/// <summary>
-/// This method is used to unfreeze the frozen rows and columns in the Spreadsheet.
-/// </summary>
 },
 };
 jQuery.fn.ejSpreadsheet=function(){
@@ -23299,6 +23512,9 @@ jQuery.fn.ejSpreadsheet = function (options) {
 ///<br/><br/>
 ///Gets or sets a value that indicates whether to enable or disable save feature in Spreadsheet. By enabling this feature, you can save existing Spreadsheet.
 ///<br/>allowExporting-boolean	default-true
+///<br/><br/>
+///Gets or sets a value that indicates whether to enable or disable formula calculation in Spreadsheet. By enabling this feature, formula calculated while export the Spreadsheet in protected mode.
+///<br/>enableFormulaCalculation-boolean	default-false
 ///<br/><br/>
 ///Gets or sets a value that indicates to define csvUrl for export to CSV format.
 ///<br/>csvUrl-string	default-null

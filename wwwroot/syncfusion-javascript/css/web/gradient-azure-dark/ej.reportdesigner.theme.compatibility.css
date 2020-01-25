@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*!
 *  filename: ej.reportdesigner.theme.compatibility.css
-*  version : 17.1.0.38
-*  Copyright Syncfusion Inc. 2001 - 2018. All rights reserved.
+*  version : 17.4.0.39
+*  Copyright Syncfusion Inc. 2001 - 2019. All rights reserved.
 *  Use of this code is subject to the terms of our license.
 *  A copy of the current license can be obtained at any time by e-mailing
 *  licensing@syncfusion.com. Any infringement will be prosecuted under
@@ -535,13 +535,7 @@
 .e-js .e-reportdesigner-stepped-line-chart .path2:before {
   color: #4da6ff;
 }
-.e-js .e-reportdesigner-widget-grid:before {
-  color: #4da6ff;
-}
 .e-js .e-reportdesigner-widget-subreport:before {
-  color: #4da6ff;
-}
-.e-js .e-reportdesigner-widget-pivotgrid:before {
   color: #4da6ff;
 }
 .e-js .e-qrydesigner-table-column-deselect:before {
@@ -619,9 +613,18 @@
   font-size: 13px;
 }
 .e-js .e-rptdesigner-ejwidgets-splitbtn {
+  
   background: transparent !important;
-  color: #dddddd !important;
   outline: none !important;
+}
+.e-js .e-rptdesigner-ejwidgets-splitbtn {
+  color: #cccccc !important;
+}
+.e-js .e-rptdesigner-toolbarli.e-hover:not(.e-active) .e-rptdesigner-ejwidgets-splitbtn {
+  
+}
+.e-js .e-rptdesigner-toolbarli.e-hover:not(.e-active) .e-rptdesigner-ejwidgets-splitbtn {
+  color: #cccccc !important;
 }
 .e-js .e-rptdesigner-preview {
   font-size: 13px;
@@ -822,14 +825,110 @@
 .e-js .e-rptdesigner-prop-num {
   border: 0 solid #494949;
 }
-.e-js .e-rptdesigner-format-input {
+.e-js .e-rptdesigner-format-input,
+.e-js .e-rptdesigner-link-input {
   border-right: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.e-js .e-rptdesigner-format-btn {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.e-js .e-rptdesigner-link-input[disabled] {
+  opacity: 0.2 !important;
+}
+.e-js .e-rptdesigner-format-btn,
+.e-js .e-rptdesigner-browse-btn {
+  border-radius: 0px 4px 4px 0px !important;
+  opacity: 1px !important;
+  
+}
+.e-js .e-rptdesigner-format-btn,
+.e-js .e-rptdesigner-browse-btn {
+  color: #dddddd;
+  border: 1px solid #777777;
+}
+.e-js .e-rptdesigner-format-btn,
+.e-js .e-rptdesigner-browse-btn {
+  background: #4d4d4d;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #4d4d4d, #212121);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4d4d4d), color-stop(100%, #212121));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #4d4d4d, #212121);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #4d4d4d, #212121);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #4d4d4d, #212121);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #4d4d4d, #212121);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d4d4d', endColorstr='#212121', GradientType=0);
+  /* IE6-9 */
+
+}
+.e-js .e-rptdesigner-format-btn:hover,
+.e-js .e-rptdesigner-browse-btn:hover {
+  
+}
+.e-js .e-rptdesigner-format-btn:hover,
+.e-js .e-rptdesigner-browse-btn:hover {
+  border-color: #777777;
+  color: #dddddd;
+}
+.e-js .e-rptdesigner-format-btn:hover,
+.e-js .e-rptdesigner-browse-btn:hover {
+  background: #2f4651;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #2f4651, #133a4c);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2f4651), color-stop(100%, #133a4c));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2f4651, #133a4c);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #2f4651, #133a4c);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #2f4651, #133a4c);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #2f4651, #133a4c);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2f4651', endColorstr='#133a4c', GradientType=0);
+  /* IE6-9 */
+
+}
+.e-js .e-rptdesigner-format-btn[disabled],
+.e-js .e-rptdesigner-format-btn[disabled]:hover,
+.e-js .e-rptdesigner-browse-btn[disabled],
+.e-js .e-rptdesigner-browse-btn[disabled]:hover {
+  opacity: 0.2 !important;
+  
+}
+.e-js .e-rptdesigner-format-btn[disabled],
+.e-js .e-rptdesigner-format-btn[disabled]:hover,
+.e-js .e-rptdesigner-browse-btn[disabled],
+.e-js .e-rptdesigner-browse-btn[disabled]:hover {
+  color: #dddddd;
+  border-color: #777777;
+}
+.e-js .e-rptdesigner-format-btn[disabled],
+.e-js .e-rptdesigner-format-btn[disabled]:hover,
+.e-js .e-rptdesigner-browse-btn[disabled],
+.e-js .e-rptdesigner-browse-btn[disabled]:hover {
+  background: #4d4d4d;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #4d4d4d, #212121);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4d4d4d), color-stop(100%, #212121));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #4d4d4d, #212121);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #4d4d4d, #212121);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #4d4d4d, #212121);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #4d4d4d, #212121);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d4d4d', endColorstr='#212121', GradientType=0);
+  /* IE6-9 */
+
 }
 .e-js .e-rptdesigner-browse-icon {
   font-size: 16.5px;
@@ -1198,6 +1297,9 @@
   font-size: 12px;
 }
 .e-js .e-reportdesigner-designer-configuration .e-radiobtn-wrap .e-radsmaller .e-rad-icon {
+  
+}
+.e-js .e-reportdesigner-designer-configuration .e-radiobtn-wrap .e-radsmaller .e-rad-icon {
   font-size: 14px;
 }
 .e-js .e-designer-property-header {
@@ -1295,7 +1397,8 @@
 .e-js .e-rptdesigner-previewbtn,
 .e-js .e-rptdesigner-designbutton,
 .e-js .e-designer-setparam-btn,
-.e-js .e-qrydesigner-addbtn {
+.e-js .e-qrydesigner-addbtn,
+.e-js .e-rptdesigner-prop-btn {
   font-weight: 400 !important;
   font-size: 11px !important;
   
@@ -1307,7 +1410,8 @@
 .e-js .e-rptdesigner-previewbtn,
 .e-js .e-rptdesigner-designbutton,
 .e-js .e-designer-setparam-btn,
-.e-js .e-qrydesigner-addbtn {
+.e-js .e-qrydesigner-addbtn,
+.e-js .e-rptdesigner-prop-btn {
   border-radius: 4px !important;
 }
 .e-js .e-table-user-selection-active,
@@ -1324,6 +1428,16 @@
 .e-js .e-designer-menu > li > ul {
   border-radius: 4px;
 }
+.e-js .e-designer-menu.e-menu.e-context .e-list:not(.e-disable-item):hover {
+  
+}
+.e-js .e-designer-menu.e-menu.e-context .e-active {
+  
+}
+.e-js .e-designer-menu.e-menu.e-context .e-mhover > .e-menulink,
+.e-js .e-designer-menu.e-menu.e-context .e-active > .e-menulink {
+  
+}
 .e-js .e-designer-menu .e-menulink,
 .e-js .e-rptdesigner-designbutton {
   font-size: 13px !important;
@@ -1334,14 +1448,6 @@
 }
 .e-js .e-designer-textbox-border {
   border-color: #494949;
-}
-.e-js.e-reportdesigner .e-userselect textarea::-moz-selection,
-.e-js.e-reportdesigner .e-userselect input::-moz-selection {
-  -moz-appearance: none !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  color: white;
-  background: #3399ff;
 }
 .e-js .e-rptdesigner-headericon {
   font-size: 12px;
@@ -1358,6 +1464,22 @@
 .e-js .e-designer-txt {
   box-shadow: 0 0 1px #494949;
   border: 0.5px solid #494949;
+}
+.e-js .e-reportdesigner .e-textbox::selection,
+.e-js .e-reportdesigner .e-textarea::selection,
+.e-js .e-reportdesigner .e-textbox::-moz-selection,
+.e-js .e-reportdesigner .e-textarea::-moz-selection {
+  
+}
+.e-js .e-reportdesigner .e-textbox::selection,
+.e-js .e-reportdesigner .e-textarea::selection {
+  background: #3297fd;
+  color: white;
+}
+.e-js .e-reportdesigner .e-textbox::-moz-selection,
+.e-js .e-reportdesigner .e-textarea::-moz-selection {
+  background: #3399ff;
+  color: white;
 }
 .e-js.e-reportdesigner .e-designer-content,
 .e-js .e-querydesigner-dataset-text {
@@ -1473,7 +1595,6 @@
   font-size: 14px;
 }
 .e-js .e-rptdesigner-box-sizing,
-.e-js .e-reportdesigner-designArea,
 .e-js .e-rptdesigner-pg-tag {
   -webkit-box-sizing: content-box !important;
   -moz-box-sizing: content-box !important;
@@ -1576,11 +1697,21 @@
 .e-js .e-designer-alertbox .e-title,
 .e-js .e-rptdesigner-itemInfo-template,
 .e-js .e-rptdesigner-grpingpanel-template,
-.e-js .e-designer-tablix-alert-radiobtn .e-text {
+.e-js .e-rptdesigner-fieldList > li,
+.e-js .e-rptdesigner-addDataSourceItem > a,
+.e-js .e-rptdesigner-expressionElement > a,
+.e-js .e-rptdesigner-textElement > a,
+.e-js .e-rptdesigner-noRecords,
+.e-js .e-rptdesigner-tablix-searchtxtbx,
+.e-js .e-designer-tablix-alert-radiobtn .e-text,
+.e-js .e-rptdesigner-prop-btn.e-txt,
+.e-js .e-rptdesigner-btnText {
   font-family: 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', 'Arial' !important;
 }
 .e-js.e-textarea-codeeditor .CodeMirror {
   font-family: 'Segoe UI' !important;
+  height: 322px !important;
+  visibility: unset;
 }
 /*----------------------EJ Designer Fontfamily----------------------*/
 
@@ -1593,7 +1724,9 @@
 
 /*----------------------Report Action Start-----------------------*/
 
-.e-js .e-rptdesigner-report-caption {
+.e-js .e-rptdesigner-report-caption,
+.e-js .e-designer-radio .e-text,
+.e-js .e-designer-radiobtn .e-text {
   font-size: 12px !important;
 }
 /*----------------------Report Action End-----------------------*/
@@ -2010,6 +2143,9 @@
 .e-js .e-rptdesigner-error.e-designer-textarea {
   border: 1px solid #cd0a0a !important;
 }
+.e-js .e-rptdesigner-error.e-textarea.e-preview-txt {
+  border: 0.5px solid #cd0a0a !important;
+}
 .e-js .e-rptdesigner-error-icon,
 .e-js .e-reportdesigner-alertinfo,
 .e-js .e-rptdesigner-error-content {
@@ -2222,7 +2358,7 @@
 .e-js .e-rptdesigner-data-schema {
   color: #cccccc !important;
 }
-.e-js.e-reportdesigner .e-split-btn-separator {
+.e-js.e-reportdesigner .e-split-add-btn-separator {
   border-left: 0.5px solid #777777;
 }
 .e-js .e-rptdesigner-data-bgreset {
@@ -2449,7 +2585,121 @@
 .e-js .e-rptdesigner-group-line.e-rptdesigner-group-detailIcon {
   color: #c3c3c3;
 }
+/**************************Tablix Data Assign Override Start*******************************/
+
+.e-js .e-rptdesigner-tablixdataassignmenu {
+  background-color: black;
+  
+}
+.e-js .e-rptdesigner-tablixdataassignmenu {
+  border: 1px solid #494949;
+  box-shadow: none;
+}
+.e-js .e-rptdesigner-menu-item:hover {
+  
+  color: #dddddd;
+  cursor: pointer;
+}
+.e-js .e-rptdesigner-menu-item:hover {
+  background: #2f4651;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #2f4651, #133a4c);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2f4651), color-stop(100%, #133a4c));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #2f4651, #133a4c);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #2f4651, #133a4c);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #2f4651, #133a4c);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #2f4651, #133a4c);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2f4651', endColorstr='#133a4c', GradientType=0);
+  /* IE6-9 */
+
+}
+.e-js .e-rptdesigner-menu-item {
+  font-size: 14px;
+  color: #dddddd;
+}
+.e-js .e-rptdesigner-menu-item > a {
+  font-size: 14px;
+  text-overflow: ellipsis;
+  text-decoration: none !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.e-js .e-rptdesigner-menu-separator {
+  background-color: #494949;
+}
+.e-js .e-rptdesigner-noRecords {
+  font-size: 12px;
+  color: #cccccc !important;
+  font-style: italic;
+}
+.e-js .e-rptdesigner-tablix-searchicon {
+  color: #cccccc !important;
+}
+.e-js .e-rptdesigner-tablix-content-icon {
+  font-family: ejreportdesigner !important;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: normal;
+}
+/**************************Tablix Data Assign Override End*******************************/
+
 /*************************************Tablix End******************************************/
+
+.e-js .e-rptdesigner-headericon.e-reportdesigner-backarrow:hover {
+  cursor: pointer;
+  border-color: #777777;
+  color: #dddddd;
+  border-radius: 4px;
+  
+}
+.e-js .e-rptdesigner-headericon.e-reportdesigner-backarrow:hover {
+  background: #6d6d6d;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #6d6d6d, #3a3a3a);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6d6d6d), color-stop(100%, #3a3a3a));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #6d6d6d, #3a3a3a);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #6d6d6d, #3a3a3a);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #6d6d6d, #3a3a3a);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #6d6d6d, #3a3a3a);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6d6d6d', endColorstr='#3a3a3a', GradientType=0);
+  /* IE6-9 */
+
+}
+/*************************************Code Module Start******************************************/
+
+.e-js .e-rptdesigner-codeinfo {
+  color: gray;
+}
+.e-js .e-reportdesigner-infoIcon-border {
+  border-left: 1px solid #dedede;
+}
+.e-widget .e-designer-codeTip a {
+  
+}
+/*************************************Code Module End******************************************/
+
+/*************************************Data Field Search [Start] ******************************************/
+
+.e-js .e-rptdesigner-datafield-search-box {
+  background-color: black;
+  
+}
+.e-js .e-rptdesigner-datafield-search-box {
+  border: 1px solid #494949;
+}
+/*************************************Data Field Search [End] ******************************************/
 
 /*------------------------------querydesigner toolbar Start-------------------------------*/
 
@@ -2790,7 +3040,8 @@
 .e-js .e-qrydesigner-add-btn,
 .e-js .e-qrydesigner-atc-boxshadow,
 .e-js .e-qrydesigner-datacontent,
-.e-js .e-qrydesigner-title-label {
+.e-js .e-qrydesigner-title-label,
+.e-js .e-qrydesigner-generatepreview {
   font-family: 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', 'Arial' !important;
 }
 /*------------------------------querydesigner font-family-------------------------------*/

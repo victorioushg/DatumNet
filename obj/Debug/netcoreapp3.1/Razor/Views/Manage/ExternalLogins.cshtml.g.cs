@@ -35,14 +35,14 @@ using DatumNet.Models;
 #nullable disable
 #nullable restore
 #line 4 "D:\DESARROLLO\WebON_DotNet\DatumNet\Views\_ViewImports.cshtml"
-using DatumNet.Models.AccountViewModels;
+using DatumNet.Models.ViewModels.Account;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "D:\DESARROLLO\WebON_DotNet\DatumNet\Views\_ViewImports.cshtml"
-using DatumNet.Models.ManageViewModels;
+using DatumNet.Models.ViewModels.Manage;
 
 #line default
 #line hidden
@@ -55,7 +55,7 @@ using Datum.Views.Manage;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ff84ee55ac9c9ec21b4c5407cf30e822427a1442", @"/Views/Manage/ExternalLogins.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"84ef490bd75a46c16392e4be1a7ac53d04f14130", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4fcb985c248abc66fc77166978bbb12048dfc61c", @"/Views/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"795a591927f32adcfc1489ab97b3c9abc7463f6a", @"/Views/Manage/_ViewImports.cshtml")]
     public class Views_Manage_ExternalLogins : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ExternalLoginsViewModel>
     {
@@ -145,9 +145,9 @@ Write(Html.Partial("_StatusMessage", Model.StatusMessage));
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff84ee55ac9c9ec21b4c5407cf30e822427a14428093", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff84ee55ac9c9ec21b4c5407cf30e822427a14428095", async() => {
                 WriteLiteral("\r\n                                <div>\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ff84ee55ac9c9ec21b4c5407cf30e822427a14428428", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ff84ee55ac9c9ec21b4c5407cf30e822427a14428430", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -172,7 +172,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ff84ee55ac9c9ec21b4c5407cf30e822427a144210368", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ff84ee55ac9c9ec21b4c5407cf30e822427a144210370", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -274,7 +274,7 @@ WriteAttributeValue(" ", 1016, login.LoginProvider, 1017, 20, false);
 #line hidden
 #nullable disable
             WriteLiteral("    <h4>Add another service to log in.</h4>\r\n    <hr />\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff84ee55ac9c9ec21b4c5407cf30e822427a144215909", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ff84ee55ac9c9ec21b4c5407cf30e822427a144215911", async() => {
                 WriteLiteral("\r\n        <div id=\"socialLoginList\">\r\n            <p>\r\n");
 #nullable restore
 #line 45 "D:\DESARROLLO\WebON_DotNet\DatumNet\Views\Manage\ExternalLogins.cshtml"

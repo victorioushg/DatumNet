@@ -35,20 +35,20 @@ using DatumNet.Models;
 #nullable disable
 #nullable restore
 #line 4 "D:\DESARROLLO\WebON_DotNet\DatumNet\Views\_ViewImports.cshtml"
-using DatumNet.Models.AccountViewModels;
+using DatumNet.Models.ViewModels.Account;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "D:\DESARROLLO\WebON_DotNet\DatumNet\Views\_ViewImports.cshtml"
-using DatumNet.Models.ManageViewModels;
+using DatumNet.Models.ViewModels.Manage;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8b989b5b55049c4939d4f7e034b13db27dc9d344", @"/Views/Account/SignedOut.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"84ef490bd75a46c16392e4be1a7ac53d04f14130", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4fcb985c248abc66fc77166978bbb12048dfc61c", @"/Views/_ViewImports.cshtml")]
     public class Views_Account_SignedOut : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

@@ -35,14 +35,14 @@ using DatumNet.Models;
 #nullable disable
 #nullable restore
 #line 4 "D:\DESARROLLO\WebON_DotNet\DatumNet\Views\_ViewImports.cshtml"
-using DatumNet.Models.AccountViewModels;
+using DatumNet.Models.ViewModels.Account;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "D:\DESARROLLO\WebON_DotNet\DatumNet\Views\_ViewImports.cshtml"
-using DatumNet.Models.ManageViewModels;
+using DatumNet.Models.ViewModels.Manage;
 
 #line default
 #line hidden
@@ -55,7 +55,7 @@ using Datum.Views.Manage;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9c80481f3b18ec9010939be05d4865f041dfe44a", @"/Views/Manage/_ManageNav.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"84ef490bd75a46c16392e4be1a7ac53d04f14130", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4fcb985c248abc66fc77166978bbb12048dfc61c", @"/Views/_ViewImports.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"795a591927f32adcfc1489ab97b3c9abc7463f6a", @"/Views/Manage/_ViewImports.cshtml")]
     public class Views_Manage__ManageNav : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
@@ -106,7 +106,7 @@ WriteAttributeValue("", 243, ManageNavPages.IndexNavClass(ViewContext), 243, 42,
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c80481f3b18ec9010939be05d4865f041dfe44a5844", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c80481f3b18ec9010939be05d4865f041dfe44a5846", async() => {
                 WriteLiteral("Profile");
             }
             );
@@ -132,7 +132,7 @@ WriteAttributeValue("", 342, ManageNavPages.ChangePasswordNavClass(ViewContext),
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c80481f3b18ec9010939be05d4865f041dfe44a7399", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c80481f3b18ec9010939be05d4865f041dfe44a7401", async() => {
                 WriteLiteral("Password");
             }
             );
@@ -167,7 +167,7 @@ WriteAttributeValue("", 500, ManageNavPages.ExternalLoginsNavClass(ViewContext),
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c80481f3b18ec9010939be05d4865f041dfe44a9175", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c80481f3b18ec9010939be05d4865f041dfe44a9177", async() => {
                 WriteLiteral("External logins");
             }
             );
@@ -201,7 +201,7 @@ WriteAttributeValue("", 632, ManageNavPages.TwoFactorAuthenticationNavClass(View
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c80481f3b18ec9010939be05d4865f041dfe44a10934", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c80481f3b18ec9010939be05d4865f041dfe44a10936", async() => {
                 WriteLiteral("Two-factor authentication");
             }
             );

@@ -4,66 +4,82 @@ var ui = {}; // ui components namespace
 
 $(function () {
 
+    $.extend(ej, Syncfusion);
+    ej.base.enableRipple(true);
+    var tabObj = new ej.navigations.Tab(
+        {
+            //selecting: select,
+            items: [
+                {
+                    header: { 'text': 'Cuentas Contables' },
+                    content: "#accountsGrid",
+                },
+                {
+                    header: { 'text': 'Movimientos' },
+                    content: 'Facebook is an online social networking service headquartered in Menlo Park, California. Its website was ' +
+                        'launched on February 4, 2004, by Mark Zuckerberg with his Harvard College roommates and fellow students Eduardo ' +
+                        'Saverin, Andrew McCollum, Dustin Moskovitz and Chris Hughes.The founders had initially limited the website\'\s ' +
+                        'membership to Harvard students, but later expanded it to colleges in the Boston area, the Ivy League, and Stanford ' +
+                        'University. It gradually added support for students at various other universities and later to high-school students.'
+                },
+                {
+                    header: { 'text': 'WhatsApp' },
+                    content: 'WhatsApp Messenger is a proprietary cross-platform instant messaging client for smartphones that operates ' +
+                        'under a subscription business model. It uses the Internet to send text messages, images, video, user location and ' +
+                        'audio media messages to other users using standard cellular mobile numbers. As of February 2016, WhatsApp had a user ' +
+                        'base of up to one billion,[10] making it the most globally popular messaging application. WhatsApp Inc., based in ' +
+                        'Mountain View, California, was acquired by Facebook Inc. on February 19, 2014, for approximately US$19.3 billion.'
+                }
+            ]
+        });
+    tabObj.appendTo('#accountsTab');
+    tabObj.select(0); 
 
-    $("#Ribbon").ejRibbon({
-        width: "100%",
-        // application tab item defined here
-        applicationTab: {
-            type: ej.Ribbon.applicationTabType.Backstage,
-            menuItemID: "ribbon"
-        },
-        buttonDefaults: {
-            width: 100,
-            height: 100,
-            showRoundedCorner: true
-        },
-        // tab item defined here
-        tabs: [{
-            id: "contabilidad",
-            text: "Contabilidad",
-            // group with content & button settings
-            groups: [{
-                //text: "Archivos",
-                content: [{
-                    groups: [],
-                    groups: [{
-                        id: "accounts",
-                        text: "Cuentas Contables",
-                        buttonSettings: {
-                            contentType: ej.ContentType.TextAndImage,
-                            imagePosition: ej.ImagePosition.ImageTop,
-                            prefixIcon: "e-icon e-ribbon e-account",
-                        }
-                    },
-                    {
-                        id: "actual",
-                        text: "Asientos Actuales",
-                        buttonSettings: {
-                            contentType: ej.ContentType.TextAndImage,
-                            imagePosition: ej.ImagePosition.ImageTop,
-                            prefixIcon: "e-icon e-ribbon e-actual",
-                        }
-                    },
-                    {
-                        id: "difered",
-                        text: "Asientos Diferidos",
-                        buttonSettings: {
-                            contentType: ej.ContentType.TextAndImage,
-                            imagePosition: ej.ImagePosition.ImageTop,
-                            prefixIcon: "e-icon e-ribbon e-difered",
-                        }
-                    }],
-                }]
+    api("/api/accounting", null, res => {
+        dta.accounts = res;
+        ui.accountsGrid = new Grid({
+            id: "#accountsGrid",
+            allowFiltering: false,
+            showColumnChooser: false,
+            columns: [
+                { field: "id", visible: false },
+                { field: "accountCode", headerText: "Codigo Contable", width: 200 },
+                { field: "description", headerText: "Descripcion" },
+                { headerText: "", width: 600 },
+            ],
+            queryCellInfo: "queryCellInfo",
+            gridLines: ej.Grid.GridLines.None,
+            dataSource: dta.accounts,
+            canEdit: true,
+            canDelete: true,
+            canAdd: true,
+            editButtonVisible: true,
+            actionBegin: function (args) {
 
-            }]
-        }]
+            }
+        }).render();
+
+
     });
+})
 
+function select(e) {
+    if (e.isSwiped) {
+        e.cancel = true;
+    }
+}
 
-});
+function queryCellInfo(args) {
 
-function onButtonUploadClick(args) {
-    ui.popup.open();
+    if (args.column.field == "accountCode" && args.data.outcomeAccount == 1) {
+        args.cell.style.fontWeight = "Bold"; /*custom css group cell */
+    }
+    if (args.column.field == "description") {
+        var cellText = ' '.repeat(args.data.level * 2).concat(args.cell.textContent);
+        args.cell.offsetLeft = args.data.level * 2;
+        if (args.data.outcomeAccount == 1) args.cell.style.fontWeight = "Bold";
+    }
+
 }
 
 function populateGrid(data) {

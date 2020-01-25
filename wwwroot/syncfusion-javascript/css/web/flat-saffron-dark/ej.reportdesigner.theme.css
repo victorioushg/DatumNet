@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*!
 *  filename: ej.reportdesigner.theme.css
-*  version : 17.1.0.38
-*  Copyright Syncfusion Inc. 2001 - 2018. All rights reserved.
+*  version : 17.4.0.39
+*  Copyright Syncfusion Inc. 2001 - 2019. All rights reserved.
 *  Use of this code is subject to the terms of our license.
 *  A copy of the current license can be obtained at any time by e-mailing
 *  licensing@syncfusion.com. Any infringement will be prosecuted under
@@ -515,13 +515,7 @@
 .e-reportdesigner-stepped-line-chart .path2:before {
   color: #4da6ff;
 }
-.e-reportdesigner-widget-grid:before {
-  color: #4da6ff;
-}
 .e-reportdesigner-widget-subreport:before {
-  color: #4da6ff;
-}
-.e-reportdesigner-widget-pivotgrid:before {
   color: #4da6ff;
 }
 .e-qrydesigner-table-column-deselect:before {
@@ -599,9 +593,18 @@
   font-size: 13px;
 }
 .e-rptdesigner-ejwidgets-splitbtn {
+  
   background: transparent !important;
-  color: #dddddd !important;
   outline: none !important;
+}
+.e-rptdesigner-ejwidgets-splitbtn {
+  color: #cccccc !important;
+}
+.e-rptdesigner-toolbarli.e-hover:not(.e-active) .e-rptdesigner-ejwidgets-splitbtn {
+  
+}
+.e-rptdesigner-toolbarli.e-hover:not(.e-active) .e-rptdesigner-ejwidgets-splitbtn {
+  color: #efefef !important;
 }
 .e-rptdesigner-preview {
   font-size: 13px;
@@ -738,14 +741,62 @@
 .e-rptdesigner-prop-num {
   border: 0 solid #494949;
 }
-.e-rptdesigner-format-input {
+.e-rptdesigner-format-input,
+.e-rptdesigner-link-input {
   border-right: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.e-rptdesigner-format-btn {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.e-rptdesigner-link-input[disabled] {
+  opacity: 0.2 !important;
+}
+.e-rptdesigner-format-btn,
+.e-rptdesigner-browse-btn {
+  border-radius: 0px 4px 4px 0px !important;
+  opacity: 1px !important;
+  
+}
+.e-rptdesigner-format-btn,
+.e-rptdesigner-browse-btn {
+  color: #dddddd;
+  border: 1px solid #777777;
+}
+.e-rptdesigner-format-btn,
+.e-rptdesigner-browse-btn {
+  background: #212121;
+}
+.e-rptdesigner-format-btn:hover,
+.e-rptdesigner-browse-btn:hover {
+  
+}
+.e-rptdesigner-format-btn:hover,
+.e-rptdesigner-browse-btn:hover {
+  border-color: #494949;
+  color: #aaaaaa;
+}
+.e-rptdesigner-format-btn:hover,
+.e-rptdesigner-browse-btn:hover {
+  background: #4b2c03;
+}
+.e-rptdesigner-format-btn[disabled],
+.e-rptdesigner-format-btn[disabled]:hover,
+.e-rptdesigner-browse-btn[disabled],
+.e-rptdesigner-browse-btn[disabled]:hover {
+  opacity: 0.2 !important;
+  
+}
+.e-rptdesigner-format-btn[disabled],
+.e-rptdesigner-format-btn[disabled]:hover,
+.e-rptdesigner-browse-btn[disabled],
+.e-rptdesigner-browse-btn[disabled]:hover {
+  color: #dddddd;
+  border-color: #777777;
+}
+.e-rptdesigner-format-btn[disabled],
+.e-rptdesigner-format-btn[disabled]:hover,
+.e-rptdesigner-browse-btn[disabled],
+.e-rptdesigner-browse-btn[disabled]:hover {
+  background: #212121;
 }
 .e-rptdesigner-browse-icon {
   font-size: 16.5px;
@@ -1018,6 +1069,9 @@
   font-size: 12px;
 }
 .e-reportdesigner-designer-configuration .e-radiobtn-wrap .e-radsmaller .e-rad-icon {
+  
+}
+.e-reportdesigner-designer-configuration .e-radiobtn-wrap .e-radsmaller .e-rad-icon {
   font-size: 14px;
 }
 .e-designer-property-header {
@@ -1115,7 +1169,8 @@
 .e-rptdesigner-previewbtn,
 .e-rptdesigner-designbutton,
 .e-designer-setparam-btn,
-.e-qrydesigner-addbtn {
+.e-qrydesigner-addbtn,
+.e-rptdesigner-prop-btn {
   font-weight: 400 !important;
   font-size: 11px !important;
   
@@ -1127,7 +1182,8 @@
 .e-rptdesigner-previewbtn,
 .e-rptdesigner-designbutton,
 .e-designer-setparam-btn,
-.e-qrydesigner-addbtn {
+.e-qrydesigner-addbtn,
+.e-rptdesigner-prop-btn {
   border-radius: 4px !important;
 }
 .e-table-user-selection-active,
@@ -1144,6 +1200,16 @@
 .e-designer-menu > li > ul {
   border-radius: 4px;
 }
+.e-designer-menu.e-menu.e-context .e-list:not(.e-disable-item):hover {
+  
+}
+.e-designer-menu.e-menu.e-context .e-active {
+  
+}
+.e-designer-menu.e-menu.e-context .e-mhover > .e-menulink,
+.e-designer-menu.e-menu.e-context .e-active > .e-menulink {
+  
+}
 .e-designer-menu .e-menulink,
 .e-rptdesigner-designbutton {
   font-size: 13px !important;
@@ -1154,14 +1220,6 @@
 }
 .e-designer-textbox-border {
   border-color: #494949;
-}
-.e-reportdesigner .e-userselect textarea::-moz-selection,
-.e-reportdesigner .e-userselect input::-moz-selection {
-  -moz-appearance: none !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  color: white;
-  background: #3399ff;
 }
 .e-rptdesigner-headericon {
   font-size: 12px;
@@ -1178,6 +1236,22 @@
 .e-designer-txt {
   box-shadow: 0 0 1px #494949;
   border: 0.5px solid #494949;
+}
+.e-reportdesigner .e-textbox::selection,
+.e-reportdesigner .e-textarea::selection,
+.e-reportdesigner .e-textbox::-moz-selection,
+.e-reportdesigner .e-textarea::-moz-selection {
+  
+}
+.e-reportdesigner .e-textbox::selection,
+.e-reportdesigner .e-textarea::selection {
+  background: #3297fd;
+  color: white;
+}
+.e-reportdesigner .e-textbox::-moz-selection,
+.e-reportdesigner .e-textarea::-moz-selection {
+  background: #3399ff;
+  color: white;
 }
 .e-reportdesigner .e-designer-content,
 .e-querydesigner-dataset-text {
@@ -1277,7 +1351,6 @@
   font-size: 14px;
 }
 .e-rptdesigner-box-sizing,
-.e-reportdesigner-designArea,
 .e-rptdesigner-pg-tag {
   -webkit-box-sizing: content-box !important;
   -moz-box-sizing: content-box !important;
@@ -1380,11 +1453,21 @@
 .e-designer-alertbox .e-title,
 .e-rptdesigner-itemInfo-template,
 .e-rptdesigner-grpingpanel-template,
-.e-designer-tablix-alert-radiobtn .e-text {
+.e-rptdesigner-fieldList > li,
+.e-rptdesigner-addDataSourceItem > a,
+.e-rptdesigner-expressionElement > a,
+.e-rptdesigner-textElement > a,
+.e-rptdesigner-noRecords,
+.e-rptdesigner-tablix-searchtxtbx,
+.e-designer-tablix-alert-radiobtn .e-text,
+.e-rptdesigner-prop-btn.e-txt,
+.e-rptdesigner-btnText {
   font-family: 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', 'Arial' !important;
 }
 .e-textarea-codeeditor .CodeMirror {
   font-family: 'Segoe UI' !important;
+  height: 322px !important;
+  visibility: unset;
 }
 /*----------------------EJ Designer Fontfamily----------------------*/
 
@@ -1397,7 +1480,9 @@
 
 /*----------------------Report Action Start-----------------------*/
 
-.e-rptdesigner-report-caption {
+.e-rptdesigner-report-caption,
+.e-designer-radio .e-text,
+.e-designer-radiobtn .e-text {
   font-size: 12px !important;
 }
 /*----------------------Report Action End-----------------------*/
@@ -1750,6 +1835,9 @@
 .e-rptdesigner-error.e-designer-textarea {
   border: 1px solid #cd0a0a !important;
 }
+.e-rptdesigner-error.e-textarea.e-preview-txt {
+  border: 0.5px solid #cd0a0a !important;
+}
 .e-rptdesigner-error-icon,
 .e-reportdesigner-alertinfo,
 .e-rptdesigner-error-content {
@@ -1962,7 +2050,7 @@
 .e-rptdesigner-data-schema {
   color: #cccccc !important;
 }
-.e-reportdesigner .e-split-btn-separator {
+.e-reportdesigner .e-split-add-btn-separator {
   border-left: 0.5px solid #777777;
 }
 .e-rptdesigner-data-bgreset {
@@ -2109,7 +2197,89 @@
 .e-rptdesigner-group-line.e-rptdesigner-group-detailIcon {
   color: #c3c3c3;
 }
+/**************************Tablix Data Assign Override Start*******************************/
+
+.e-rptdesigner-tablixdataassignmenu {
+  background-color: black;
+  
+}
+.e-rptdesigner-tablixdataassignmenu {
+  border: 1px solid #494949;
+  box-shadow: none;
+}
+.e-rptdesigner-menu-item:hover {
+  
+  color: #aaaaaa;
+  cursor: pointer;
+}
+.e-rptdesigner-menu-item:hover {
+  background: #4b2c03;
+}
+.e-rptdesigner-menu-item {
+  font-size: 14px;
+  color: #dddddd;
+}
+.e-rptdesigner-menu-item > a {
+  font-size: 14px;
+  text-overflow: ellipsis;
+  text-decoration: none !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.e-rptdesigner-menu-separator {
+  background-color: #494949;
+}
+.e-rptdesigner-noRecords {
+  font-size: 12px;
+  color: #cccccc !important;
+  font-style: italic;
+}
+.e-rptdesigner-tablix-searchicon {
+  color: #cccccc !important;
+}
+.e-rptdesigner-tablix-content-icon {
+  font-family: ejreportdesigner !important;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: normal;
+}
+/**************************Tablix Data Assign Override End*******************************/
+
 /*************************************Tablix End******************************************/
+
+.e-rptdesigner-headericon.e-reportdesigner-backarrow:hover {
+  cursor: pointer;
+  border-color: #494949;
+  color: #aaaaaa;
+  border-radius: 4px;
+  
+}
+.e-rptdesigner-headericon.e-reportdesigner-backarrow:hover {
+  background: #3a3a3a;
+}
+/*************************************Code Module Start******************************************/
+
+.e-rptdesigner-codeinfo {
+  color: gray;
+}
+.e-reportdesigner-infoIcon-border {
+  border-left: 1px solid #dedede;
+}
+.e-designer-codeTip a {
+  
+}
+/*************************************Code Module End******************************************/
+
+/*************************************Data Field Search [Start] ******************************************/
+
+.e-rptdesigner-datafield-search-box {
+  background-color: black;
+  
+}
+.e-rptdesigner-datafield-search-box {
+  border: 1px solid #494949;
+}
+/*************************************Data Field Search [End] ******************************************/
 
 /*------------------------------querydesigner toolbar Start-------------------------------*/
 
@@ -2386,7 +2556,8 @@
 .e-qrydesigner-add-btn,
 .e-qrydesigner-atc-boxshadow,
 .e-qrydesigner-datacontent,
-.e-qrydesigner-title-label {
+.e-qrydesigner-title-label,
+.e-qrydesigner-generatepreview {
   font-family: 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', 'Arial' !important;
 }
 /*------------------------------querydesigner font-family-------------------------------*/

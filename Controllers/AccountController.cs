@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using DatumNet.Models;
-using DatumNet.Models.AccountViewModels;
+using DatumNet.Models.ViewModels.Account;
 using DatumNet.Services;
 
 namespace DatumNet.Controllers

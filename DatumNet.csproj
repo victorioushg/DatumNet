@@ -6,24 +6,59 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\css\ej2\**" />
+    <Compile Remove="wwwroot\syncfusion-ej2\ej2\ej2-buttons\**" />
+    <Compile Remove="wwwroot\syncfusion-ej2\ej2\ej2-navigations\**" />
+    <Compile Remove="wwwroot\syncfusion-ej2\ej2\ej2-popups\**" />
     <Compile Remove="wwwroot\syncfusion-javascript\angular2\**" />
     <Compile Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
     <Compile Remove="wwwroot\syncfusion-javascript\typescript\**" />
+    <Content Remove="wwwroot\css\ej2\**" />
+    <Content Remove="wwwroot\syncfusion-ej2\ej2\ej2-buttons\**" />
+    <Content Remove="wwwroot\syncfusion-ej2\ej2\ej2-navigations\**" />
+    <Content Remove="wwwroot\syncfusion-ej2\ej2\ej2-popups\**" />
     <Content Remove="wwwroot\syncfusion-javascript\angular2\**" />
     <Content Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
     <Content Remove="wwwroot\syncfusion-javascript\typescript\**" />
+    <EmbeddedResource Remove="wwwroot\css\ej2\**" />
+    <EmbeddedResource Remove="wwwroot\syncfusion-ej2\ej2\ej2-buttons\**" />
+    <EmbeddedResource Remove="wwwroot\syncfusion-ej2\ej2\ej2-navigations\**" />
+    <EmbeddedResource Remove="wwwroot\syncfusion-ej2\ej2\ej2-popups\**" />
     <EmbeddedResource Remove="wwwroot\syncfusion-javascript\angular2\**" />
     <EmbeddedResource Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
     <EmbeddedResource Remove="wwwroot\syncfusion-javascript\typescript\**" />
+    <None Remove="wwwroot\css\ej2\**" />
+    <None Remove="wwwroot\syncfusion-ej2\ej2\ej2-buttons\**" />
+    <None Remove="wwwroot\syncfusion-ej2\ej2\ej2-navigations\**" />
+    <None Remove="wwwroot\syncfusion-ej2\ej2\ej2-popups\**" />
     <None Remove="wwwroot\syncfusion-javascript\angular2\**" />
     <None Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
     <None Remove="wwwroot\syncfusion-javascript\typescript\**" />
+    <TypeScriptCompile Remove="wwwroot\css\ej2\**" />
+    <TypeScriptCompile Remove="wwwroot\syncfusion-ej2\ej2\ej2-buttons\**" />
+    <TypeScriptCompile Remove="wwwroot\syncfusion-ej2\ej2\ej2-navigations\**" />
+    <TypeScriptCompile Remove="wwwroot\syncfusion-ej2\ej2\ej2-popups\**" />
     <TypeScriptCompile Remove="wwwroot\syncfusion-javascript\angular2\**" />
     <TypeScriptCompile Remove="wwwroot\syncfusion-javascript\scripts\aurelia\**" />
     <TypeScriptCompile Remove="wwwroot\syncfusion-javascript\typescript\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\syncfusion-ej2\ej2\dist\ej2.d.ts" />
+    <Content Remove="wwwroot\syncfusion-ej2\ej2\dist\ej2.min.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Remove="wwwroot\syncfusion-ej2\ej2\dist\ej2.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\syncfusion-ej2\ej2\dist\ej2.min.js" />
+    <None Include="wwwroot\syncfusion-ej2\ej2\styles\compatibility\bootstrap.scss" />
+    <None Include="wwwroot\syncfusion-ej2\ej2\styles\compatibility\bootstrap4.scss" />
+    <None Include="wwwroot\syncfusion-ej2\ej2\styles\compatibility\fabric.scss" />
+    <None Include="wwwroot\syncfusion-ej2\ej2\styles\compatibility\highcontrast.scss" />
+    <None Include="wwwroot\syncfusion-ej2\ej2\styles\compatibility\material.scss" />
     <None Include="wwwroot\syncfusion-javascript\css\mobile\images\ejmmobilefonts.svg" />
     <None Include="wwwroot\syncfusion-javascript\css\web\bootstrap-theme\ej.theme.compatibility.less" />
     <None Include="wwwroot\syncfusion-javascript\css\web\bootstrap-theme\ej.theme.less" />
@@ -285,6 +320,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MySql.Data" Version="8.0.18" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Models\Contracts\" />
   </ItemGroup>
 
 </Project>
