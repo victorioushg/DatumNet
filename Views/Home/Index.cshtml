@@ -2,13 +2,33 @@
     ViewData["Title"] = "contabilidad";
 }
 
-<div id="label">
-    <span>Esto es una prueba para pegar una etiqueta aqui</span>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <table id="accountLabel" class="table-borderless">
+            <tr style="font-size:smaller">
+                <td width="25%"></td>
+                <td></td>
+                <td width="5%"><a onclick="clearSelectedAccount()" href="javascript:void(0)"><i class="fa fa-times" title="Clear selected account"></i></a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-4">
+        <div>
+            <input id="startEndDates"  />
+        </div>
+    </div>
 </div>
-<div id="accountsTab">
+<div class="row">
+    <div id="accountsTab">
+    </div>
+    <div id="accountsGrid" style="display:none"></div>
+    <div id="accountMovements" style="display:none"></div>
 </div>
-<div id="accountsGrid" style="display:none">
-</div>
+
+
+
 
 
 

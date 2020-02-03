@@ -20,7 +20,6 @@ class Grid {
         this.allowFiltering = args.allowFiltering !== undefined ? args.allowFiltering : true;
         this.filterSettings = { filterType: "menu" };
         this.query = args.query !== undefined ? args.query : null;
-        this.toolbarClick = args.toolbarClick !== undefined ? args.toolbarClick : 'onToolBarClick';
         this.showColumnChooser = args.showColumnChooser !== undefined ? args.showColumnChooser : true;
         this.allowResizeToFit = args.allowResizeToFit !== undefined ? args.allowResizeToFit : true;
         this.allowReordering = args.allowReordering !== undefined ? args.allowReordering : true;
@@ -30,12 +29,18 @@ class Grid {
         this.minWidth = args.minWidth !== undefined ? args.minWidth : 990;
         this.enableTouch = args.enableTouch !== undefined ? args.enableTouch : false;
         this.allowScrolling = args.allowScrolling !== undefined ? args.allowScrolling : true;
-        this.rowDataBound = args.rowDataBound !== undefined ? args.rowDataBound : null;
+
         this.queryCellInfo = args.queryCellInfo !== undefined ? args.queryCellInfo : null;
         this.allowTextWrap = args.allowTextWrap !== undefined ? args.allowTextWrap : true;
         this.textWrapSettings = args.textWrapSettings !== undefined ? args.textWrapSettings : { wrapMode: "both" };
 
-        this.isResponsive = true; 
+        // Events
+        this.toolbarClick = args.toolbarClick !== undefined ? args.toolbarClick : 'onToolBarClick';
+        this.rowDataBound = args.rowDataBound !== undefined ? args.rowDataBound : null;
+        this.rowSelected = args.rowSelected !== undefined ? args.rowSelected : null;
+
+
+        this.isResponsive = true;
 
         this.accessType = args.accessType !== undefined ? args.accessType : 'ReadOnly';
 
@@ -65,7 +70,7 @@ class Grid {
             : !this.allowGrouping;
 
         this.allowPaging = args.allowPaging !== undefined
-            ? args.allowPaging 
+            ? args.allowPaging
             : this.allowVirtualScrolling;
 
         //this.pageSettings = { pageSize: 10 };$(window).height() - 500,
@@ -73,7 +78,7 @@ class Grid {
             ? { pageSize: 100 } //this.dataSource.length }
             : {}
 
-        var h = $(window).height() - (300 + (this.allowPaging ? 80 : 0));
+        var h = $(window).height() - (350 + (this.allowPaging ? 80 : 0));
 
         this.scrollSettings = {
             width: "100%",
@@ -83,7 +88,7 @@ class Grid {
         };
 
         var toolbarItems = [];
-        if (canAdd ) {
+        if (canAdd) {
             toolbarItems.push("add");
         }
         if (canEdit && this.editButtonVisible) {
@@ -146,9 +151,10 @@ class Grid {
             columns: this.columns,
             actionBegin: this.actionBegin, // todo instance of popup
             rowDataBound: this.rowDataBound,
-            pageSettings: this.pageSettings, 
+            pageSettings: this.pageSettings,
             queryCellInfo: this.queryCellInfo,
-             gridLines: this.gridLines
+            gridLines: this.gridLines,
+            rowSelected: this.rowSelected
         });
     }
 
@@ -159,7 +165,7 @@ class Grid {
         var operator = args.operator !== undefined ? args.operator : "equal";
 
         // default filter is text match on a column (args.field)
-        var filterAction = function(g, val) {
+        var filterAction = function (g, val) {
             g.filterColumn([{
                 field: gridField,
                 operator: operator,

@@ -2,74 +2,87 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+    /*background-image: url(/images/NoPath.png);
+    background-repeat: no-repeat;
+    background-position: bottom;*/
+    margin-bottom: 0px;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  
-  white-space: nowrap;
-  line-height: 15px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 99%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 40px;
+    line-height: 40px; /* Vertically center the text there */
+   
+    -moz-box-shadow: 0 -5px 6px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 -5px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 -5px 6px rgba(0,0,0,0.1);
 }
 
 
@@ -82,6 +95,7 @@ body {
     height: 40px;
     width: 40px;
 }
+
 .e-ribbon .e-actual {
     background-image: url("../images/BLUUI/icons8-ledger-40.png");
     background-repeat: no-repeat;
@@ -96,3 +110,128 @@ body {
     width: 40px;
 }
 
+#accountLabel {
+    position: absolute;
+    right: 20px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+/*** Form elements ***/
+::placeholder {
+    color: #a6a6a6;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.edit-title {
+    background-color: transparent;
+    color: #2699FB;
+    width: 100%;
+    /*text-align: center;*/
+    font-weight: 700;
+    margin-top: 15px;
+    /*margin-left: -15px;*/
+}
+
+.edit-link, a {
+    background-color: transparent;
+    color: #007bff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-link {
+    margin-top: 15px;
+    width: 100%;
+}
+
+    .edit-link:hover {
+        font-weight: 700;
+    }
+
+.edit-label {
+    display: inline-block;
+    background-color: transparent;
+    width: 100%;
+    font-weight: 700;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.edit-field {
+    width: 100%;
+    padding: 2px;
+    border: none;
+    font-size: 14px;
+    /*background-color: #F1F9FF;*/
+    font-weight: 600;
+    border-bottom: 1px solid #dee2e6;
+}
+
+    .edit-field.form-control {
+        margin-bottom: 3px;
+    }
+
+.edit-footer {
+    display: inline-block;
+    background-color: transparent;
+    width: 100%;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+textarea.edit-field {
+    height: 120px;
+}
+
+.edit-ddl, .edit-ddl .e-input, .edit-ddl .e-select {
+    padding: 0 0 0 2px;
+    /*background-color: #F1F9FF !important;*/
+}
+
+.edit-ddl, .edit-field {
+    color: black;
+    height: 28px;
+}
+
+    .edit-ddl .e-in-wrap {
+        border: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+/*.edit-field input {
+    background-color: #F1F9FF;
+    color: #2699FB;
+    font-size: 13px;
+    border-radius: 0.5em;
+    border: 1px solid;
+    outline: none;
+    padding-left: 10px;
+    max-width: 80%;
+}*/
+
+.borderless {
+    margin: 0;
+}
+
+    .borderless td {
+        padding: 0;
+        border-top: none;
+        /*border-bottom: 1px solid #dee2e6;*/
+    }
