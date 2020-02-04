@@ -105,7 +105,7 @@ function queryCellInfo(args) {
 
 function onTabSelected(args) {
 
-    //if (ui.startEndDatePicker) ui.startEndDatePicker.htmlAttributes='style="display:none"';
+    if (ui.startEndDatePicker) ui.startEndDatePicker.allowEdit = false;
     
     if (args.selectedIndex == 1) { // 1 == Codes
     } else if (args.selectedIndex == 2) {// 2 == Movements
@@ -113,14 +113,15 @@ function onTabSelected(args) {
             ui.startEndDatePicker = new ej.calendars.DateRangePicker({
                 placeholder: 'Select a range',
                 //sets the start date in the range
-                startDate: new Date("11/9/2017"), // todo first month date
+                startDate: new Date(new Date().setDate(1)), // todo first month date
                 //sets the end date in the range
-                endDate: new Date("11/21/2017"), // todo last month date 
+                endDate: new Date(new Date(new Date().setMonth( new Date().getMonth() + 1)).setDate(0)), // todo last month date 
             });
             ui.startEndDatePicker.appendTo('#startEndDates');
         } else {
-            //ui.startEndDatePicker.htmlAttributes ='style="display:block"';
+            ui.startEndDatePicker.allowEdit = true;
         }
+
     }
     else { // 3 == Statistics
         
