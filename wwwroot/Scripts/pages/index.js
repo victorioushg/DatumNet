@@ -12,15 +12,15 @@ $(function () {
             //selecting: select,
             items: [
                 {
-                    header: { 'text': 'Cuentas Contables' },
+                    header: { 'text': 'cuentas contables' },
                     content: "#accountsGrid",
                 },
                 {
-                    header: { 'text': 'Movimientos' },
+                    header: { 'text': 'movimientos' },
                     content: "#accountMovements"
                 },
                 {
-                    header: { 'text': 'Estadisticas' },
+                    header: { 'text': 'estadisticas' },
                     content: 'WhatsApp Messenger is a proprietary cross-platform instant messaging client for smartphones that operates ' +
                         'under a subscription business model. It uses the Internet to send text messages, images, video, user location and ' +
                         'audio media messages to other users using standard cellular mobile numbers. As of February 2016, WhatsApp had a user ' +
