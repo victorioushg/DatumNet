@@ -35,7 +35,7 @@ $(function () {
     tabObj.appendTo('#accountsTab');
     tabObj.select(0);
 
-    api("/api/accounting", null, res => {
+    api("/api/accounting/accounts", null, res => {
         dta.accounts = res;
         ui.accountsGrid = new Grid({
             id: "#accountsGrid",
@@ -75,7 +75,7 @@ $(function () {
         }).render();
     });
 
-   
+
 
 });
 
@@ -106,7 +106,7 @@ function queryCellInfo(args) {
 function onTabSelected(args) {
 
     if (ui.startEndDatePicker) ui.startEndDatePicker.allowEdit = false;
-    
+
     if (args.selectedIndex == 1) { // 1 == Codes
     } else if (args.selectedIndex == 2) {// 2 == Movements
         if (!ui.startEndDatePicker) {
@@ -115,15 +115,32 @@ function onTabSelected(args) {
                 //sets the start date in the range
                 startDate: new Date(new Date().setDate(1)), // todo first month date
                 //sets the end date in the range
-                endDate: new Date(new Date(new Date().setMonth( new Date().getMonth() + 1)).setDate(0)), // todo last month date 
+                endDate: new Date(new Date(new Date().setMonth(new Date().getMonth() + 1)).setDate(0)), // todo last month date 
             });
             ui.startEndDatePicker.appendTo('#startEndDates');
         } else {
             ui.startEndDatePicker.allowEdit = true;
         }
 
+        populateMovements({
+            accountId: ui.accountCodeSelected,
+            startDate: ui.startEndDatePicker.startDate,
+            endDate: ui.startEndDatePicker.endDate
+        }); 
+
     }
     else { // 3 == Statistics
-        
+
     }
+}
+
+function populateMovements(args) {
+    api("/api/accounting/movements/" + args.accountId, null, res => {
+        dta.movements = res;
+        ui.movementsGrid = new Grid({
+            id: "#movementsGrid",
+            dataSource: dta.movements,
+
+        }).render();
+    });
 }
