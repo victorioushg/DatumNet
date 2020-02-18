@@ -124,7 +124,10 @@ class Grid {
     }
 
     /* call this before any other methods to create the ejGrid */
-    render() {
+    render(args) {
+        if (args && args.dataSource) {
+            this.dataSource = args.dataSource;
+        }
         $(this.id).ejGrid({
             dataSource: this.dataSource,
             isResponsive: this.isResponsive,
@@ -233,7 +236,10 @@ class Grid {
         }
     }
 
-    refresh() {
+    refresh(args) {
+        if (args && args.dataSource) {
+            this.dataSource = args.dataSource;
+        }
         $(this.id).data("ejGrid").refreshContent();
     }
 }

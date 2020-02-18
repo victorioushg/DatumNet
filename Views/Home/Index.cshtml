@@ -3,13 +3,13 @@
 }
 
 <div class="row m-1">
-    <div class="col-md-4"></div>
+    <div class="col-md-8"></div>
     <div class="col-md-4">
         <table id="accountLabel" class="table-borderless">
             <tr style="font-size:smaller">
                 <td width="25%"></td>
                 <td></td>
-                <td width="5%"><a onclick="clearSelectedAccount()" href="javascript:void(0)"><i class="fa fa-times" title="Clear selected account"></i></a></td>
+                <td width="5%"><a onclick="clearSelectedAccount()" href="javascript:void(0)"><i class="fa fa-trash-alt"  title="Clear selected account"></i></a></td>
             </tr>
         </table>
     </div>
@@ -21,7 +21,13 @@
     <div id="accountsGrid" style="display:none"></div>
     <div id="accountMovements" style="display:none">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-8" style="float: right">
+            </div>
+            <div class="col-md-2" >
+                <label style="float: right">Periodo</label>
+            </div>
+            <div class="col-md-2" style="float: right">
+
                 <input id="startEndDates" />
             </div>
         </div>

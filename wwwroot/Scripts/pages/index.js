@@ -7,33 +7,28 @@ $(function () {
     $.extend(ej, Syncfusion);
     ej.base.enableRipple(true);
 
-    var tabObj = new ej.navigations.Tab(
-        {
-            //selecting: select,
-            items: [
-                {
-                    header: { 'text': 'cuentas contables' },
-                    content: "#accountsGrid",
-                },
-                {
-                    header: { 'text': 'movimientos' },
-                    content: "#accountMovements"
-                },
-                {
-                    header: { 'text': 'estadisticas' },
-                    content: 'WhatsApp Messenger is a proprietary cross-platform instant messaging client for smartphones that operates ' +
-                        'under a subscription business model. It uses the Internet to send text messages, images, video, user location and ' +
-                        'audio media messages to other users using standard cellular mobile numbers. As of February 2016, WhatsApp had a user ' +
-                        'base of up to one billion,[10] making it the most globally popular messaging application. WhatsApp Inc., based in ' +
-                        'Mountain View, California, was acquired by Facebook Inc. on February 19, 2014, for approximately US$19.3 billion.'
-                }
+    ui.movementsGrid = new Grid({
+            id: "#movementsGrid",
+            dataSource: [],
+            allowFiltering: false,
+            allowGrouping: true,
+            showColumnChooser: false,
+            width: "90%",
+            columns: [
+                { field: "policyId", visible: false },
+                { field: "policyCode", headerText: "Asiento Contable", width: 200 },
+                { field: "policyDate", headerText: "Fecha Asiento", width: 200, type: "date", format: "{0: MM/dd/yyyy}" },
+                { field: "reference", headerText: "Referencia", width: 200 },
+                { field: "description", headerText: "Concepto", width: 500 },
+                { field: "amount", headerText: "Importe", width: 200, format: "{0:N}", textAlign: ej.TextAlign.Right },
+                { headerText: "", width: 400 },
             ],
-
-            selected: onTabSelected
-
+            gridLines: ej.Grid.GridLines.None,
+            canEdit: true,
+            canDelete: true,
+            canAdd: true,
+            editButtonVisible: true,
         });
-    tabObj.appendTo('#accountsTab');
-    tabObj.select(0);
 
     api("/api/accounting/accounts", null, res => {
         dta.accounts = res;
@@ -75,11 +70,39 @@ $(function () {
         }).render();
     });
 
+    var tabObj = new ej.navigations.Tab(
+        {
+            //selecting: select,
+            items: [
+                {
+                    header: { 'text': 'cuentas contables' },
+                    content: "#accountsGrid",
+                },
+                {
+                    header: { 'text': 'movimientos' },
+                    content: "#accountMovements"
+                },
+                {
+                    header: { 'text': 'estadisticas' },
+                    content: 'WhatsApp Messenger is a proprietary cross-platform instant messaging client for smartphones that operates ' +
+                        'under a subscription business model. It uses the Internet to send text messages, images, video, user location and ' +
+                        'audio media messages to other users using standard cellular mobile numbers. As of February 2016, WhatsApp had a user ' +
+                        'base of up to one billion,[10] making it the most globally popular messaging application. WhatsApp Inc., based in ' +
+                        'Mountain View, California, was acquired by Facebook Inc. on February 19, 2014, for approximately US$19.3 billion.'
+                }
+            ],
 
+            selected: onTabSelected
 
+        });
+    tabObj.appendTo('#accountsTab');
+    tabObj.select(0);
 });
 
 function clearSelectedAccount() {
+    ui.movementsGrid.render({
+        dataSource : []
+    });
     var x = document.getElementById('accountLabel').rows[0].cells;
     x[0].innerHTML = "";
     x[1].innerHTML = "";
@@ -122,11 +145,12 @@ function onTabSelected(args) {
             ui.startEndDatePicker.allowEdit = true;
         }
 
+        ui.movementsGrid.render();
         populateMovements({
             accountId: ui.accountCodeSelected,
             startDate: ui.startEndDatePicker.startDate,
             endDate: ui.startEndDatePicker.endDate
-        }); 
+        });
 
     }
     else { // 3 == Statistics
@@ -135,12 +159,11 @@ function onTabSelected(args) {
 }
 
 function populateMovements(args) {
+
     api("/api/accounting/movements/" + args.accountId, null, res => {
         dta.movements = res;
-        ui.movementsGrid = new Grid({
-            id: "#movementsGrid",
-            dataSource: dta.movements,
-
-        }).render();
+        ui.movementsGrid.render({
+            dataSource: dta.movements
+        });
     });
 }
