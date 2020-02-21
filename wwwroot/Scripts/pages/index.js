@@ -1,82 +1,39 @@
 ﻿var dta = {}; // data namespace
 var ui = {}; // ui components namespace
 
-
 $(function () {
 
-    $.extend(ej, Syncfusion);
-    ej.base.enableRipple(true);
+    //$.extend(ej, Syncfusion);
+    ej.base.enableRipple(false);
 
-    ui.movementsGrid = new Grid({
-            id: "#movementsGrid",
-            dataSource: [],
-            allowFiltering: false,
-            allowGrouping: true,
-            showColumnChooser: false,
-            width: "90%",
-            columns: [
-                { field: "policyId", visible: false },
-                { field: "policyCode", headerText: "Asiento Contable", width: 200 },
-                { field: "policyDate", headerText: "Fecha Asiento", width: 200, type: "date", format: "{0: MM/dd/yyyy}" },
-                { field: "reference", headerText: "Referencia", width: 200 },
-                { field: "description", headerText: "Concepto", width: 500 },
-                { field: "amount", headerText: "Importe", width: 200, format: "{0:N}", textAlign: ej.TextAlign.Right },
-                { headerText: "", width: 400 },
-            ],
-            gridLines: ej.Grid.GridLines.None,
-            canEdit: true,
-            canDelete: true,
-            canAdd: true,
-            editButtonVisible: true,
-        });
+    defineComponents();
 
+    //Promise.all([
     api("/api/accounting/accounts", null, res => {
         dta.accounts = res;
-        ui.accountsGrid = new Grid({
-            id: "#accountsGrid",
-            allowFiltering: false,
-            //allowGrouping: false,
-            showColumnChooser: false,
-            width: "90%",
-            columns: [
-                { field: "id", visible: false },
-                { field: "accountCode", headerText: "Codigo Contable", width: 200 },
-                { field: "description", headerText: "Descripcion" },
-                { headerText: "", width: 600 },
-            ],
-            queryCellInfo: "queryCellInfo",
-            gridLines: ej.Grid.GridLines.None,
-            dataSource: dta.accounts,
-            canEdit: true,
-            canDelete: true,
-            canAdd: true,
-            editButtonVisible: true,
-            actionBegin: function (args) {
-
-            },
-            queryCellInfo: function (args) {
-                if (args.column.field == "description") {
-                    //args.cell.style.color = "red";
-                    args.cell.style.paddingLeft = ((args.rowData.level - 1) * 10).toString() + "px";
-                };
-            },
-            rowSelected: function (args) {
-                //$("#accountLabel").text(args.data.accountCode + "   " + args.data.description);
-                var x = document.getElementById('accountLabel').rows[0].cells;
-                ui.accountCodeSelected = args.data.accountCode;
-                x[0].innerHTML = args.data.accountCode;
-                x[1].innerHTML = args.data.description;
-            },
-        }).render();
     });
+    //]);
 
-    var tabObj = new ej.navigations.Tab(
+    renderComponents();
+
+});
+
+function renderComponents() {
+ ui.accountsGrid.dataSource = dta.accounts;
+}
+
+function defineComponents() {
+
+    ui.tabObj = new ej.navigations.Tab(
         {
-            //selecting: select,
+            heightAdjustMode: 'None',
+            height: 390,
+            showCloseButton: false,
+            selecting: selectTab,
             items: [
                 {
                     header: { 'text': 'cuentas contables' },
-                    content: "#accountsGrid",
+                    content: "#accounts",
                 },
                 {
                     header: { 'text': 'movimientos' },
@@ -92,23 +49,80 @@ $(function () {
                 }
             ],
 
-            selected: onTabSelected
-
+            selected: onTabSelected,
         });
-    tabObj.appendTo('#accountsTab');
-    tabObj.select(0);
-});
+    ui.tabObj.appendTo('#accountsTab');
+
+   
+
+    // Movements
+    ui.movementsGrid = new ej.grids.Grid({
+        allowResizing: false,
+        allowGrouping: true,
+        //allowFiltering: false,
+        //showColumnChooser: false,
+        toolbar: ['Add', 'Edit', 'Delete', 'Print'],
+        width: "100%",
+        height: window.innerHeight - 350,
+        columns: [
+            { field: "policyId", visible: false },
+            { field: 'policyCode', headerText: 'Asiento Contable', width: '15%' },
+            { field: "policyDate", headerText: "Fecha Asiento", width: '15%', type: 'date', format: 'MM/dd/yyyy' },
+            { field: "reference", headerText: "Referencia", width: '15%' },
+            { field: "description", headerText: "Concepto", width: '40%' },
+            { field: "amount", headerText: "Importe", width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
+        ],
+        //gridLines: ej.Grid.GridLines.None,
+        //editButtonVisible: true,
+    });
+    ui.movementsGrid.appendTo("#movementsGrid")
+
+} // Accounts
+    ui.accountsGrid = new ej.grids.Grid({
+        allowResizing: false,
+        allowGrouping: false,
+        //showColumnChooser: false,
+        //width: "100%",
+        toolbar: ['Add', 'Edit', 'Delete', 'Print'],
+        width: "100%",
+        columns: [
+            { field: 'id', headerText: 'Account ID', type: 'number', visible: false },
+            { field: 'accountCode', width: '20%', headerText: 'Account Code' },
+            { field: 'description', headerText: 'Account Name', width: '40%' },
+            { heatherText: "" }
+        ],
+        //gridLines: ej.Grid.GridLines.None,
+        height: window.innerHeight - 250,
+        //editButtonVisible: true,
+        //actionBegin: function (args) {
+
+        //},
+        //queryCellInfo: function (args) {
+        //    if (args.column.field == "description") {
+        //        //args.cell.style.color = "red";
+        //        args.cell.style.paddingLeft = ((args.rowData.level - 1) * 10).toString() + "px";
+        //    };
+        //},
+        rowSelected: function (args) {
+            //$("#accountLabel").text(args.data.accountCode + "   " + args.data.description);
+            //var x = document.getElementById('accountLabel').rows[0].cells;
+            ui.accountCodeSelected = args.data.accountCode;
+            //x[0].innerHTML = args.data.accountCode;
+            //x[1].innerHTML = args.data.description;
+        },
+    });
+    ui.accountsGrid.appendTo("#accountsGrid");
 
 function clearSelectedAccount() {
-    ui.movementsGrid.render({
-        dataSource : []
-    });
+    //ui.movementsGrid.render({
+    //    dataSource: []
+    //});
     var x = document.getElementById('accountLabel').rows[0].cells;
     x[0].innerHTML = "";
     x[1].innerHTML = "";
 }
 
-function select(e) {
+function selectTab(e) {
     if (e.isSwiped) {
         e.cancel = true;
     }
@@ -145,11 +159,15 @@ function onTabSelected(args) {
             ui.startEndDatePicker.allowEdit = true;
         }
 
-        ui.movementsGrid.render();
-        populateMovements({
+        var obj = [{
             accountId: ui.accountCodeSelected,
             startDate: ui.startEndDatePicker.startDate,
             endDate: ui.startEndDatePicker.endDate
+        }];
+
+        api("/api/accounting/movements/" + ui.accountCodeSelected, null, res => {
+            dta.movements = res;
+            ui.movementsGrid.dataSource = dta.movements;
         });
 
     }
@@ -158,12 +176,6 @@ function onTabSelected(args) {
     }
 }
 
-function populateMovements(args) {
+function renderMovementsGrid() {
 
-    api("/api/accounting/movements/" + args.accountId, null, res => {
-        dta.movements = res;
-        ui.movementsGrid.render({
-            dataSource: dta.movements
-        });
-    });
 }

@@ -40,7 +40,7 @@ namespace DatumNet.Data
             using (var connection = new MySqlConnection(_connectionString))
             {
                 // Todo Get Fiscal Period And Organization
-                var queryResults = await connection.QueryAsync<AccountMovementDTO>(" select a.Id, a.PolicyCode, a.PolicyDate, b.Reference, b.Description, b.Amount " 
+                var queryResults = await connection.QueryAsync<AccountMovementDTO>(" select a.Id PolicyId, a.PolicyCode, a.PolicyDate, b.Reference, b.Description, b.Amount " 
                            + " from acc_policy_header a " 
                            + " left join acc_policy_rows b on (a.Id = b.PolicyId) " 
                            + " Where "

@@ -3,6 +3,7 @@
  */
 class Grid {
     constructor(args) {
+
         this.id = args.id;
 
         this.dataSource = args.dataSource;
@@ -243,3 +244,4 @@ class Grid {
         $(this.id).data("ejGrid").refreshContent();
     }
 }
+
