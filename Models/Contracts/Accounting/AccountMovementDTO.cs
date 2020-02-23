@@ -7,6 +7,7 @@ namespace DatumNet.Models.Contracts.Accounting
 {
     public class AccountMovementDTO
     {
+        public string AccountCode { get; set; }
         public int PolicyId { get; set; }
         public string PolicyCode { get; set; } 
         public DateTime PolicyDate { get; set; }
