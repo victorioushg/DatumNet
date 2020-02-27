@@ -43,12 +43,10 @@ namespace DatumNet.Controllers
             return _repo.GetAccounts();
         }
 
-        [HttpGet("movements/{id}")]
-        public Task<IList<AccountMovementDTO>> GetAccountMovement(string id)
+        [HttpGet("movements/{id}/{start}/{end}")]
+        public Task<IList<AccountMovementDTO>> GetAccountMovement(string id, DateTime start, DateTime end )
         {
-            var from = new DateTime(2019, 1, 1);
-            var to = new DateTime(2019, 12, 31);
-            return _repo.GetAccountMovements( id, from , to );
+            return _repo.GetAccountMovements( id, start , end );
         }
 
     }

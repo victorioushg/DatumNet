@@ -5,6 +5,7 @@ $(function () {
 
     //$.extend(ej, Syncfusion); // extends to use Syncfusion Javascript JS1
     ej.grids.Grid.Inject(ej.grids.DetailRow);
+    ej.grids.Grid.Inject(ej.grids.Toolbar);
     ej.base.enableRipple(false);
 
     defineComponents();
@@ -35,10 +36,6 @@ function defineComponents() {
                     content: "#accounts",
                 },
                 {
-                    header: { 'text': 'movimientos' },
-                    content: "#accountMovements"
-                },
-                {
                     header: { 'text': 'estadisticas' },
                     content: 'WhatsApp Messenger is a proprietary cross-platform instant messaging client for smartphones that operates ' +
                         'under a subscription business model. It uses the Internet to send text messages, images, video, user location and ' +
@@ -58,13 +55,17 @@ function defineComponents() {
         // Parent Properties
         allowResizing: false,
         allowGrouping: false,
+        allowFiltering: true,
+        filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: ['Add', 'Edit', 'Delete', 'Print'],
+        toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Print', { type: "Separator" }, { template: '#toolbarTemplate' }],
+        editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true,  allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
+        //toolbarTemplate: '#toolbarTemplate',
         width: "100%",
         columns: [
             { field: 'id', headerText: 'Account ID', type: 'number', visible: false },
-            { field: 'accountCode', width: '20%', headerText: 'Account Code' },
-            { field: 'description', headerText: 'Account Name', width: '40%' },
+            { field: 'accountCode', width: '20%', headerText: 'Codigo Contable', allowFiltering: false, },
+            { field: 'description', headerText: 'Nombre o descripcion', width: '40%', allowFiltering: false, },
             { heatherText: "" }
         ],
         gridLines: "None",
@@ -74,11 +75,20 @@ function defineComponents() {
         rowSelected: function (args) {
             ui.accountCodeSelected = args.data.accountCode;
         },
-
+        dataBound: function (args) {
+            //ui.startEndDatePicker = new ej.calendars.DateRangePicker({
+            //    placeholder: 'Select a range',
+            //    sets the start date in the range
+            //    startDate: new Date(new Date().setDate(1)), // todo first month date
+            //    sets the end date in the range
+            //    endDate: new Date(new Date(new Date().setMonth(new Date().getMonth() + 1)).setDate(0)), // todo last month date 
+            //});
+            ui.startEndDatePicker.appendTo('#dtpStartEndDates');
+        },
         //// ChildeGrid
         childGrid: {
-            allowResizing : true, 
-            allowGrouping : true, 
+            allowResizing: true,
+            allowGrouping: true,
             queryString: 'accountCode',
             columns: [
                 { field: "policyId", visible: false },
@@ -88,18 +98,48 @@ function defineComponents() {
                 { field: "description", headerText: "Concepto", width: '40%' },
                 { field: "amount", headerText: "Importe", width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
             ],
+            aggregates: [{
+                columns: [{
+                    type: 'Sum',
+                    field: 'amount',
+                    format: 'C2',
+                    footerTemplate: 'Suma Total: ${Sum}'
+                }]
+            }],
         },
 
         detailDataBound: function (args) {
+
+            ui.rowSelected = args.detailElement.parentNode.rowIndex;
+            ui.accountIdSelected = args.data.id;
+
+            var grid = document.getElementById('accountsGrid').ej2_instances[0]; 
+            grid.filterByColumn("id", "equal", ui.accountIdSelected);
+
             ui.accountCodeSelected = args.data.accountCode;
-            api("/api/accounting/movements/" + ui.accountCodeSelected,  null, res => {
+            var start = ui.startEndDatePicker.startDate.toISOString();
+            var end = ui.startEndDatePicker.endDate.toISOString();
+            api("/api/accounting/movements/" + ui.accountCodeSelected + "/" + start + "/" +  end ,null , res => {
                 dta.accountMovements = res;
                 args.childGrid.dataSource = dta.accountMovements;
             });
         },
 
+        
+
     });
     ui.accountsGrid.appendTo("#accountsGrid");
+
+    ui.startEndDatePicker = new ej.calendars.DateRangePicker({
+        placeholder: 'Select a range',
+        //sets the start date in the range
+        startDate: new Date(new Date().setDate(1)), // todo first month date
+        //sets the end date in the range
+        endDate: new Date(new Date(new Date().setMonth(new Date().getMonth() + 1)).setDate(0)), // todo last month date ,
+        width: 300
+    });
+
+
 }
 
 function selectTab(e) {
@@ -111,7 +151,7 @@ function selectTab(e) {
 
 function onTabSelected(args) {
 
-    if (ui.startEndDatePicker) ui.startEndDatePicker.allowEdit = false;
+    //if (ui.startEndDatePicker) ui.startEndDatePicker.allowEdit = false;
 
     if (args.selectedIndex == 0) { // 1 == Codes
     } else if (args.selectedIndex == 1) {// 2 == Movements
