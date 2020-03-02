@@ -20,7 +20,12 @@ namespace DatumNet.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Accounts()
+        {
+            return View();
+        }
+
+        public IActionResult Config()
         {
             return View();
         }

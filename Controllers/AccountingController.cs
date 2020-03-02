@@ -25,7 +25,7 @@ using DatumNet.Models.Contracts;
 
 namespace DatumNet.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AccountingController : ControllerBase
