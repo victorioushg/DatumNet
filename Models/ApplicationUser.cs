@@ -26,5 +26,6 @@ namespace DatumNet.Models
         public bool PhoneNumberConfirmed { get; set; }
 
         public bool TwoFactorEnabled { get; set; }
+
     }
 }

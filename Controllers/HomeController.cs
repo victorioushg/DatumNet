@@ -35,6 +35,19 @@ namespace DatumNet.Controllers
             return View();
         }
 
+        public IActionResult Policies()
+        {
+            return View();
+        }
+        public IActionResult Proceses()
+        {
+            return View();
+        }
+        public IActionResult Reporting()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

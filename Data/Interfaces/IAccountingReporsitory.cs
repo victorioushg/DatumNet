@@ -10,5 +10,6 @@ namespace DatumNet.Data.Interfaces
     public interface IAccountingReporsitory
     {
         Task<IList<Account>> GetAccounts();
+        Task<IList<Policy>> GetPolicies();
     }
 }

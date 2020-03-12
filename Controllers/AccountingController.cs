@@ -49,5 +49,11 @@ namespace DatumNet.Controllers
             return _repo.GetAccountMovements( id, start , end );
         }
 
+        [HttpGet("policies/{start}/{end}")]
+        public Task<IList<Policy>> GetPolicies()
+        {
+            return _repo.GetPolicies();
+        }
+
     }
 }
