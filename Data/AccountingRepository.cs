@@ -52,6 +52,7 @@ namespace DatumNet.Data
                 return queryResults.ToList();
             }
         }
+        
         public async Task<IList<Policy>> GetPolicies()
         {
             using (var connection = new MySqlConnection(_connectionString))
@@ -60,5 +61,17 @@ namespace DatumNet.Data
                 return queryResults.ToList();
             }
         }
+
+        public async Task<IList<PolicyLine>> GetPolicyLines(int PolicyId)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                // Todo Get Fiscal Period And Organization
+                var queryResults = await connection.QueryAsync<PolicyLine>(
+                           "select * from acc_policy_rows where policyId=" + PolicyId + " order by RowOrder").ConfigureAwait(false);
+                return queryResults.ToList();
+            }
+        }
+
     }
 }

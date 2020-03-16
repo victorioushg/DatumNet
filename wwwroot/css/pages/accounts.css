@@ -1,0 +1,50 @@
+﻿
+.e-grid .e-altrow .accountgrid{
+    background-color: #fafafa;
+}
+
+.e-grid .e-tbar-btn-text {
+    display: none;
+}
+
+.card {
+    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
+    transition: 0.3s;
+    height: 65px;
+    width: 100%;
+    border-left-width:10px;
+}
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+.account-text {
+    font-size: small; 
+    font-weight: bold;
+}
+.assets {
+    border-left-color: darkred;
+}
+
+.liabilities {
+    border-left-color: darkorange;
+}
+
+.capital {
+    border-left-color: yellow;
+}
+
+.incomes {
+    border-left-color: forestgreen;
+}
+.outcomes {
+    border-left-color: red;
+}
+
+.expenses {
+    border-left-color:darkviolet;
+}
+.others {
+    border-left-color: darkblue;
+}

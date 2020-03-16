@@ -235,3 +235,10 @@ textarea.edit-field {
         border-top: none;
         /*border-bottom: 1px solid #dee2e6;*/
     }
+
+/* Grid Cell Style */
+.e-cell-red {
+    border-right-color: darkred;
+    border-right-width: 10px;
+    /*background-color: orangered;*/
+}

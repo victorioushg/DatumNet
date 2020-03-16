@@ -55,5 +55,11 @@ namespace DatumNet.Controllers
             return _repo.GetPolicies();
         }
 
+        [HttpGet("policy/{id}/lines")]
+        public Task<IList<PolicyLine>> GetPolicyLines(int id)
+        {
+            return _repo.GetPolicyLines(id);
+        }
+
     }
 }
