@@ -32,4 +32,10 @@ namespace DatumNet.Models.Models.Accounting
         public int DebitCredit { get; set; }
         public int? SourceRule { get; set; } 
     }
+
+    public class PolicyLinePlus : PolicyLine
+    {
+        public double Debit { get { return DebitCredit == 0 ? Amount : 0.00; } }
+        public double Credit { get { return DebitCredit == 1 ? Math.Abs(Amount) : 0.00; } }
+    }
 }

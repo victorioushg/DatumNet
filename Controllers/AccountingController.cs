@@ -50,13 +50,13 @@ namespace DatumNet.Controllers
         }
 
         [HttpGet("policies/{start}/{end}")]
-        public Task<IList<Policy>> GetPolicies()
+        public Task<IList<Policy>> GetPolicies(DateTime start, DateTime end)
         {
-            return _repo.GetPolicies();
+            return _repo.GetPolicies(start,end);
         }
 
         [HttpGet("policy/{id}/lines")]
-        public Task<IList<PolicyLine>> GetPolicyLines(int id)
+        public Task<IList<PolicyLinePlus>> GetPolicyLines(int id)
         {
             return _repo.GetPolicyLines(id);
         }

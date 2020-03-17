@@ -2,13 +2,43 @@
     ViewData["Title"] = "asientos contables";
 }
 
+<link rel="stylesheet" type="text/css" href="~/css/pages/policies.css">
+
 <div id="container" class="row m-1">
-    <div id="policiesGrid"></div>
+    <div id="policies" class="col-lg-3">
+        <div id="encabGrid"></div>
+    </div>
+    <div id="linesTab" class="col-lg-9">
+    </div>
 </div>
+
+<div id="lines">
+    <div id="linesGrid">
+    </div>
+</div>
+
+
 <div id="toolbarTemplate" style="display:none">
     <div id="datetimepicker">
         <input id="dtpStartEndDates">
     </div>
 </div>
+
+<script id="cellTemplate" type="text/x-template">
+    <div class="card">
+        <div class="container">
+            <div class="row">
+                <p class="policy-code">${policyCode}</p>
+            </div>
+            <div class="row">
+                <p class="policy-date">${policyDate}</p>
+            </div>
+            <div class="row">
+                <p class="policy-text">${description}</p>
+            </div>
+            
+        </div>
+    </div>
+</script>
 
 <script src="~/Scripts/pages/policies.js" asp-append-version="true"></script>

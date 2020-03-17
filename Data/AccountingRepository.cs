@@ -53,21 +53,24 @@ namespace DatumNet.Data
             }
         }
         
-        public async Task<IList<Policy>> GetPolicies()
+        public async Task<IList<Policy>> GetPolicies(DateTime startDate, DateTime endDate)
         {
             using (var connection = new MySqlConnection(_connectionString))
             {
-                var queryResults = await connection.QueryAsync<Policy>("SELECT a.* FROM acc_policy_header a ").ConfigureAwait(false);
+                var queryResults = await connection.QueryAsync<Policy>("SELECT a.* FROM acc_policy_header a "  +
+                    " Where PolicyDate Between '" + startDate.ToString("yyyy-MM-dd")
+                    + "' and '" + endDate.ToString("yyyy-MM-dd")
+                    + "'  ").ConfigureAwait(false);
                 return queryResults.ToList();
             }
         }
 
-        public async Task<IList<PolicyLine>> GetPolicyLines(int PolicyId)
+        public async Task<IList<PolicyLinePlus>> GetPolicyLines(int PolicyId)
         {
             using (var connection = new MySqlConnection(_connectionString))
             {
                 // Todo Get Fiscal Period And Organization
-                var queryResults = await connection.QueryAsync<PolicyLine>(
+                var queryResults = await connection.QueryAsync<PolicyLinePlus>(
                            "select * from acc_policy_rows where policyId=" + PolicyId + " order by RowOrder").ConfigureAwait(false);
                 return queryResults.ToList();
             }

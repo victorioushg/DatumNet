@@ -1,7 +1,7 @@
 ﻿var dta = {}; // data namespace
 var ui = {}; // ui components namespace
 
-$(function () {
+$(function() {
 
     ej.grids.Grid.Inject(ej.grids.DetailRow);
     ej.grids.Grid.Inject(ej.grids.Toolbar);
