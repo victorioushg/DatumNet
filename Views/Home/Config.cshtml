@@ -1,15 +1,44 @@
 ﻿@{
     ViewData["Title"] = "configuracion";
 }
-
+<link rel="stylesheet" type="text/css" href="~/css/pages/config.css">
 <div id="container" class="row m-1">
     <div id="configTab" class="col-md-12 ">
     </div>
 </div>
 <div id="tabOrganization" style="display:none">
-    <div id="orgsGrid"></div>
+    <div id="orgLeftPapel" class="col-md-3">
+        <div id="orgsGrid"></div>
+    </div>
+    <div id="orgRightPanel" class="col-md-9"></div>
+    
 </div>
 <div id="tabUsers" style="display:none">
-    <div id="usersGrid"></div>
+    <div id="usersLeftPanel" class="col-md-3">
+        <div id="usersGrid"></div>
+    </div>
+    <div id="usersRightPanel" class="col-md-9"></div>
+    
 </div>
+
+
+<script id="orgTemplate" type="text/x-template">
+    <div class="card">
+        <div class="container">
+            <p>${fiscalID}</p>
+            <p class="card-text-bold">${name}</p>
+        </div>
+    </div>
+</script>
+
+<script id="userTemplate" type="text/x-template">
+    <div class="card">
+        <div class="container">
+            <p>${userName}</p>
+            <p class="card-text-bold">${email}</p>
+        </div>
+    </div>
+</script>
+
+
 <script src="~/Scripts/pages/config.js" asp-append-version="true"></script>

@@ -34,12 +34,11 @@ $(function() {
         width: "100%",
         columns: [
             { field: 'id', headerText: 'Account ID', type: 'number', visible: false,  },
-            { headerText: "<h4>Cuentas<h4>", disableHtmlEncode: false, template: "#cellTemplate", allowFiltering: false, customAttributes: { class: 'accountgrid' } }, //
+            { headerText: "<h4>Cuentas<h4>", disableHtmlEncode: false, template: "#cellTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' } }, //
         ],
         gridLines: "None",
         height: window.innerHeight - 250,
-        rowHeight: 70,
-
+       
         // Events
         rowSelected: function (args) {
             ui.accountCodeSelected = args.data.accountCode;
@@ -120,11 +119,11 @@ $(function() {
         width: "100%",
         columns: [
             { field: "policyId", visible: false },
-            { field: 'policyCode', headerText: '<B>Asiento Contable</B>', disableHtmlEncode: false, width: '15%' },
-            { field: "policyDate", headerText: "<B>Fecha Asiento</B>", disableHtmlEncode: false, width: '15%', type: 'date', format: 'MM/dd/yyyy' },
-            { field: "reference", headerText: "'<B>Referencia</B>", disableHtmlEncode: false, width: '15%' },
-            { field: "description", headerText: "<B>Concepto</B>", disableHtmlEncode: false, width: '39%' },
-            { field: "amount", headerText: "<B>Importe</B>", disableHtmlEncode: false, width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
+            { field: 'policyCode', headerText: '<h5>Asiento Contable</h5>', disableHtmlEncode: false, width: '15%' },
+            { field: "policyDate", headerText: "<h5>Fecha Asiento</h5>", disableHtmlEncode: false, width: '15%', type: 'date', format: 'MM/dd/yyyy' },
+            { field: "reference", headerText: "<h5>Referencia</h5>", disableHtmlEncode: false, width: '15%' },
+            { field: "description", headerText: "<h5>Concepto</h5>", disableHtmlEncode: false, width: '39%' },
+            { field: "amount", headerText: "<h5>Importe</h5>", disableHtmlEncode: false, width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
         ],
         gridLines: "None",
         height: window.innerHeight - 290,
@@ -139,7 +138,8 @@ $(function() {
                 type: 'Sum',
                 field: 'amount',
                 format: 'N2',
-                footerTemplate: 'Suma Total: ${Sum}' //footerTemplate: 'Suma Total: ${Sum}'
+                footerTemplate: '<h5>Total: ${Sum}</h5>', //footerTemplate: 'Suma Total: ${Sum}'
+                disableHtmlEncode: false, 
             }]
         }],
     });

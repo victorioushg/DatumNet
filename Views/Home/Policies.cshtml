@@ -28,13 +28,13 @@
     <div class="card">
         <div class="container">
             <div class="row">
-                <p class="policy-code">${policyCode}</p>
+                <p>${policyCode}</p>
             </div>
             <div class="row">
-                <p class="policy-date">${policyDate}</p>
+                <p>${new Date(policyDate).toLocaleDateString()}</p>
             </div>
             <div class="row">
-                <p class="policy-text">${description}</p>
+                <p class="card-text-bold">${description}</p>
             </div>
             
         </div>

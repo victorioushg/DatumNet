@@ -33,16 +33,11 @@ $(function () {
         width: "100%",
         columns: [
             { field: "id", visible: false },
-            { headerText: "<h4>Asientos Contables<h4>", disableHtmlEncode: false, template: "#cellTemplate", allowFiltering: false, customAttributes: { class: 'policygrid' }}, //
-            //{ field: 'policyCode', headerText: 'Asiento Contable', width: '15%' },
-            //{ field: "policyDate", headerText: "Fecha Asiento", width: '15%', type: 'date', format: 'MM/dd/yyyy' },
-            //{ field: "description", headerText: "Descripcion", },
-            //{ field: "debits", headerText: "Debitos", width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
-            //{ field: "credits", headerText: "Creditos", width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
-            //{ field: "due", headerText: "Saldo", width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
+            { headerText: "<h4>Asientos Contables<h4>", disableHtmlEncode: false, template: "#cellTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' }}, //
+           
         ],
         gridLines: "None",
-        height: window.innerHeight - 250,
+        height: window.innerHeight - 200,
 
         //// Parent Events
         rowSelected: function (args) {
@@ -87,27 +82,27 @@ $(function () {
 
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Print'],
+        toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         //selectionSettings: { cellSelectionMode: 'BoxWithBorder', mode: 'Cell' },
         width: "100%",
         columns: [
             { field: "policyId", visible: false },
-            { field: 'rowOrder', headerText: 'Row #', width: '5%' },
-            { field: "accountCode", headerText: "Codigo Cuenta", width: '15%', },
-            { field: "reference", headerText: "Reference", width: '15%', },
-            { field: "description", headerText: "Descripcion", width: '35%' },
-            { field: "debit", headerText: "Debitos", width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
-            { field: "credit", headerText: "Creditos", width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
+            { field: 'rowOrder', headerText: '<h5>Row#</h5>', disableHtmlEncode: false,  width: '5%' },
+            { field: "accountCode", headerText: "<h5>Codigo Cuenta</h5>", disableHtmlEncode: false, width: '15%', },
+            { field: "reference", headerText: "<h5>Reference</h5>", disableHtmlEncode: false, width: '15%', },
+            { field: "description", headerText: "<h5>Descripcion</h5>", disableHtmlEncode: false, width: '35%' },
+            { field: "debit", headerText: "<h5>Debitos</h5>", disableHtmlEncode: false,  width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
+            { field: "credit", headerText: "<h5>Creditos</h5>", disableHtmlEncode: false, width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
         ],
         aggregates: [{
             columns: [
-                { type: 'Sum', field: 'debit', format: 'N2', footerTemplate: 'Debitos: ${Sum}' },
-                { type: 'Sum', field: 'credit', format: 'N2', footerTemplate: 'Creditos: ${Sum}' },
+                { type: 'Sum', field: 'debit', format: 'N2', footerTemplate: '<h5>Debitos: ${Sum}</h5>', disableHtmlEncode: false,  },
+                { type: 'Sum', field: 'credit', format: 'N2', footerTemplate: '<h5>Creditos: ${Sum}</h5>', disableHtmlEncode: false,  },
             ]
         }],
         gridLines: "None",
-        height: window.innerHeight - 290,
+        height: window.innerHeight - 280,
 
         // Events
         rowSelected: function (args) {

@@ -56,21 +56,22 @@ function defineComponents() {
 
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Print',],
+        toolbar: ['Add', 'Edit', 'Delete', 'Print'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
             { field: 'id', headerText: 'Organization ID', type: 'number', visible: false },
-            { field: 'name', width: '40%', headerText: 'Nombre / Descripcion', allowFiltering: false, },
-            { field: 'fiscalID', headerText: 'Numero Fiscal', width: '20%', allowFiltering: false, },
-            { field: 'organizationType', headerText: 'Tipo', width: '20%', allowFiltering: false, },
-            { heatherText: "" }
+            { headerText: "<h4>Empresas<h4>", disableHtmlEncode: false, template: "#orgTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' } }, //
         ],
         gridLines: "None",
         height: window.innerHeight - 250,
 
-        // Parent Events
+        // Events
+        queryCellInfo: function (args) {
+            if (args.column.headerText === "<h4>Empresas<h4>") {
+                args.cell.firstElementChild.classList.add('others');
+            }
+        },
         rowSelected: function (args) {
-            ui.accountCodeSelected = args.data.accountCode;
         },
         dataBound: function (args) {
         },
@@ -85,18 +86,21 @@ function defineComponents() {
 
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Print',],
+        toolbar: ['Add', 'Edit', 'Delete', 'Print'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
             { field: 'id', headerText: 'User ID', type: 'number', visible: false },
-            { field: 'userName', width: '40%', headerText: 'Usuario', allowFiltering: false, },
-            { field: 'email', headerText: 'e-mail', width: '20%', allowFiltering: false, },
-            { heatherText: "" }
+            { headerText: "<h4>Usuarios<h4>", disableHtmlEncode: false, template: "#userTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' } }, //
         ],
         gridLines: "None",
         height: window.innerHeight - 250,
 
         // Parent Events
+        queryCellInfo: function (args) {
+            if (args.column.headerText === "<h4>Usuarios<h4>") {
+                args.cell.firstElementChild.classList.add('capital');
+            }
+        },
         rowSelected: function (args) {
 
         },
