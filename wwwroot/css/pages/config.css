@@ -1,0 +1,10 @@
+﻿
+.card {
+    height: 70px;
+}
+
+.policy-text, policy-date {
+    font-size: small; 
+    font-weight: bold;
+}
+

@@ -240,6 +240,9 @@ textarea.edit-field {
 .e-grid .e-altrow .customgrid {
     background-color: #fafafa;
 }
+.e-lib.e-tab .e-tab-header .e-toolbar-item .e-tab-text {
+    text-transform: none !important;
+}
 
 .card {
     transition: 0.3s;

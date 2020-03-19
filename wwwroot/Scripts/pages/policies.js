@@ -24,16 +24,16 @@ $(function () {
         filterSettings: { type: 'Excel' },
         width: "100%",
         toolbar: [
-            { id: "add", prefixIcon: "e-add", tooltipText: "Agregar Registro" },
-            { id: "edit", prefixIcon: "e-edit", tooltipText: "Editar Registro" },
-            { id: "delete", prefixIcon: "e-delete", tooltipText: "Eliminar Registro" },
-            { id: "print", prefixIcon: "e-print", tooltipText: "Imprimir" }, { type: "Separator" }, { template: '#toolbarTemplate' }],
+            { id: "add", prefixIcon: "e-add", tooltipText: "agregar registro" },
+            { id: "edit", prefixIcon: "e-edit", tooltipText: "editar registro" },
+            { id: "delete", prefixIcon: "e-delete", tooltipText: "eliminar registro" },
+            { id: "print", prefixIcon: "e-print", tooltipText: "imprimir" }, { type: "Separator" }, { template: '#toolbarTemplate' }],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         selectionSettings: { type: 'Single' },
         width: "100%",
         columns: [
             { field: "id", visible: false },
-            { headerText: "<h4>Asientos Contables<h4>", disableHtmlEncode: false, template: "#cellTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' }}, //
+            { headerText: "<h4>asientos<h4>", disableHtmlEncode: false, template: "#cellTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' }}, //
            
         ],
         gridLines: "None",
@@ -48,7 +48,7 @@ $(function () {
 
         },
         queryCellInfo: function (args) {
-            if (args.column.headerText === "<h4>Asientos Contables<h4>") {
+            if (args.column.headerText === "<h4>asientos<h4>") {
                 args.data['conciliated'] ? args.cell.firstElementChild.classList.add('conciliated')
                     :args.cell.firstElementChild.classList.add('notconciliated')
             }
@@ -64,7 +64,7 @@ $(function () {
             selecting: selectTab,
             items: [
                 {
-                    header: { 'text': 'Detalle Asiento Contable' },
+                    header: { 'text': 'detalle de asiento contable' },
                     content: "#lines",
                 },
             ],
@@ -88,17 +88,19 @@ $(function () {
         width: "100%",
         columns: [
             { field: "policyId", visible: false },
-            { field: 'rowOrder', headerText: '<h5>Row#</h5>', disableHtmlEncode: false,  width: '5%' },
-            { field: "accountCode", headerText: "<h5>Codigo Cuenta</h5>", disableHtmlEncode: false, width: '15%', },
-            { field: "reference", headerText: "<h5>Reference</h5>", disableHtmlEncode: false, width: '15%', },
-            { field: "description", headerText: "<h5>Descripcion</h5>", disableHtmlEncode: false, width: '35%' },
-            { field: "debit", headerText: "<h5>Debitos</h5>", disableHtmlEncode: false,  width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
-            { field: "credit", headerText: "<h5>Creditos</h5>", disableHtmlEncode: false, width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
+            { field: 'rowOrder', headerText: '<h5>row#</h5>', disableHtmlEncode: false,  width: '5%' },
+            { field: "accountCode", headerText: "<h5>codigo cuenta</h5>", disableHtmlEncode: false, width: '15%', },
+            { field: "reference", headerText: "<h5>referencia</h5>", disableHtmlEncode: false, width: '15%', },
+            { field: "description", headerText: "<h5>descripcion</h5>", disableHtmlEncode: false, width: '35%' },
+            { field: "debit", headerText: "<h5>debitos</h5>", disableHtmlEncode: false,  width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
+            { field: "credit", headerText: "<h5>creditos</h5>", disableHtmlEncode: false, width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
         ],
         aggregates: [{
             columns: [
-                { type: 'Sum', field: 'debit', format: 'N2', footerTemplate: '<h5>Debitos: ${Sum}</h5>', disableHtmlEncode: false,  },
-                { type: 'Sum', field: 'credit', format: 'N2', footerTemplate: '<h5>Creditos: ${Sum}</h5>', disableHtmlEncode: false,  },
+                { type: 'Sum', field: 'debit', format: 'N2', footerTemplate: '<h5>${Sum}</h5>', disableHtmlEncode: false,  },
+                { type: 'Sum', field: 'credit', format: 'N2', footerTemplate: '<h5>${Sum}</h5>', disableHtmlEncode: false, },
+                //{ type: 'Custom', field: 'credit', footerTemplate: '${Custom}'
+                },
             ]
         }],
         gridLines: "None",

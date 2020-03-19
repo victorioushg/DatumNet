@@ -10,23 +10,27 @@
     <div id="orgLeftPapel" class="col-md-3">
         <div id="orgsGrid"></div>
     </div>
-    <div id="orgRightPanel" class="col-md-9"></div>
+    <div id="orgRightPanel" class="col-md-9">
+    </div>
     
 </div>
 <div id="tabUsers" style="display:none">
-    <div id="usersLeftPanel" class="col-md-3">
-        <div id="usersGrid"></div>
+    <div class="row">
+        <div id="usersLeftPanel" class="col-md-3">
+            <div id="usersGrid"></div>
+        </div>
+        <div id="usersRightPanel" class="col-md-9">
+            <div id="userToolbar" class="e-header-text"><h4>perfil de usuario</h4></div>
+        </div>
     </div>
-    <div id="usersRightPanel" class="col-md-9"></div>
-    
 </div>
 
 
 <script id="orgTemplate" type="text/x-template">
     <div class="card">
         <div class="container">
-            <p>${fiscalID}</p>
-            <p class="card-text-bold">${name}</p>
+            <p>fiscal id : ${fiscalID}</p>
+            <p>empresa   : ${name}</p>
         </div>
     </div>
 </script>
@@ -34,8 +38,8 @@
 <script id="userTemplate" type="text/x-template">
     <div class="card">
         <div class="container">
-            <p>${userName}</p>
-            <p class="card-text-bold">${email}</p>
+            <p>user name : ${userName}</p>
+            <p>e-mail    : <a href='mailto:${email}'>${email}</a></p>
         </div>
     </div>
 </script>

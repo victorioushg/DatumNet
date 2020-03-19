@@ -36,11 +36,11 @@ function defineComponents() {
             selecting: selectTab,
             items: [
                 {
-                    header: { 'text': 'Empresas' },
+                    header: { 'text': 'empresas' },
                     content: "#tabOrganization",
                 },
                 {
-                    header: { 'text': 'Usuarios' },
+                    header: { 'text': 'usuarios' },
                     content: '#tabUsers'
                 }
             ],
@@ -56,18 +56,23 @@ function defineComponents() {
 
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: ['Add', 'Edit', 'Delete', 'Print'],
+        toolbar: [
+            { id: "add", prefixIcon: "e-add", tooltipText: "agregar registro" },
+            { id: "edit", prefixIcon: "e-edit", tooltipText: "editar registro" },
+            { id: "delete", prefixIcon: "e-delete", tooltipText: "eliminar registro" },
+            { id: "print", prefixIcon: "e-print", tooltipText: "imprimir" },
+            'Search'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
             { field: 'id', headerText: 'Organization ID', type: 'number', visible: false },
-            { headerText: "<h4>Empresas<h4>", disableHtmlEncode: false, template: "#orgTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' } }, //
+            { headerText: "<h4>empresas<h4>", disableHtmlEncode: false, template: "#orgTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' } }, //
         ],
         gridLines: "None",
         height: window.innerHeight - 250,
 
         // Events
         queryCellInfo: function (args) {
-            if (args.column.headerText === "<h4>Empresas<h4>") {
+            if (args.column.headerText === "<h4>empresas<h4>") {
                 args.cell.firstElementChild.classList.add('others');
             }
         },
@@ -86,18 +91,23 @@ function defineComponents() {
 
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: ['Add', 'Edit', 'Delete', 'Print'],
+        toolbar: [
+            { id: "add", prefixIcon: "e-add", tooltipText: "agregar registro" },
+            { id: "edit", prefixIcon: "e-edit", tooltipText: "editar registro" },
+            { id: "delete", prefixIcon: "e-delete", tooltipText: "eliminar registro" },
+            { id: "print", prefixIcon: "e-print", tooltipText: "imprimir" },
+            'Search'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
             { field: 'id', headerText: 'User ID', type: 'number', visible: false },
-            { headerText: "<h4>Usuarios<h4>", disableHtmlEncode: false, template: "#userTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' } }, //
+            { headerText: "<h4>usuarios<h4>", disableHtmlEncode: false, template: "#userTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' } }, //
         ],
         gridLines: "None",
         height: window.innerHeight - 250,
 
-        // Parent Events
+        // Events
         queryCellInfo: function (args) {
-            if (args.column.headerText === "<h4>Usuarios<h4>") {
+            if (args.column.headerText === "<h4>usuarios<h4>") {
                 args.cell.firstElementChild.classList.add('capital');
             }
         },
@@ -108,6 +118,22 @@ function defineComponents() {
         },
     });
     ui.usersGrid.appendTo("#usersGrid");
+
+    //var userToolbar = new ej.navigations.Toolbar({
+    //    items: [
+    //        { text: 'Perfil' },
+    //        //{ text: 'Copy' },
+    //        { type: 'Separator' },
+    //        { text: 'Update'},
+    //        { text: 'Cancel' },
+    //        //{ text: 'Italic' },
+    //        //{ text: 'Underline' },
+    //    ]
+    //});
+    ////Render initialized Toolbar component
+    //userToolbar.appendTo('#userToolbar');
+
+
 
 }
 

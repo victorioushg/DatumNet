@@ -24,17 +24,17 @@ $(function() {
         filterSettings: { type: 'Excel' },
         width: "100%",
         toolbar: [
-            { id: "add", prefixIcon: "e-add", tooltipText : "Agregar Registro" },
-            { id: "edit", prefixIcon: "e-edit", tooltipText: "Editar Registro" },
-            { id: "delete", prefixIcon: "e-delete", tooltipText : "Eliminar Registro" },
-            { id: "print", prefixIcon: "e-print", tooltipText : "Imprimir" },
+            { id: "add", prefixIcon: "e-add", tooltipText : "agregar registro" },
+            { id: "edit", prefixIcon: "e-edit", tooltipText: "editar registro" },
+            { id: "delete", prefixIcon: "e-delete", tooltipText : "eliminar registro" },
+            { id: "print", prefixIcon: "e-print", tooltipText : "imprimir" },
             'Search'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         selectionSettings: { type: 'Single' },
         width: "100%",
         columns: [
             { field: 'id', headerText: 'Account ID', type: 'number', visible: false,  },
-            { headerText: "<h4>Cuentas<h4>", disableHtmlEncode: false, template: "#cellTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' } }, //
+            { headerText: "<h4>cuentas<h4>", disableHtmlEncode: false, template: "#cellTemplate", allowFiltering: false, customAttributes: { class: 'customgrid' } }, //
         ],
         gridLines: "None",
         height: window.innerHeight - 250,
@@ -49,7 +49,7 @@ $(function() {
 
         },
         queryCellInfo: function (args) {
-            if (args.column.headerText === "<h4>Cuentas<h4>") {
+            if (args.column.headerText === "<h4>cuentas<h4>") {
                 switch (args.data['accountCode'].substr(0, 1)) {
                     case '1':
                         args.cell.firstElementChild.classList.add('assets')
@@ -85,7 +85,7 @@ $(function() {
             selecting: selectTab,
             items: [
                 {
-                    header: { 'text': 'Movimientos' },
+                    header: { 'text': 'movimientos' },
                     content: "#accountsWork",
                 },
                 {
@@ -113,17 +113,17 @@ $(function() {
 
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: ['Print', { type: "Separator" }, { template: '#toolbarTemplate' }],
+        toolbar: ['print', { type: "Separator" }, { template: '#toolbarTemplate' }],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         //selectionSettings: { cellSelectionMode: 'BoxWithBorder', mode: 'Cell' },
         width: "100%",
         columns: [
             { field: "policyId", visible: false },
-            { field: 'policyCode', headerText: '<h5>Asiento Contable</h5>', disableHtmlEncode: false, width: '15%' },
-            { field: "policyDate", headerText: "<h5>Fecha Asiento</h5>", disableHtmlEncode: false, width: '15%', type: 'date', format: 'MM/dd/yyyy' },
-            { field: "reference", headerText: "<h5>Referencia</h5>", disableHtmlEncode: false, width: '15%' },
-            { field: "description", headerText: "<h5>Concepto</h5>", disableHtmlEncode: false, width: '39%' },
-            { field: "amount", headerText: "<h5>Importe</h5>", disableHtmlEncode: false, width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
+            { field: 'policyCode', headerText: '<h5>asiento no.</h5>', disableHtmlEncode: false, width: '15%' },
+            { field: "policyDate", headerText: "<h5>fecha</h5>", disableHtmlEncode: false, width: '15%', type: 'date', format: 'MM/dd/yyyy' },
+            { field: "reference", headerText: "<h5>referencia</h5>", disableHtmlEncode: false, width: '15%' },
+            { field: "description", headerText: "<h5>concepto/descripcion</h5>", disableHtmlEncode: false, width: '39%' },
+            { field: "amount", headerText: "<h5>importe</h5>", disableHtmlEncode: false, width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
         ],
         gridLines: "None",
         height: window.innerHeight - 290,
@@ -138,7 +138,7 @@ $(function() {
                 type: 'Sum',
                 field: 'amount',
                 format: 'N2',
-                footerTemplate: '<h5>Total: ${Sum}</h5>', //footerTemplate: 'Suma Total: ${Sum}'
+                footerTemplate: '<h5>total: ${Sum}</h5>', //footerTemplate: 'Suma Total: ${Sum}'
                 disableHtmlEncode: false, 
             }]
         }],
@@ -146,7 +146,7 @@ $(function() {
     ui.accountsWorkGrid.appendTo("#accountWorkGrid");
 
     ui.startEndDatePicker = new ej.calendars.DateRangePicker({
-        placeholder: 'Select a range',
+        placeholder: 'select a range',
         //sets the start date in the range
         startDate: ui.startDate, // todo first month date function
         //sets the end date in the range
@@ -188,9 +188,9 @@ function selectTab(e) {
 
 function onTabSelected(args) {
     if (args.selectedIndex == 0) { // 1 == Codes
-        alert('TAB 1');
+        //alert('TAB 1');
     } else if (args.selectedIndex == 1) {// 2 == Movements
-        alert('TAB 2');
+        //alert('TAB 2');
     }
     else {
     }
