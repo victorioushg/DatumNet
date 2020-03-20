@@ -73,7 +73,7 @@ function defineComponents() {
         // Events
         queryCellInfo: function (args) {
             if (args.column.headerText === "<h4>empresas<h4>") {
-                args.cell.firstElementChild.classList.add('others');
+                args.cell.firstElementChild.classList.add('colorforestgreen');
             }
         },
         rowSelected: function (args) {
@@ -108,7 +108,7 @@ function defineComponents() {
         // Events
         queryCellInfo: function (args) {
             if (args.column.headerText === "<h4>usuarios<h4>") {
-                args.cell.firstElementChild.classList.add('capital');
+                args.cell.firstElementChild.classList.add('colordarkviolet');
             }
         },
         rowSelected: function (args) {

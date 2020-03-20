@@ -169,7 +169,7 @@ tr:nth-child(even) {
     display: inline-block;
     background-color: transparent;
     width: 100%;
-    font-weight: 700;
+    font-weight: 600;
     margin-top: 15px;
     font-size: 14px;
 }
@@ -179,13 +179,15 @@ tr:nth-child(even) {
     padding: 2px;
     border: none;
     font-size: 14px;
-    /*background-color: #F1F9FF;*/
     font-weight: 600;
     border-bottom: 1px solid #dee2e6;
 }
-
     .edit-field.form-control {
         margin-bottom: 3px;
+    }
+  
+    .edit-field:not(:focus) {
+        border-bottom: 1px solid #dee2e6;
     }
 
 .edit-footer {
@@ -202,12 +204,11 @@ textarea.edit-field {
 
 .edit-ddl, .edit-ddl .e-input, .edit-ddl .e-select {
     padding: 0 0 0 2px;
-    /*background-color: #F1F9FF !important;*/
 }
 
 .edit-ddl, .edit-field {
     color: black;
-    height: 28px;
+    height: 35px;
 }
 
     .edit-ddl .e-in-wrap {
@@ -215,21 +216,10 @@ textarea.edit-field {
         border-bottom: 1px solid #dee2e6;
     }
 
-/*.edit-field input {
-    background-color: #F1F9FF;
-    color: #2699FB;
-    font-size: 13px;
-    border-radius: 0.5em;
-    border: 1px solid;
-    outline: none;
-    padding-left: 10px;
-    max-width: 80%;
-}*/
 
 .borderless {
     margin: 0;
 }
-
     .borderless td {
         padding: 0;
         border-top: none;
@@ -267,38 +257,32 @@ textarea.edit-field {
 }
 
 /* Card Colors*/
-.notconciliated {
+
+.assets, .colordarkred, .notconciliated {
     border-left-color: darkred;
 }
 
-.conciliated {
-    border-left-color: forestgreen;
-}
-.assets {
-    border-left-color: darkred;
-}
-
-.liabilities {
+.liabilities, .colordarkorange {
     border-left-color: darkorange;
 }
 
-.capital {
+.capital, .coloryellow {
     border-left-color: yellow;
 }
 
-.incomes {
+.incomes, .colorforestgreen, .conciliated {
     border-left-color: forestgreen;
 }
 
-.outcomes {
+.outcomes, .colorred {
     border-left-color: red;
 }
 
-.expenses {
+.expenses, .colordarkviolet {
     border-left-color: darkviolet;
 }
 
-.others {
+.others, .colordarkblue {
     border-left-color: darkblue;
 }
 
