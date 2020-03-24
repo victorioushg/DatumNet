@@ -12,6 +12,6 @@ namespace DatumNet.Data.Interfaces
     public interface IApplicationReporsitory
     {
         Task<IList<Organization>> GetOrganizations();
-        Task<IList<ApplicationUser>> GetUsers();
+        Task<IList<ApplicationUserProfile>> GetUsers();
     }
 }

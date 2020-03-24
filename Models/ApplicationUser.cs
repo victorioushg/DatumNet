@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+
+using DatumNet.Models.Models.Application; 
 
 namespace DatumNet.Models
 {
@@ -26,6 +29,17 @@ namespace DatumNet.Models
         public bool PhoneNumberConfirmed { get; set; }
 
         public bool TwoFactorEnabled { get; set; }
+
+    }
+
+    public class ApplicationUserProfile : ApplicationUser
+    {
+        public string FirstName { get; set;  }
+        public string LastName { get; set; }
+        public DateTime BirthDay { get; set; }
+
+        public IEnumerable<ApplicationRole> UserRoles { get; set; }
+        public IEnumerable<Organization> UserOrgs { get; set; }
 
     }
 }

@@ -72,13 +72,13 @@ body {
 }
 
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 99%;
     white-space: nowrap;
     /* Set the fixed height of the footer here */
-    height: 40px;
-    line-height: 40px; /* Vertically center the text there */
+    height: 30px;
+    line-height: 30px; /* Vertically center the text there */
    
     -moz-box-shadow: 0 -5px 6px rgba(0,0,0,0.1);
     -webkit-box-shadow: 0 -5px 6px rgba(0,0,0,0.1);
@@ -185,9 +185,9 @@ tr:nth-child(even) {
     .edit-field.form-control {
         margin-bottom: 3px;
     }
-  
-    .edit-field:not(:focus) {
-        border-bottom: 1px solid #dee2e6;
+
+    .edit-field:focus {
+        border-bottom: 3px solid #0078D7 !important;
     }
 
 .edit-footer {

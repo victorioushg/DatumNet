@@ -24,6 +24,10 @@ async function getData() {
         dta.users = res;
         ui.usersGrid.dataSource = dta.users;
     });
+    //await api("/api/application/roles", null, res => {
+    //    dta.roles = res;
+    //});
+
 }
 
 function defineComponents() {
@@ -111,29 +115,77 @@ function defineComponents() {
                 args.cell.firstElementChild.classList.add('colordarkviolet');
             }
         },
+        rowSelected: getUser,
+        dataBound: function (args) {
+        },
+    });
+    ui.usersGrid.appendTo("#usersGrid");
+
+    // user roles grid
+    ui.userRolesGrid = new ej.grids.Grid({
+        allowResizing: false,
+        allowGrouping: false,
+        allowFiltering: true,
+
+        filterSettings: { type: 'Excel' },
+        width: "100%",
+        toolbar: [
+            { id: "add", prefixIcon: "e-add", tooltipText: "agregar registro" },
+            { id: "update", prefixIcon: "e-update", tooltipText: "guardar" },
+            { id: "cancel", prefixIcon: "e-cancel", tooltipText: "cancelar" },
+            { id: "delete", prefixIcon: "e-delete", tooltipText: "eliminar registro" },
+        ],
+        editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
+        columns: [
+            { field: 'id', headerText: 'Role ID', type: 'number', visible: false },
+            { field: 'name', headerText: "roles", allowFiltering: false }, //
+        ],
+        gridLines: "None",
+        
+        // Events
+        queryCellInfo: function (args) {
+        
+        },
         rowSelected: function (args) {
 
         },
         dataBound: function (args) {
         },
     });
-    ui.usersGrid.appendTo("#usersGrid");
+    ui.userRolesGrid.appendTo("#userRolesGrid");
 
-    //var userToolbar = new ej.navigations.Toolbar({
-    //    items: [
-    //        { text: 'Perfil' },
-    //        //{ text: 'Copy' },
-    //        { type: 'Separator' },
-    //        { text: 'Update'},
-    //        { text: 'Cancel' },
-    //        //{ text: 'Italic' },
-    //        //{ text: 'Underline' },
-    //    ]
-    //});
-    ////Render initialized Toolbar component
-    //userToolbar.appendTo('#userToolbar');
+    // user roles grid
+    ui.userOrgsGrid = new ej.grids.Grid({
+        allowResizing: false,
+        allowGrouping: false,
+        allowFiltering: true,
 
+        filterSettings: { type: 'Excel' },
+        width: "100%",
+        toolbar: [
+            { id: "add", prefixIcon: "e-add", tooltipText: "agregar registro" },
+            { id: "update", prefixIcon: "e-update", tooltipText: "guardar" },
+            { id: "cancel", prefixIcon: "e-cancel", tooltipText: "cancelar" },
+            { id: "delete", prefixIcon: "e-delete", tooltipText: "eliminar registro" },
+        ],
+        editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
+        columns: [
+            { field: 'id', headerText: 'Role ID', type: 'number', visible: false },
+            { field: 'Name', headerText: "empresas", allowFiltering: false }, //
+        ],
+        gridLines: "None",
 
+        // Events
+        queryCellInfo: function (args) {
+
+        },
+        rowSelected: function (args) {
+
+        },
+        dataBound: function (args) {
+        },
+    });
+    ui.userOrgsGrid.appendTo("#userOrgsGrid");
 
 }
 
@@ -152,3 +204,7 @@ function onTabSelected(args) {
     }
 }
 
+function getUser(args) {
+    ui.selectedUser = args.data;
+    ui.userRolesGrid.dataSource = args.data.userRoles;
+} 

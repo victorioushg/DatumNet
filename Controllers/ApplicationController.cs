@@ -44,7 +44,7 @@ namespace DatumNet.Controllers
         }
 
         [HttpGet("users")]
-        public Task<IList<ApplicationUser>> GetUsers()
+        public Task<IList<ApplicationUserProfile>> GetUsers()
         {
             return _repo.GetUsers();
         }

@@ -33,13 +33,23 @@ namespace DatumNet.Data
                 return queryResults.ToList();
             }
         }
-        public async Task<IList<ApplicationUser>> GetUsers()
+        public async Task<IList<ApplicationUserProfile>> GetUsers()
         {
 
             using (var connection = new MySqlConnection(_connectionString))
             {
-                var queryResults = await connection.QueryAsync<ApplicationUser>("SELECT a.* FROM application_user a ").ConfigureAwait(false);
-                return queryResults.ToList();
+                var users = await connection.QueryAsync<ApplicationUserProfile>("SELECT a.* FROM application_user a ").ConfigureAwait(false);
+
+                foreach ( var u in users)
+                {
+                    var roles = await connection.QueryAsync<ApplicationRole>("SELECT ar.* FROM application_user_role aur " +
+                        " INNER JOIN application_role ar ON(aur.roleId = ar.Id) " +
+                        " WHERE " +
+                        " aur.UserId = " + u.Id + "  ").ConfigureAwait(false);
+                    u.UserRoles = roles;
+                }
+
+                return users.ToList();
             }
         }
     }

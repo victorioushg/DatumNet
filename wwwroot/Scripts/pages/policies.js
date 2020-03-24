@@ -64,7 +64,7 @@ $(function () {
             selecting: selectTab,
             items: [
                 {
-                    header: { 'text': 'detalle de asiento contable' },
+                    header: { 'text': 'detalle asiento' },
                     content: "#lines",
                 },
             ],
@@ -88,8 +88,8 @@ $(function () {
         width: "100%",
         columns: [
             { field: "policyId", visible: false },
-            { field: 'rowOrder', headerText: '<h5>row#</h5>', disableHtmlEncode: false,  width: '5%' },
-            { field: "accountCode", headerText: "<h5>codigo cuenta</h5>", disableHtmlEncode: false, width: '15%', },
+            { field: 'rowOrder', headerText: '<h5>row#</h5>', disableHtmlEncode: false,  width: '5%' , allowFiltering : false },
+            { field: "accountCode", headerText: "<h5>codigo</h5>", disableHtmlEncode: false, width: '15%', },
             { field: "reference", headerText: "<h5>referencia</h5>", disableHtmlEncode: false, width: '15%', },
             { field: "description", headerText: "<h5>descripcion</h5>", disableHtmlEncode: false, width: '35%' },
             { field: "debit", headerText: "<h5>debitos</h5>", disableHtmlEncode: false,  width: '15%', type: 'number', format: 'N2', textAlign: 'Right' },
@@ -99,8 +99,7 @@ $(function () {
             columns: [
                 { type: 'Sum', field: 'debit', format: 'N2', footerTemplate: '<h5>${Sum}</h5>', disableHtmlEncode: false,  },
                 { type: 'Sum', field: 'credit', format: 'N2', footerTemplate: '<h5>${Sum}</h5>', disableHtmlEncode: false, },
-                //{ type: 'Custom', field: 'credit', footerTemplate: '${Custom}'
-                },
+                //{ type: 'Custom', field: 'credit', footerTemplate: '${Custom}'},
             ]
         }],
         gridLines: "None",
