@@ -49,11 +49,11 @@ namespace DatumNet.Controllers
             return _repo.GetUsers();
         }
 
-        //[HttpGet("movements/{id}/{start}/{end}")]
-        //public Task<IList<AccountMovementDTO>> GetAccountMovement(string id, DateTime start, DateTime end )
-        //{
-        //    return _repo.GetAccountMovements( id, start , end );
-        //}
+        [HttpGet("roles")]
+        public Task<IList<ApplicationRole>> GetRoles()
+        {
+            return _repo.GetRoles();
+        }
 
     }
 }

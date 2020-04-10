@@ -7,12 +7,52 @@
     </div>
 </div>
 <div id="tabOrganization" style="display:none">
-    <div id="orgLeftPapel" class="col-md-3">
-        <div id="orgsGrid"></div>
-    </div>
-    <div id="orgRightPanel" class="col-md-9">
-    </div>
+    <div class="row">
+        <div id="orgLeftPapel" class="col-md-3">
+            <div id="orgsGrid"></div>
+        </div>
+        <div id="orgRightPanel" class="col-md-9">
+            <div class="row e-header-text"><h4>empresa</h4></div>
+            <hr>
+            <div class="form-user col-md-4">
+                <input class="edit-field name-org" type="text" placeholder="nombre o descripcion de la empresa" />
+                <input class="edit-field activity" type="text" placeholder="actividad comercial" />
+                <input class="edit-field fiscal-number" type="text" placeholder="codigo fiscal" />
+                <input class="edit-ddl organization-type" type="text" placeholder="tipo de empresa" />
+                <input class="edit-ddl association-type" type="text" placeholder="tipo de empresa" />
+                <div class="row">
+                    <label class="edit-label col-md-9">direcciones</label>
+                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar direccion"></i>
+                </div>
+                <div class="row">
+                    <label class="edit-label col-md-9">e-mails</label>
+                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar email"></i>
+                </div>
+                <div class="row">
+                    <label class="edit-label col-md-9">telefonos</label>
+                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar telefono"></i>
+                </div>
+                <div class="row">
+                    <label class="edit-label col-md-9">usuarios</label>
+                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar usuario"></i>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="edit-field period-from" />
+                    </div>
+                    <div class="col-md-6">
+                        <input class="edit-field period-end" />
+                    </div>
+                </div>
+                <input class="edit-field admission" />
+                <div class="row">
+                    <label class="edit-label col-md-9">logo</label>
+                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar logo"></i>
+                </div>
+            </div>
 
+        </div>
+    </div>
 </div>
 <div id="tabUsers" style="display:none">
     <div class="row">
@@ -22,14 +62,13 @@
         <div id="usersRightPanel" class="col-md-9">
             <div class="row e-header-text"><h4>perfil de usuario</h4></div>
             <hr>
-            <div class="col-md-4">
-                <input class="edit-field" type="text" placeholder="nombres" />
-                <input class="edit-field" type="text" placeholder="apellidos" />
-                <input class="edit-field" type="date" placeholder="fecha nacimiento" />
-                <input class="edit-field" type="text" placeholder="e-mail" />
-                <input class="edit-field" type="text" placeholder="user name" />
-                <input class="edit-field" type="text" placeholder="user name" />
-                <input class="edit-field" type="text" placeholder="phone number" />
+            <div class="form-user col-md-4">
+                <input class="edit-field first-name" type="text" placeholder="nombres" />
+                <input class="edit-field last-name" type="text" placeholder="apellidos" />
+                <input class="edit-field birth-day" type="date" placeholder="fecha nacimiento" />
+                <input class="edit-field email" type="email" placeholder="e-mail" />
+                <input class="edit-field user-name" type="text" placeholder="user name" />
+                <input class="edit-field phone-number" type="tel" placeholder="phone number" />
                 <div id="userRolesGrid"></div>
                 <div id="userOrgsGrid"></div>
             </div>

@@ -8,34 +8,23 @@ $(function () {
     ej.grids.Grid.Inject(ej.grids.Toolbar);
     ej.base.enableRipple(false);
 
-    defineComponents();
-
-    getData();
+    api("/api/application/organization", null, res => {
+        dta.orgs = res;
+        api("/api/application/users", null, res => {
+            dta.users = res;
+            api("/api/application/roles", null, res => {
+                dta.roles = res;
+                defineComponents();
+            });
+        });
+    });
 
 });
-
-async function getData() {
-
-    await api("/api/application/organization", null, res => {
-        dta.orgs = res;
-        ui.orgsGrid.dataSource = dta.orgs;
-    });
-    await api("/api/application/users", null, res => {
-        dta.users = res;
-        ui.usersGrid.dataSource = dta.users;
-    });
-    //await api("/api/application/roles", null, res => {
-    //    dta.roles = res;
-    //});
-
-}
 
 function defineComponents() {
 
     ui.tabObj = new ej.navigations.Tab(
         {
-            //heightAdjustMode: 'None',
-            //height: 390,
             showCloseButton: false,
             selecting: selectTab,
             items: [
@@ -52,20 +41,15 @@ function defineComponents() {
         });
     ui.tabObj.appendTo('#configTab');
 
-    // Organizations
+    // ORGANIZATIONS
     ui.orgsGrid = new ej.grids.Grid({
         allowResizing: false,
         allowGrouping: false,
         allowFiltering: true,
-
+        dataSource: dta.orgs,
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: [
-            { id: "add", prefixIcon: "e-add", tooltipText: "agregar registro" },
-            { id: "edit", prefixIcon: "e-edit", tooltipText: "editar registro" },
-            { id: "delete", prefixIcon: "e-delete", tooltipText: "eliminar registro" },
-            { id: "print", prefixIcon: "e-print", tooltipText: "imprimir" },
-            'Search'],
+        toolbar: ["Add", "Print", "Search"],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
             { field: 'id', headerText: 'Organization ID', type: 'number', visible: false },
@@ -75,6 +59,9 @@ function defineComponents() {
         height: window.innerHeight - 250,
 
         // Events
+        toolbarClick: function (args) {
+            args.cancel = true;
+        },
         queryCellInfo: function (args) {
             if (args.column.headerText === "<h4>empresas<h4>") {
                 args.cell.firstElementChild.classList.add('colorforestgreen');
@@ -87,20 +74,43 @@ function defineComponents() {
     });
     ui.orgsGrid.appendTo("#orgsGrid");
 
-    // Users
+    ui.organizationTypeDdl = new ej.dropdowns.DropDownList({
+        width: "100%",
+        placeholder: "tipo de empresa"
+    });
+    ui.organizationTypeDdl.appendTo(' .organization-type');
+
+    ui.associationTypeDdl = new ej.dropdowns.DropDownList({
+        width: "100%",
+        placeholder: "tipo de asociacion"
+    });
+    ui.associationTypeDdl.appendTo(' .association-type');
+
+    ui.periodDateFrom = new ej.calendars.DatePicker({
+        placeholder: "periodo fiscal desde"
+    });
+    ui.periodDateFrom .appendTo(' .period-from')
+
+    ui.periodDateEnd = new ej.calendars.DatePicker({
+        placeholder: "periodo fiscal hasta"
+    });
+    ui.periodDateEnd .appendTo(' .period-end')
+
+    ui.admission = new ej.calendars.DatePicker({
+        width: "100%",
+        placeholder: "fecha de ingreso"
+    });
+    ui.admission .appendTo(' .admission')
+
+    // USERS
     ui.usersGrid = new ej.grids.Grid({
         allowResizing: false,
         allowGrouping: false,
         allowFiltering: true,
-
+        dataSource: dta.users,
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: [
-            { id: "add", prefixIcon: "e-add", tooltipText: "agregar registro" },
-            { id: "edit", prefixIcon: "e-edit", tooltipText: "editar registro" },
-            { id: "delete", prefixIcon: "e-delete", tooltipText: "eliminar registro" },
-            { id: "print", prefixIcon: "e-print", tooltipText: "imprimir" },
-            'Search'],
+        toolbar: ["Add", "Print", "Search"],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
             { field: 'id', headerText: 'User ID', type: 'number', visible: false },
@@ -110,41 +120,45 @@ function defineComponents() {
         height: window.innerHeight - 250,
 
         // Events
+        toolbarClick: function (args) {
+            args.cancel = true
+        },
         queryCellInfo: function (args) {
             if (args.column.headerText === "<h4>usuarios<h4>") {
                 args.cell.firstElementChild.classList.add('colordarkviolet');
             }
         },
-        rowSelected: getUser,
+        rowSelected: setUser,
         dataBound: function (args) {
         },
     });
     ui.usersGrid.appendTo("#usersGrid");
 
-    // user roles grid
+    // USER ROLES grid
     ui.userRolesGrid = new ej.grids.Grid({
         allowResizing: false,
         allowGrouping: false,
         allowFiltering: true,
-
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: [
-            { id: "add", prefixIcon: "e-add", tooltipText: "agregar registro" },
-            { id: "update", prefixIcon: "e-update", tooltipText: "guardar" },
-            { id: "cancel", prefixIcon: "e-cancel", tooltipText: "cancelar" },
-            { id: "delete", prefixIcon: "e-delete", tooltipText: "eliminar registro" },
-        ],
+        toolbar: [{ text: "roles de usuario", cssClass: 'e-txt-casing' },'Add', 'Update', 'Cancel'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
-            { field: 'id', headerText: 'Role ID', type: 'number', visible: false },
-            { field: 'name', headerText: "roles", allowFiltering: false }, //
+            { field: 'id', headerText: 'Role ID', type: 'number', visible: false, isPrimaryKey: true },
+            {
+                field: 'name', headerText: "<h5>roles</h5>", disableHtmlEncode: false, allowFiltering: false,
+                foreignKeyfield: 'id', foreignKeyValue: 'name', editType: "dropdownedit", dataSource: dta.roles,
+            },
         ],
         gridLines: "None",
-        
+
         // Events
+        load: function (args) {
+        },
+        toolbarClick: function (args) {
+        },
         queryCellInfo: function (args) {
-        
+
         },
         rowSelected: function (args) {
 
@@ -154,7 +168,8 @@ function defineComponents() {
     });
     ui.userRolesGrid.appendTo("#userRolesGrid");
 
-    // user roles grid
+
+    // USER ORGANIZATIONS grid
     ui.userOrgsGrid = new ej.grids.Grid({
         allowResizing: false,
         allowGrouping: false,
@@ -162,16 +177,14 @@ function defineComponents() {
 
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: [
-            { id: "add", prefixIcon: "e-add", tooltipText: "agregar registro" },
-            { id: "update", prefixIcon: "e-update", tooltipText: "guardar" },
-            { id: "cancel", prefixIcon: "e-cancel", tooltipText: "cancelar" },
-            { id: "delete", prefixIcon: "e-delete", tooltipText: "eliminar registro" },
-        ],
+        toolbar: [{ text: "empresas", cssClass: 'e-txt-casing' },'Add', 'Update', 'Cancel'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
-            { field: 'id', headerText: 'Role ID', type: 'number', visible: false },
-            { field: 'Name', headerText: "empresas", allowFiltering: false }, //
+            { field: 'id', headerText: 'Organization ID', type: 'number', visible: false, isPrimaryKey: true },
+            {
+                field: 'name', headerText: "<h5>empresas</h5>", disableHtmlEncode: false, allowFiltering: false,
+                foreignKeyfield: 'id', foreignKeyValue: 'name', editType: "dropdownedit", dataSource: dta.orgs,
+            },
         ],
         gridLines: "None",
 
@@ -204,7 +217,16 @@ function onTabSelected(args) {
     }
 }
 
-function getUser(args) {
+function setUser(args) {
     ui.selectedUser = args.data;
     ui.userRolesGrid.dataSource = args.data.userRoles;
+    ui.userOrgsGrid.dataSource = args.data.userOrgs;
+
+    $('.form-user .first-name').val(args.data.firstName);
+    $('.form-user .last-name').val(args.data.lastName);
+    $('.form-user .birthDay').val(args.data.birthDay);
+    $('.form-user .user-name').val(args.data.userName);
+    $('.form-user .email').val(args.data.email);
+    $('.form-user .phone-number').val(args.data.phoneNumber);
+
 } 

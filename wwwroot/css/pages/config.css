@@ -8,3 +8,10 @@
     font-weight: bold;
 }
 
+.e-grid .e-gridheader {
+    display: none;
+} 
+
+.custom_bold {
+    font-weight: bold !important; 
+}

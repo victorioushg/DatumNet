@@ -47,9 +47,24 @@ namespace DatumNet.Data
                         " WHERE " +
                         " aur.UserId = " + u.Id + "  ").ConfigureAwait(false);
                     u.UserRoles = roles;
+
+                    var orgs = await connection.QueryAsync<Organization>("SELECT ao.Id, ao.Name FROM application_user_org auo " +
+                        " INNER JOIN application_organization ao ON (auo.OrganizationId = ao.Id) " +
+                        " WHERE " +
+                        " auo.UserId = " + u.Id + "  ").ConfigureAwait(false);
+                    u.UserOrgs = orgs;
                 }
 
                 return users.ToList();
+            }
+        }
+        public async Task<IList<ApplicationRole>> GetRoles()
+        {
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                var queryResults = await connection.QueryAsync<ApplicationRole>("SELECT a.* FROM application_role a ").ConfigureAwait(false);
+                return queryResults.ToList();
             }
         }
     }

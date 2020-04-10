@@ -134,9 +134,11 @@ tr:nth-child(even) {
 /*** Form elements ***/
 ::placeholder {
     color: #a6a6a6;
-    font-weight: 300;
+    font-size: 12px;
+    font-weight: 600;
     font-style: italic;
-}
+}s
+
 
 .edit-title {
     background-color: transparent;
@@ -168,18 +170,20 @@ tr:nth-child(even) {
 .edit-label {
     display: inline-block;
     background-color: transparent;
+    color: #045FB4;
     width: 100%;
     font-weight: 600;
     margin-top: 15px;
-    font-size: 14px;
+    font-size: 12px;
+    font-style:italic; 
 }
 
 .edit-field {
     width: 100%;
     padding: 2px;
     border: none;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 500;
     border-bottom: 1px solid #dee2e6;
 }
     .edit-field.form-control {
@@ -189,6 +193,7 @@ tr:nth-child(even) {
     .edit-field:focus {
         border-bottom: 3px solid #0078D7 !important;
     }
+
 
 .edit-footer {
     display: inline-block;
