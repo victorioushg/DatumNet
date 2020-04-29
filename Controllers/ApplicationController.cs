@@ -18,6 +18,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 
+using BaseLib.Api;
 using DatumNet.Data;
 using DatumNet.Models.Models.Application;
 //using DatumNet.Models.Contracts.Accounting;
@@ -28,10 +29,10 @@ namespace DatumNet.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class ApplicationController : ControllerBase
+    public class ApplicationController : BaseApiController
     {
         /// 
-        private ApplicationRepository  _repo;
+        private ApplicationRepository _repo;
         public ApplicationController(ApplicationRepository repo)
         {
             _repo = repo;
@@ -41,6 +42,18 @@ namespace DatumNet.Controllers
         public Task<IList<Organization>> GetOrganizations()
         {
             return _repo.GetOrganizations();
+        }
+
+        [HttpGet("organization/types")]
+        public Task<IList<TypeOrganization>> GetOrganizationTypes()
+        {
+            return _repo.GetOrganizationTypes();
+        }
+
+        [HttpGet("assosiations")]
+        public Task<IList<TypeAssosiation>> GetAssosiationTypes()
+        {
+            return _repo.GetAssosiationTypes();
         }
 
         [HttpGet("users")]
@@ -53,6 +66,21 @@ namespace DatumNet.Controllers
         public Task<IList<ApplicationRole>> GetRoles()
         {
             return _repo.GetRoles();
+        }
+
+        [HttpGet("address/types")]
+        public Task<IList<AddressTypes>> GetAddressTypes()
+        {
+            return _repo.GetAddressTypes();
+        }
+
+        [HttpPost("{id}/address")]
+        public IActionResult InsertAddress(int id, [FromBody] Address address)
+        {
+            return Results(() =>
+            {
+                return _repo.InsertAddress(address, id);
+            });
         }
 
     }

@@ -83,6 +83,12 @@ function fail(args) {
     toast(args);
 }
 
+const msgType = {
+    Error : 0,
+    Success : 1,
+    Warning : 3,
+    Info : 4
+}
 function toast(msg, msgtype, msghideAfter) {
 
     ///// Messages
@@ -110,6 +116,8 @@ function toast(msg, msgtype, msghideAfter) {
         position: 'bottom-right'
     });
 }
+
+
 
 /// Formater phone Number
 function formatPhoneNumber(phoneNumberString) {
@@ -147,3 +155,20 @@ function hide(element, hide) { // todo replace calls to this method with hide()/
     }
 }
 
+function validateRequiredFields(id) {
+    var isValid = true;
+    var fields = $(id + ' input.edit-field.required');
+
+    fields.each((i, el) => {
+        if (!el.value) {
+            $(el).addClass('invalid');
+            isValid = false;
+        }
+        else {
+            // if fields is valid, remove existing invalid class
+            $(el).removeClass('invalid');
+        }
+    });
+
+    return isValid;
+}

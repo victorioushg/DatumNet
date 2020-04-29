@@ -29,7 +29,7 @@ namespace DatumNet.Data
             {
                 await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
                 // T-SQL
-                //user.Id = await connection.QuerySingleAsync<int>($@"INSERT INTO [application_user] ([UserName], [NormalizedUserName], [Email],
+                //user.Id = await connection.QuerySingleAsync<int>($@"INSERT INTO [app_user] ([UserName], [NormalizedUserName], [Email],
                 //    [NormalizedEmail], [EmailConfirmed], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled])
                 //    VALUES (@{nameof(ApplicationUser.UserName)}, @{nameof(ApplicationUser.NormalizedUserName)}, @{nameof(ApplicationUser.Email)},
                 //    @{nameof(ApplicationUser.NormalizedEmail)}, @{nameof(ApplicationUser.EmailConfirmed)}, @{nameof(ApplicationUser.PasswordHash)},
@@ -37,7 +37,7 @@ namespace DatumNet.Data
                 //    SELECT CAST(SCOPE_IDENTITY() as int)", user);
 
                 // MySQL
-                user.Id = await connection.QuerySingleAsync<int>($@"INSERT INTO Application_User (UserName, NormalizedUserName, Email,
+                user.Id = await connection.QuerySingleAsync<int>($@"INSERT INTO app_User (UserName, NormalizedUserName, Email,
                     NormalizedEmail, EmailConfirmed, PasswordHash, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled)
                     VALUES (@{nameof(ApplicationUser.UserName)}, @{nameof(ApplicationUser.NormalizedUserName)}, @{nameof(ApplicationUser.Email)},
                     @{nameof(ApplicationUser.NormalizedEmail)}, @{nameof(ApplicationUser.EmailConfirmed)}, @{nameof(ApplicationUser.PasswordHash)},
@@ -59,7 +59,7 @@ namespace DatumNet.Data
                 //await connection.ExecuteAsync($"DELETE FROM [ApplicationUser] WHERE [Id] = @{nameof(ApplicationUser.Id)}", user);
 
                 //MySQL
-                await connection.ExecuteAsync($"DELETE FROM application_user WHERE Id = @{nameof(ApplicationUser.Id)}", user).ConfigureAwait(false);
+                await connection.ExecuteAsync($"DELETE FROM app_user WHERE Id = @{nameof(ApplicationUser.Id)}", user).ConfigureAwait(false);
             }
 
             return IdentityResult.Success;
@@ -77,7 +77,7 @@ namespace DatumNet.Data
                 //    WHERE [Id] = @{nameof(userId)}", new { userId });
 
                 // MySQL
-                return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM application_user
+                return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM app_user
                     WHERE Id = @{nameof(userId)}", new { userId }).ConfigureAwait(false);
             }
         }
@@ -90,11 +90,11 @@ namespace DatumNet.Data
             {
                 await connection.OpenAsync(cancellationToken).ConfigureAwait(false);
                 // T-SQL
-                //return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM [application_user]
+                //return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM [app_user]
                 //    WHERE [NormalizedUserName] = @{nameof(normalizedUserName)}", new { normalizedUserName });
 
                 // MySQL
-                return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM application_user
+                return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM app_user
                     WHERE NormalizedUserName = @{nameof(normalizedUserName)}", new { normalizedUserName }).ConfigureAwait(false);
             }
         }
@@ -147,7 +147,7 @@ namespace DatumNet.Data
                 //    WHERE [Id] = @{nameof(ApplicationUser.Id)}", user);
 
                 //MySQL
-                await connection.ExecuteAsync($@"UPDATE Application_User SET
+                await connection.ExecuteAsync($@"UPDATE app_User SET
                     UserName = @{nameof(ApplicationUser.UserName)},
                     NormalizedUserName = @{nameof(ApplicationUser.NormalizedUserName)},
                     Email = @{nameof(ApplicationUser.Email)},
@@ -197,7 +197,7 @@ namespace DatumNet.Data
                 //    WHERE [NormalizedEmail] = @{nameof(normalizedEmail)}", new { normalizedEmail });
 
                 //MySQL
-                return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM application_user
+                return await connection.QuerySingleOrDefaultAsync<ApplicationUser>($@"SELECT * FROM app_user
                     WHERE NormalizedEmail = @{nameof(normalizedEmail)}", new { normalizedEmail }).ConfigureAwait(false);
             }
         }
@@ -282,12 +282,12 @@ namespace DatumNet.Data
                 //    new { userId = user.Id, roleId });
 
                 //MySQL
-                var roleId = await connection.ExecuteScalarAsync<int?>($"SELECT Id FROM application_Role WHERE NormalizedName = @{nameof(normalizedName)}", new { normalizedName }).ConfigureAwait(false);
+                var roleId = await connection.ExecuteScalarAsync<int?>($"SELECT Id FROM app_Role WHERE NormalizedName = @{nameof(normalizedName)}", new { normalizedName }).ConfigureAwait(false);
                 if (!roleId.HasValue)
                     roleId = await connection.ExecuteAsync($"INSERT INTO ApplicationRole(Name, NormalizedName) VALUES(@{nameof(roleName)}, @{nameof(normalizedName)})",
                         new { roleName, normalizedName }).ConfigureAwait(false);
 
-                await connection.ExecuteAsync($"IF NOT EXISTS(SELECT 1 FROM application_user_role WHERE UserId = @userId AND RoleId = @{nameof(roleId)}) " +
+                await connection.ExecuteAsync($"IF NOT EXISTS(SELECT 1 FROM app_user_role WHERE UserId = @userId AND RoleId = @{nameof(roleId)}) " +
                     $"INSERT INTO ApplicationUserRole(UserId, RoleId) VALUES(@userId, @{nameof(roleId)})",
                     new { userId = user.Id, roleId }).ConfigureAwait(false);
             }
@@ -307,10 +307,10 @@ namespace DatumNet.Data
 
                 //MySQL
                 await connection.OpenAsync(cancellationToken);
-                var roleId = await connection.ExecuteScalarAsync<int?>("SELECT Id FROM application_Role WHERE NormalizedName = @normalizedName", 
+                var roleId = await connection.ExecuteScalarAsync<int?>("SELECT Id FROM app_Role WHERE NormalizedName = @normalizedName", 
                     new { normalizedName = roleName.ToUpper() }).ConfigureAwait(false);
                 if (!roleId.HasValue)
-                    await connection.ExecuteAsync($"DELETE FROM application_user_role WHERE UserId = @userId AND RoleId = @{nameof(roleId)}", 
+                    await connection.ExecuteAsync($"DELETE FROM app_user_role WHERE UserId = @userId AND RoleId = @{nameof(roleId)}", 
                         new { userId = user.Id, roleId }).ConfigureAwait(false);
 
             }
@@ -329,7 +329,7 @@ namespace DatumNet.Data
                 //    "WHERE ur.UserId = @userId", new { userId = user.Id });
 
                 //MySQL
-                var queryResults = await connection.QueryAsync<string>("SELECT r.Name FROM application_Role r INNER JOIN application_user_role ur ON ur.RoleId = r.Id " +
+                var queryResults = await connection.QueryAsync<string>("SELECT r.Name FROM app_Role r INNER JOIN app_user_role ur ON ur.RoleId = r.Id " +
                     "WHERE ur.UserId = @userId", new { userId = user.Id }).ConfigureAwait(false);
 
                 return queryResults.ToList();
@@ -349,10 +349,10 @@ namespace DatumNet.Data
                 //    new { userId = user.Id, roleId });
 
                 //MySQL
-                var roleId = await connection.ExecuteScalarAsync<int?>("SELECT Id FROM application_Role WHERE NormalizedName = @normalizedName", 
+                var roleId = await connection.ExecuteScalarAsync<int?>("SELECT Id FROM app_Role WHERE NormalizedName = @normalizedName", 
                     new { normalizedName = roleName.ToUpper() }).ConfigureAwait(false);
                 if (roleId == default(int)) return false;
-                var matchingRoles = await connection.ExecuteScalarAsync<int>($"SELECT COUNT(*) FROM application_user_role WHERE UserId = @userId AND RoleId = @{nameof(roleId)}",
+                var matchingRoles = await connection.ExecuteScalarAsync<int>($"SELECT COUNT(*) FROM app_user_role WHERE UserId = @userId AND RoleId = @{nameof(roleId)}",
                     new { userId = user.Id, roleId }).ConfigureAwait(false);
 
                 return matchingRoles > 0;
@@ -371,8 +371,8 @@ namespace DatumNet.Data
                 //    new { normalizedName = roleName.ToUpper() });
 
                 //MySQL
-                var queryResults = await connection.QueryAsync<ApplicationUser>("SELECT u.* FROM application_user u " +
-                    "INNER JOIN application_user_role ur ON ur.UserId = u.Id INNER JOIN application_Role r ON r.Id = ur.RoleId WHERE r.NormalizedName = @normalizedName",
+                var queryResults = await connection.QueryAsync<ApplicationUser>("SELECT u.* FROM app_user u " +
+                    "INNER JOIN app_user_role ur ON ur.UserId = u.Id INNER JOIN app_Role r ON r.Id = ur.RoleId WHERE r.NormalizedName = @normalizedName",
                     new { normalizedName = roleName.ToUpper() }).ConfigureAwait(false);
 
                 return queryResults.ToList();

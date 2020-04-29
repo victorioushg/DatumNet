@@ -14,15 +14,17 @@
         <div id="orgRightPanel" class="col-md-9">
             <div class="row e-header-text"><h4>empresa</h4></div>
             <hr>
-            <div class="form-user col-md-4">
+            <div class="form-org col-md-4">
                 <input class="edit-field name-org" type="text" placeholder="nombre o descripcion de la empresa" />
                 <input class="edit-field activity" type="text" placeholder="actividad comercial" />
-                <input class="edit-field fiscal-number" type="text" placeholder="codigo fiscal" />
+                <input class="edit-field fiscal-id" type="text" placeholder="codigo fiscal" />
                 <input class="edit-ddl organization-type" type="text" placeholder="tipo de empresa" />
                 <input class="edit-ddl association-type" type="text" placeholder="tipo de empresa" />
                 <div class="row">
                     <label class="edit-label col-md-9">direcciones</label>
-                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar direccion"></i>
+                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="EditAddress(0)" title="agregar direccion"></i>
+                    <div id="addresses" class="col-md-12" ></div>
+                    <div id="addAddress" class="col-md-12"></div>
                 </div>
                 <div class="row">
                     <label class="edit-label col-md-9">e-mails</label>

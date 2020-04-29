@@ -1,6 +1,7 @@
 ﻿var dta = {}; // data namespace
 var ui = {}; // ui components namespace
 
+var addressOpen = false; 
 $(function () {
 
     //$.extend(ej, Syncfusion); // extends to use Syncfusion Javascript JS1
@@ -10,11 +11,17 @@ $(function () {
 
     api("/api/application/organization", null, res => {
         dta.orgs = res;
-        api("/api/application/users", null, res => {
-            dta.users = res;
-            api("/api/application/roles", null, res => {
-                dta.roles = res;
-                defineComponents();
+        api("/api/application/organization/types", null, res => {
+            dta.orgsTypes = res;
+            api("/api/application/assosiations", null, res => {
+                dta.assocTypes = res;
+                api("/api/application/users", null, res => {
+                    dta.users = res;
+                    api("/api/application/roles", null, res => {
+                        dta.roles = res;
+                        defineComponents();
+                    });
+                });
             });
         });
     });
@@ -67,40 +74,49 @@ function defineComponents() {
                 args.cell.firstElementChild.classList.add('colorforestgreen');
             }
         },
-        rowSelected: function (args) {
-        },
+        rowSelected: setOrg,
         dataBound: function (args) {
         },
     });
     ui.orgsGrid.appendTo("#orgsGrid");
 
     ui.organizationTypeDdl = new ej.dropdowns.DropDownList({
+        dataSource: dta.orgsTypes,
+        fields: { text: 'organizationType', value: 'organizationType' },
         width: "100%",
         placeholder: "tipo de empresa"
     });
     ui.organizationTypeDdl.appendTo(' .organization-type');
 
     ui.associationTypeDdl = new ej.dropdowns.DropDownList({
+        dataSource: dta.assocTypes,
+        fields: {
+            text: 'typeDescription', value: 'assosiationType' },
         width: "100%",
         placeholder: "tipo de asociacion"
     });
     ui.associationTypeDdl.appendTo(' .association-type');
 
-    ui.periodDateFrom = new ej.calendars.DatePicker({
+    ui.fiscalPeriodFrom = new ej.calendars.DatePicker({
+        enabled: false, 
+        format: 'dd-MM-yyyy',
         placeholder: "periodo fiscal desde"
     });
-    ui.periodDateFrom .appendTo(' .period-from')
+    ui.fiscalPeriodFrom.appendTo(' .period-from')
 
-    ui.periodDateEnd = new ej.calendars.DatePicker({
+    ui.fiscalPeriodTo = new ej.calendars.DatePicker({
+        enabled: false, 
+        format: 'dd-MM-yyyy',
         placeholder: "periodo fiscal hasta"
     });
-    ui.periodDateEnd .appendTo(' .period-end')
+    ui.fiscalPeriodTo.appendTo(' .period-end')
 
     ui.admission = new ej.calendars.DatePicker({
         width: "100%",
+        format: 'dd-MM-yyyy',
         placeholder: "fecha de ingreso"
     });
-    ui.admission .appendTo(' .admission')
+    ui.admission.appendTo(' .admission')
 
     // USERS
     ui.usersGrid = new ej.grids.Grid({
@@ -141,7 +157,7 @@ function defineComponents() {
         allowFiltering: true,
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: [{ text: "roles de usuario", cssClass: 'e-txt-casing' },'Add', 'Update', 'Cancel'],
+        toolbar: [{ text: "roles de usuario", cssClass: 'e-txt-casing' }, 'Add', 'Update', 'Cancel'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
             { field: 'id', headerText: 'Role ID', type: 'number', visible: false, isPrimaryKey: true },
@@ -177,7 +193,7 @@ function defineComponents() {
 
         filterSettings: { type: 'Excel' },
         width: "100%",
-        toolbar: [{ text: "empresas", cssClass: 'e-txt-casing' },'Add', 'Update', 'Cancel'],
+        toolbar: [{ text: "empresas", cssClass: 'e-txt-casing' }, 'Add', 'Update', 'Cancel'],
         editSettings: { showConfirmDialog: true, showDeleteConfirmDialog: true, allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
         columns: [
             { field: 'id', headerText: 'Organization ID', type: 'number', visible: false, isPrimaryKey: true },
@@ -229,4 +245,56 @@ function setUser(args) {
     $('.form-user .email').val(args.data.email);
     $('.form-user .phone-number').val(args.data.phoneNumber);
 
-} 
+}
+
+function setOrg(args) {
+    ui.selectedOrg = args.data;
+
+    $('.form-org .name-org').val(args.data.name);
+    $('.form-org .activity').val(args.data.activity);
+    $('.form-org .fiscal-id').val(args.data.fiscalID);
+    ui.organizationTypeDdl.value = args.data.organizationType;
+    ui.associationTypeDdl.value = args.data.assosiationType;
+    ui.admission.value = args.data.addedOn;
+    ui.fiscalPeriodFrom.value = args.data.fiscalPeriodFrom; 
+    ui.fiscalPeriodTo.value = args.data.fiscalPeriodTo;
+}
+
+//--> Address
+function EditAddress(id) {
+
+    if (!addressOpen) {
+
+        if (id == 0) {
+            var addressForm = new MultiAddressForm({
+                id: 'addAddress',
+                addresses: [{
+                    addressTypeId: 1,
+                    address1: '',
+                    address2: '',
+                    address3: '',
+                    city: '',
+                    county: '',
+                    state: '',
+                    country: '',
+                    postalCode: '',
+                }],
+                onsave: (id, a) => {
+                    // Insert Id
+                    api("/api/application/" + ui.selectedOrg.id + "/address", a, result => {
+                        toast(" Location added successfully ", msgType.Success);
+                        $('#addAddress').html("");
+                        //$('#addAddressType').hide();
+                        // CustomerInfoDetail(ui.popupCustomerInfo.customerId);
+                    }, 'POST');
+                }
+            }).addAddress();
+        }
+
+        addressOpen = true;
+    } else {
+        //$('#addAddressType').hide();
+        $('#addAddress').html("");
+        addressOpen = false;
+    }
+}
