@@ -250,6 +250,19 @@ function setUser(args) {
 function setOrg(args) {
     ui.selectedOrg = args.data;
 
+    api("/api/application/" + args.data.id + "/addresses", null, res => {
+        new MultiAddressForm({
+            id: 'addresses',
+            addresses: res,
+            //onsave: (id, a) => { // todo refresh page
+            //    api("/api/customer/" + customerid + "/address/" + id, a, result => {
+            //        toast(" Location updated successfully ", 1);
+            //        CustomerInfoDetail(customerid);
+            //    }, 'PATCH');
+            //}
+        }).render();
+    });
+
     $('.form-org .name-org').val(args.data.name);
     $('.form-org .activity').val(args.data.activity);
     $('.form-org .fiscal-id').val(args.data.fiscalID);
@@ -282,7 +295,7 @@ function EditAddress(id) {
                 onsave: (id, a) => {
                     // Insert Id
                     api("/api/application/" + ui.selectedOrg.id + "/address", a, result => {
-                        toast(" Location added successfully ", msgType.Success);
+                        toast(" Location added successfully ", messageType.Success);
                         $('#addAddress').html("");
                         //$('#addAddressType').hide();
                         // CustomerInfoDetail(ui.popupCustomerInfo.customerId);

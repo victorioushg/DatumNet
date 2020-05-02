@@ -83,13 +83,13 @@ function fail(args) {
     toast(args);
 }
 
-const msgType = {
+const messageType = {
     Error : 0,
     Success : 1,
     Warning : 3,
     Info : 4
 }
-function toast(msg, msgtype, msghideAfter) {
+function toast(msg, messageType, msghideAfter) {
 
     ///// Messages
     var forType = [
@@ -103,15 +103,15 @@ function toast(msg, msgtype, msghideAfter) {
         msghideAfter = 5000;
     }
 
-    if (msgtype > 4 || msgtype == undefined) { msgtype = 0; }
+    if (messageType > 4 || messageType == undefined) { messageType = 0; }
     if (msg == null || msg == '') {
-        msg = forType[msgtype].msgIfEmpty;
+        msg = forType[messageType].msgIfEmpty;
     }
     $.toast({
-        heading: forType[msgtype].heading,
+        heading: forType[messageType].heading,
         text: msg,
         showHideTransition: 'slide',
-        icon: forType[msgtype].icon,
+        icon: forType[messageType].icon,
         hideAfter: msghideAfter,
         position: 'bottom-right'
     });
@@ -171,4 +171,25 @@ function validateRequiredFields(id) {
     });
 
     return isValid;
+}
+
+function createAddressLink(address, includeFullAddress, notShowAddress) {
+    if (address.address1 === null) { // && address.city === null && address.state === null & address.postalCode === null) {
+        return "";
+    }
+    else {
+        var fullAddress = "";
+
+        if (address.address1) {
+            fullAddress = address.address1 + ', ' + address.city + ', ' + address.state + ', ' + address.postalCode;
+        } else {
+            fullAddress = address.split(',')[0] + '<br>' + address.substring(address.indexOf(', ') + 1).trim();
+            includeFullAddress = true;
+        }
+
+        var link = "'http://maps.google.com/?q=" + fullAddress + "'"
+        return (notShowAddress ? "" : "<a href=" + link + " onclick='openLink(this.href); return false;'>"
+            + (includeFullAddress ? fullAddress : address.address1) + "   </a>")
+            + "<a href=" + link + " onclick='addPin(this.href); return false;'><span class='fa fa-map-marker-alt fa-lg ml-3' >  </span ></a ><br />";
+    }
 }

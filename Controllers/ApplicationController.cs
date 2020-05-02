@@ -83,5 +83,14 @@ namespace DatumNet.Controllers
             });
         }
 
+        [HttpGet("{id}/addresses")]
+        public IActionResult GetAddressesByEntity(int id)
+        {
+            return Results(() =>
+            {
+                return _repo.GetAddressesByEntity(id);
+            });
+        }
+
     }
 }

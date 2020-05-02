@@ -1,0 +1,28 @@
+﻿<template id="addresses-template">
+  <a class="address-open fa fa-edit" href="javascript:void(0)"></a>
+  <span class="edit-link address-link" ></span>
+  <div class="address-wrapper" style="display: none;">
+    <div class="address-container"></div>
+    <div class="mt-2 mb-4 pull-right" >
+      <button class="address-save btn btn-light btn-sm"><i class="fas fa-check"></i></button>
+      <button class="address-cancel btn btn-light btn-sm"><i class="fas fa-times"></i></button>
+    </div>
+    <br />
+  </div>
+</template>
+
+<template id="address-template">
+  <div class="edit-ddl">
+    <input class="edit-ddl address-type" type="text">
+  </div>
+  <input class="edit-field address-1 required" type="text" placeholder="Address" title="Address">
+  <input class="edit-field address-2" type="text" placeholder="Address 2" title="Address 2">
+  <input class="edit-field address-3" type="text" placeholder="Address 3" title="Address 3">
+  <input class="edit-field address-postal-code required" type="zipcode" placeholder="Postal Code" title="Postal Code">
+  <input class="edit-field address-city" type="text" placeholder="City" title="City">
+  <input class="edit-field address-county" type="text" placeholder="County" title="County">
+  <input class="edit-field address-state" type="text" placeholder="State" title="State">
+  <input class="edit-field address-country" type="text" placeholder="Country" title="Country">
+</template>
+
+<script src="~/scripts/Controls/address.js"></script>

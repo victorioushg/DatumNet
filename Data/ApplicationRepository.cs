@@ -93,18 +93,30 @@ namespace DatumNet.Data
             }
         }
 
+        
+
+        #region Addresses
+
         public async Task<IList<AddressTypes>> GetAddressTypes()
         {
-
             using (var connection = new MySqlConnection(_connectionString))
             {
                 var queryResults = await connection.QueryAsync<AddressTypes>("SELECT a.* FROM app_address_type a ").ConfigureAwait(false);
                 return queryResults.ToList();
             }
-        }
+        }                                                                                                      
 
-        #region Inserts
-                                                                                                              
+        public async Task<IList<Address>> GetAddressesByEntity(int entityId)
+        {
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                var queryResults = await connection.QueryAsync<Address>("app_Addresses_GetByEntity", new { 
+                    _EntityId = entityId
+                }, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
+                return queryResults.ToList();
+            }
+        } 
+
         public async Task<int> InsertAddress(Address address, int entityId)
         {
 
