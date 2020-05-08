@@ -48,6 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Scripts\Controls\lists.js" />
     <Content Remove="wwwroot\syncfusion-ej2\ej2\dist\ej2.d.ts" />
     <Content Remove="wwwroot\syncfusion-ej2\ej2\dist\ej2.min.js.map" />
   </ItemGroup>

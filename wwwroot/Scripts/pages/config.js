@@ -1,7 +1,7 @@
 ﻿var dta = {}; // data namespace
 var ui = {}; // ui components namespace
 
-var addressOpen = false; 
+var addressOpen = false;
 $(function () {
 
     //$.extend(ej, Syncfusion); // extends to use Syncfusion Javascript JS1
@@ -19,7 +19,14 @@ $(function () {
                     dta.users = res;
                     api("/api/application/roles", null, res => {
                         dta.roles = res;
-                        defineComponents();
+                        api("/api/application/phonetypes", null,
+                            data => {
+                                dta.phoneTypes = data.map(p => ({
+                                    phoneType: p.value,
+                                    value: p.value
+                                }));
+                                defineComponents();
+                            });
                     });
                 });
             });
@@ -91,21 +98,28 @@ function defineComponents() {
     ui.associationTypeDdl = new ej.dropdowns.DropDownList({
         dataSource: dta.assocTypes,
         fields: {
-            text: 'typeDescription', value: 'assosiationType' },
+            text: 'typeDescription', value: 'assosiationType'
+        },
         width: "100%",
         placeholder: "tipo de asociacion"
     });
     ui.associationTypeDdl.appendTo(' .association-type');
 
+    ui.ddlPhonesTypes = new ej.dropdowns.DropDownList({
+        dataSource: dta.phoneTypes,
+        fields: { text: 'phoneType', value: 'phoneType' },
+        width: '100%',
+    });
+
     ui.fiscalPeriodFrom = new ej.calendars.DatePicker({
-        enabled: false, 
+        enabled: false,
         format: 'dd-MM-yyyy',
         placeholder: "periodo fiscal desde"
     });
     ui.fiscalPeriodFrom.appendTo(' .period-from')
 
     ui.fiscalPeriodTo = new ej.calendars.DatePicker({
-        enabled: false, 
+        enabled: false,
         format: 'dd-MM-yyyy',
         placeholder: "periodo fiscal hasta"
     });
@@ -269,7 +283,7 @@ function setOrg(args) {
     ui.organizationTypeDdl.value = args.data.organizationType;
     ui.associationTypeDdl.value = args.data.assosiationType;
     ui.admission.value = args.data.addedOn;
-    ui.fiscalPeriodFrom.value = args.data.fiscalPeriodFrom; 
+    ui.fiscalPeriodFrom.value = args.data.fiscalPeriodFrom;
     ui.fiscalPeriodTo.value = args.data.fiscalPeriodTo;
 }
 
@@ -310,4 +324,54 @@ function EditAddress(id) {
         $('#addAddress').html("");
         addressOpen = false;
     }
+}
+
+function AddPhone() {
+    AddPhoneLine(null, "ADD");
+}
+
+function AddPhoneLine(phone, oldPhone) {
+    var len_phone = 0;
+    if ($("#tblPhone").children().length == 0) {
+        len_phone = 1;
+    }
+    else {
+        len_phone = parseInt($("#tblPhone").find('tr:last').attr('id').match(/[0-9]+/g)) + 1;
+    }
+
+    //var len = parseInt($($("#tblPhone").children().length!==0).find('tr:last').attr('id').length);
+    var id = "ContactPhone" + parseInt(len_phone);
+    var td1 = "<tr id='tr" + parseInt(len_phone) + "'><td style='width: 25%;'><input id='ddl" + id + "' class='edit-ddl selectPhone'></input></td>";
+    var td2 = "<td style='width: 66.5%;'><input type='tel' class='edit-field phoneMask' onchange='ValidatePhone("
+        + parseInt(len_phone) + ")' id='" + id + "' name='ContactPhone' oldphone='" + (oldPhone ? oldPhone : "")
+        + "' placeholder='Phone' value='" + (phone ? phone.phoneNumber : "") + "' /></td>";
+    var td3 = "<td><i class='fa fa-trash edit-field pt-2 pointer text-left' title='DeletePhone' onclick='DeletePhone("
+        + parseInt(len_phone) + ")'></i></td>";
+    $('#tblPhone').append($(td1 + td2 + td3));
+    $('.phoneMask').usPhoneFormat({
+        format: '(xxx) xxx-xxxx',
+    });
+
+    //var ddlPhonesTypes = new ej.dropdowns.DropDownList({
+    //    dataSource: dta.phoneTypes,
+    //    fields: { text: 'phoneType', value: 'phoneType' },
+    //    width: '100%', 
+    //});
+    ui.ddlPhonesTypes.appendTo('#ddl' + id);
+
+
+    //var ddlPhonesTypes = new DropDownList({
+    //    id: '#ddl' + id,
+    //    dataSource: 
+    //    cssClass: "edit-ddl",
+    //    fields: { text: "phoneType", value: "value" },
+    //    width: "100%",
+    //    popupWidth: 120,
+    //}).render();
+
+    if (phone) {
+        ddlPhonesTypes.setSelectedValue(phone.phoneNumberType);
+    }
+
+    $('#' + id).focus();
 }

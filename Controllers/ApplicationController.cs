@@ -9,8 +9,6 @@ using DatumNet.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Web;
 using Newtonsoft.Json;
-//using SendGrid.Helpers.Mail;
-//using Syncfusion.XlsIO;
 using System.Collections;
 using System.Data;
 using System.IO;
@@ -19,10 +17,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 
 using BaseLib.Api;
+using BaseLib.Helpers;
+using BaseLib.Models; 
+
 using DatumNet.Data;
 using DatumNet.Models.Models.Application;
-//using DatumNet.Models.Contracts.Accounting;
-using DatumNet.Models.Contracts;
 
 namespace DatumNet.Controllers
 {
@@ -89,6 +88,15 @@ namespace DatumNet.Controllers
             return Results(() =>
             {
                 return _repo.GetAddressesByEntity(id);
+            });
+        }
+
+        [HttpGet("phonetypes")]
+        public IActionResult GetPhoneTypes()
+        {
+            return Results(() =>
+            {
+                return EnumHelper.Enumerate<PhoneType>();
             });
         }
 

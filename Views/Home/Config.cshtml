@@ -32,7 +32,13 @@
                 </div>
                 <div class="row">
                     <label class="edit-label col-md-9">telefonos</label>
-                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar telefono"></i>
+                    <i id="btnPhone" class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="AddPhone()" title="agregar telefono"></i>
+                    <div class="form-field col-md-12 mt-2 p-0">
+                        <table class="table borderless" style="width:100%; margin-left:15px">
+                            <tbody id="tblPhone"></tbody>
+                        </table>
+                    </div>
+                   
                 </div>
                 <div class="row">
                     <label class="edit-label col-md-9">usuarios</label>
