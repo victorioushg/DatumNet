@@ -21,6 +21,11 @@ namespace DatumNet.Models.Models.Application
         public string PostalCode { get; set; }
     }
 
+    public class FullAddress : Address
+    {
+        public string CompleteAddress { get { return Address1 + ", " + City + ", " + State + ", " + PostalCode; } }
+    }
+
     public class AddressTypes
     {
         public string AddressType { get; set; }

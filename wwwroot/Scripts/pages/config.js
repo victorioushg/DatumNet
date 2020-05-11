@@ -105,6 +105,66 @@ function defineComponents() {
     });
     ui.associationTypeDdl.appendTo(' .association-type');
 
+    //Addresses Grid
+    ui.addressesGrid = new ej.grids.Grid({
+        width: '100%',
+        toolbar: [
+            { template: '<label class="edit-label" style="width: 200px">direcciones</label>' },
+            //{ type: 'Separator' },
+            'Add',
+            'Update',
+            'Cancel'
+        ],
+        columns: [
+            { width: 60, commands: [  { type: 'google maps',  buttonOption: { cssClass: 'e-flat', iconCss:'fa fa-map-marker-alt', click: onAddressClick } }] },
+            { field: 'completeAddress' },
+        ], 
+        //Events
+    });
+    ui.addressesGrid.appendTo('#addressesGrid');
+
+    //Emails Grid
+    ui.emailsGrid = new ej.grids.Grid({
+        width: '100%',
+        toolbar: [
+            { template: '<label class="edit-label" style="width: 200px">emails</label>' },
+            //{ type: 'Separator' },
+            'Add',
+            'Update',
+            'Cancel'
+        ],
+        //Events
+    });
+    ui.emailsGrid.appendTo('#emailsGrid');
+
+    //Phones Grid
+    ui.phonesGrid = new ej.grids.Grid({
+        width: '100%',
+        toolbar: [
+            { template: '<label class="edit-label" style="width: 200px">telefonos</label>' },
+            //{ type: 'Separator' },
+            'Add',
+            'Update',
+            'Cancel'
+        ],
+        //Events
+    });
+    ui.phonesGrid.appendTo('#phonesGrid');
+
+    // Organization Users Grid
+    ui.organizationUsersGrid = new ej.grids.Grid({
+        width: '100%',
+        toolbar: [
+            { template: '<label class="edit-label" style="width: 200px">usuarios</label>' },
+            //{ type: 'Separator' },
+            'Add',
+            'Update',
+            'Cancel'
+        ],
+        //Events
+    });
+    ui.organizationUsersGrid.appendTo('#organizationUsersGrid');
+
     ui.ddlPhonesTypes = new ej.dropdowns.DropDownList({
         dataSource: dta.phoneTypes,
         fields: { text: 'phoneType', value: 'phoneType' },
@@ -265,16 +325,8 @@ function setOrg(args) {
     ui.selectedOrg = args.data;
 
     api("/api/application/" + args.data.id + "/addresses", null, res => {
-        new MultiAddressForm({
-            id: 'addresses',
-            addresses: res,
-            //onsave: (id, a) => { // todo refresh page
-            //    api("/api/customer/" + customerid + "/address/" + id, a, result => {
-            //        toast(" Location updated successfully ", 1);
-            //        CustomerInfoDetail(customerid);
-            //    }, 'PATCH');
-            //}
-        }).render();
+        dta.addresses = res;
+        ui.addressesGrid.dataSource = dta.addresses;
     });
 
     $('.form-org .name-org').val(args.data.name);
@@ -282,96 +334,13 @@ function setOrg(args) {
     $('.form-org .fiscal-id').val(args.data.fiscalID);
     ui.organizationTypeDdl.value = args.data.organizationType;
     ui.associationTypeDdl.value = args.data.assosiationType;
+
     ui.admission.value = args.data.addedOn;
     ui.fiscalPeriodFrom.value = args.data.fiscalPeriodFrom;
     ui.fiscalPeriodTo.value = args.data.fiscalPeriodTo;
 }
 
-//--> Address
-function EditAddress(id) {
-
-    if (!addressOpen) {
-
-        if (id == 0) {
-            var addressForm = new MultiAddressForm({
-                id: 'addAddress',
-                addresses: [{
-                    addressTypeId: 1,
-                    address1: '',
-                    address2: '',
-                    address3: '',
-                    city: '',
-                    county: '',
-                    state: '',
-                    country: '',
-                    postalCode: '',
-                }],
-                onsave: (id, a) => {
-                    // Insert Id
-                    api("/api/application/" + ui.selectedOrg.id + "/address", a, result => {
-                        toast(" Location added successfully ", messageType.Success);
-                        $('#addAddress').html("");
-                        //$('#addAddressType').hide();
-                        // CustomerInfoDetail(ui.popupCustomerInfo.customerId);
-                    }, 'POST');
-                }
-            }).addAddress();
-        }
-
-        addressOpen = true;
-    } else {
-        //$('#addAddressType').hide();
-        $('#addAddress').html("");
-        addressOpen = false;
-    }
-}
-
-function AddPhone() {
-    AddPhoneLine(null, "ADD");
-}
-
-function AddPhoneLine(phone, oldPhone) {
-    var len_phone = 0;
-    if ($("#tblPhone").children().length == 0) {
-        len_phone = 1;
-    }
-    else {
-        len_phone = parseInt($("#tblPhone").find('tr:last').attr('id').match(/[0-9]+/g)) + 1;
-    }
-
-    //var len = parseInt($($("#tblPhone").children().length!==0).find('tr:last').attr('id').length);
-    var id = "ContactPhone" + parseInt(len_phone);
-    var td1 = "<tr id='tr" + parseInt(len_phone) + "'><td style='width: 25%;'><input id='ddl" + id + "' class='edit-ddl selectPhone'></input></td>";
-    var td2 = "<td style='width: 66.5%;'><input type='tel' class='edit-field phoneMask' onchange='ValidatePhone("
-        + parseInt(len_phone) + ")' id='" + id + "' name='ContactPhone' oldphone='" + (oldPhone ? oldPhone : "")
-        + "' placeholder='Phone' value='" + (phone ? phone.phoneNumber : "") + "' /></td>";
-    var td3 = "<td><i class='fa fa-trash edit-field pt-2 pointer text-left' title='DeletePhone' onclick='DeletePhone("
-        + parseInt(len_phone) + ")'></i></td>";
-    $('#tblPhone').append($(td1 + td2 + td3));
-    $('.phoneMask').usPhoneFormat({
-        format: '(xxx) xxx-xxxx',
-    });
-
-    //var ddlPhonesTypes = new ej.dropdowns.DropDownList({
-    //    dataSource: dta.phoneTypes,
-    //    fields: { text: 'phoneType', value: 'phoneType' },
-    //    width: '100%', 
-    //});
-    ui.ddlPhonesTypes.appendTo('#ddl' + id);
-
-
-    //var ddlPhonesTypes = new DropDownList({
-    //    id: '#ddl' + id,
-    //    dataSource: 
-    //    cssClass: "edit-ddl",
-    //    fields: { text: "phoneType", value: "value" },
-    //    width: "100%",
-    //    popupWidth: 120,
-    //}).render();
-
-    if (phone) {
-        ddlPhonesTypes.setSelectedValue(phone.phoneNumberType);
-    }
-
-    $('#' + id).focus();
+function onAddressClick(args) {
+    ui.addressSelected = ui.addressesGrid.getRowObjectFromUID(args.target.closest('.e-row').getAttribute('data-uid')).data;
+    window.open("http://maps.google.com/?q=" + ui.addressSelected.completeAddress );
 }

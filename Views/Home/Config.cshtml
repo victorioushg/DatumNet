@@ -21,28 +21,16 @@
                 <input class="edit-ddl organization-type" type="text" placeholder="tipo de empresa" />
                 <input class="edit-ddl association-type" type="text" placeholder="tipo de empresa" />
                 <div class="row">
-                    <label class="edit-label col-md-9">direcciones</label>
-                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="EditAddress(0)" title="agregar direccion"></i>
-                    <div id="addresses" class="col-md-12" ></div>
-                    <div id="addAddress" class="col-md-12"></div>
+                    <div id="addressesGrid" style="margin-left:15px; margin-right:15px"></div>
                 </div>
                 <div class="row">
-                    <label class="edit-label col-md-9">e-mails</label>
-                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar email"></i>
+                    <div id="emailsGrid" style="margin-left:15px; margin-right:15px"></div>
                 </div>
                 <div class="row">
-                    <label class="edit-label col-md-9">telefonos</label>
-                    <i id="btnPhone" class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="AddPhone()" title="agregar telefono"></i>
-                    <div class="form-field col-md-12 mt-2 p-0">
-                        <table class="table borderless" style="width:100%; margin-left:15px">
-                            <tbody id="tblPhone"></tbody>
-                        </table>
-                    </div>
-                   
+                    <div id="phonesGrid" style="margin-left:15px; margin-right:15px"></div>
                 </div>
                 <div class="row">
-                    <label class="edit-label col-md-9">usuarios</label>
-                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar usuario"></i>
+                    <div id="organizationUsersGrid" style="margin-left:15px; margin-right:15px"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">

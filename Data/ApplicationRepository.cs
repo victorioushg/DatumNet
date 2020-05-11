@@ -106,11 +106,11 @@ namespace DatumNet.Data
             }
         }                                                                                                      
 
-        public async Task<IList<Address>> GetAddressesByEntity(int entityId)
+        public async Task<IList<FullAddress>> GetAddressesByEntity(int entityId)
         {
             using (var connection = new MySqlConnection(_connectionString))
             {
-                var queryResults = await connection.QueryAsync<Address>("app_Addresses_GetByEntity", new { 
+                var queryResults = await connection.QueryAsync<FullAddress>("app_Addresses_GetByEntity", new { 
                     _EntityId = entityId
                 }, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
                 return queryResults.ToList();
