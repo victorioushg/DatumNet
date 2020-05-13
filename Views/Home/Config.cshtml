@@ -41,9 +41,9 @@
                     </div>
                 </div>
                 <input class="edit-field admission" />
-                <div class="row">
-                    <label class="edit-label col-md-9">logo</label>
-                    <i class="edit-label fa fa-plus col-md-3" style="cursor:pointer; text-align:right" onclick="OpenPopupWithDocData()" title="agregar logo"></i>
+                <div class="row" style="margin-right: 10px">
+                    <label class="edit-label col-11">logo</label>
+                    <button class="e-btn col-1" id="logo-add-btn"></button>
                 </div>
             </div>
 
@@ -93,5 +93,11 @@
     </div>
 </script>
 
+<style>
+    span.e-btn-icon.fas.fa-plus.e-icons {
+        font-size: 18px;
+        color: black;
+    }
+</style>
 
 <script src="~/Scripts/pages/config.js" asp-append-version="true"></script>

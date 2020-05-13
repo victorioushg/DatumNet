@@ -109,11 +109,12 @@ function defineComponents() {
     ui.addressesGrid = new ej.grids.Grid({
         width: '100%',
         toolbar: [
-            { template: '<label class="edit-label" style="width: 200px">direcciones</label>' },
-            //{ type: 'Separator' },
-            'Add',
-            'Update',
-            'Cancel'
+            { template: '<label class="edit-label" style="width: 300px">direcciones</label>' },
+            { template: '<button class="e-btn" id="address-add-btn"></button>', tooltipText : 'agregar direccion' }, 
+            { template: '<button class="e-btn" id="address-edit-btn"></button>', tooltipText : 'editar direccion' }, 
+            { template: '<button class="e-btn" id="address-delete-btn"></button>', tooltipText : 'eliminar direccion' }, 
+            { template: '<button class="e-btn" id="address-update-btn"></button>', tooltipText : 'guardar' }, 
+            { template: '<button class="e-btn" id="address-cancel-btn"></button>', tooltipText : 'cancelar' }, 
         ],
         columns: [
             { width: 60, commands: [  { type: 'google maps',  buttonOption: { cssClass: 'e-flat', iconCss:'fa fa-map-marker-alt', click: onAddressClick } }] },
@@ -122,48 +123,101 @@ function defineComponents() {
         //Events
     });
     ui.addressesGrid.appendTo('#addressesGrid');
+    ui.addressAddBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-plus' });
+    ui.addressEditBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-pencil-alt' });
+    ui.addressDeleteBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-trash-alt' });
+    ui.addressSaveBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-check' });
+    ui.addressCancelBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-times' });
+    ui.addressAddBtn.appendTo('#address-add-btn');
+    ui.addressEditBtn.appendTo('#address-edit-btn');
+    ui.addressDeleteBtn.appendTo('#address-delete-btn');
+    ui.addressSaveBtn.appendTo('#address-update-btn');
+    ui.addressCancelBtn.appendTo('#address-cancel-btn');
+
 
     //Emails Grid
     ui.emailsGrid = new ej.grids.Grid({
         width: '100%',
         toolbar: [
-            { template: '<label class="edit-label" style="width: 200px">emails</label>' },
-            //{ type: 'Separator' },
-            'Add',
-            'Update',
-            'Cancel'
+            { template: '<label class="edit-label" style="width: 300px">emails</label>' },
+            { template: '<button class="e-btn" id="email-add-btn"></button>', tooltipText: 'agregar email' },
+            { template: '<button class="e-btn" id="email-edit-btn"></button>', tooltipText: 'editar email' },
+            { template: '<button class="e-btn" id="email-delete-btn"></button>', tooltipText: 'eliminar email' },
+            { template: '<button class="e-btn" id="email-update-btn"></button>', tooltipText: 'guardar' },
+            { template: '<button class="e-btn" id="email-cancel-btn"></button>', tooltipText: 'cancelar' },
         ],
-        //Events
+        columns: [
+            { field: 'EmailAddress' },
+        ], 
     });
     ui.emailsGrid.appendTo('#emailsGrid');
+    ui.emailAddBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-plus' });
+    ui.emailEditBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-pencil-alt' });
+    ui.emailDeleteBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-trash-alt' });
+    ui.emailSaveBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-check' });
+    ui.emailCancelBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-times' });
+    ui.emailAddBtn.appendTo('#email-add-btn');
+    ui.emailEditBtn.appendTo('#email-edit-btn');
+    ui.emailDeleteBtn.appendTo('#email-delete-btn');
+    ui.emailSaveBtn.appendTo('#email-update-btn');
+    ui.emailCancelBtn.appendTo('#email-cancel-btn');
+
 
     //Phones Grid
     ui.phonesGrid = new ej.grids.Grid({
         width: '100%',
         toolbar: [
-            { template: '<label class="edit-label" style="width: 200px">telefonos</label>' },
-            //{ type: 'Separator' },
-            'Add',
-            'Update',
-            'Cancel'
+            { template: '<label class="edit-label" style="width: 300px">telefonos</label>' },
+            { template: '<button class="e-btn" id="phone-add-btn"></button>', tooltipText: 'agregar' },
+            { template: '<button class="e-btn" id="phone-edit-btn"></button>', tooltipText: 'editar' },
+            { template: '<button class="e-btn" id="phone-delete-btn"></button>', tooltipText: 'eliminar' },
+            { template: '<button class="e-btn" id="phone-update-btn"></button>', tooltipText: 'guardar' },
+            { template: '<button class="e-btn" id="phone-cancel-btn"></button>', tooltipText: 'cancelar' },
         ],
-        //Events
+        columns: [
+            { field: 'PhoneType', width : '30%' },
+            { field: 'PhoneNumber', width : '70%' },
+        ], 
     });
     ui.phonesGrid.appendTo('#phonesGrid');
+    ui.phoneAddBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-plus' });
+    ui.phoneEditBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-pencil-alt' });
+    ui.phoneDeleteBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-trash-alt' });
+    ui.phoneSaveBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-check' });
+    ui.phoneCancelBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-times' });
+    ui.phoneAddBtn.appendTo('#phone-add-btn');
+    ui.phoneEditBtn.appendTo('#phone-edit-btn');
+    ui.phoneDeleteBtn.appendTo('#phone-delete-btn');
+    ui.phoneSaveBtn.appendTo('#phone-update-btn');
+    ui.phoneCancelBtn.appendTo('#phone-cancel-btn');
 
     // Organization Users Grid
     ui.organizationUsersGrid = new ej.grids.Grid({
         width: '100%',
         toolbar: [
-            { template: '<label class="edit-label" style="width: 200px">usuarios</label>' },
-            //{ type: 'Separator' },
-            'Add',
-            'Update',
-            'Cancel'
+            { template: '<label class="edit-label" style="width: 300px">usuarios</label>' },
+            { template: '<button class="e-btn" id="orguser-add-btn"></button>', tooltipText: 'agregar' },
+            { template: '<button class="e-btn" id="orguser-edit-btn"></button>', tooltipText: 'editar' },
+            { template: '<button class="e-btn" id="orguser-delete-btn"></button>', tooltipText: 'eliminar' },
+            { template: '<button class="e-btn" id="orguser-update-btn"></button>', tooltipText: 'guardar' },
+            { template: '<button class="e-btn" id="orguser-cancel-btn"></button>', tooltipText: 'cancelar' },
         ],
-        //Events
+        columns: [
+            { field: 'UserName' },
+        ], 
     });
     ui.organizationUsersGrid.appendTo('#organizationUsersGrid');
+    ui.orguserAddBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-plus' });
+    ui.orguserEditBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-pencil-alt' });
+    ui.orguserDeleteBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-trash-alt' });
+    ui.orguserSaveBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-check' });
+    ui.orguserCancelBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-times' });
+    ui.orguserAddBtn.appendTo('#orguser-add-btn');
+    ui.orguserEditBtn.appendTo('#orguser-edit-btn');
+    ui.orguserDeleteBtn.appendTo('#orguser-delete-btn');
+    ui.orguserSaveBtn.appendTo('#orguser-update-btn');
+    ui.orguserCancelBtn.appendTo('#orguser-cancel-btn');
+
 
     ui.ddlPhonesTypes = new ej.dropdowns.DropDownList({
         dataSource: dta.phoneTypes,
@@ -289,6 +343,12 @@ function defineComponents() {
         },
     });
     ui.userOrgsGrid.appendTo("#userOrgsGrid");
+
+    ui.logoAddBtn = new ej.buttons.Button({
+        cssClass: `edit-label`,
+        iconCss: 'fas fa-plus'
+    });
+    ui.logoAddBtn.appendTo('#logo-add-btn');
 
 }
 

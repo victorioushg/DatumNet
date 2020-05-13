@@ -92,87 +92,50 @@
     }
 }
 
-class MultiAddressForm {
+class AddressGrid {
 
     constructor(args) {
         this.id = args.id;
         this._id = "#" + args.id;
-        this.addresses = args.addresses;
+        this.addresses = args.addresses; // has to have a field 'completeAddress' 
 
-        this.onsave = args.onsave; // onsave(addressid, address)
-        //this.addressForm = {};
-        this.templateElement = document.getElementById("addresses-template");
     }
 
     render() {
-        $(this._id).empty(); // in case this gets rendered again
 
-        this.addresses.result.forEach(a => {
-
-            //this.addAddress(a); // todo replace below with this call
-            var divid = "address-" + a.addressId;
-            var clonedTemplate = this.templateElement.content.cloneNode(true);
-            clonedTemplate.querySelector(".address-container").id = divid;
-            clonedTemplate.querySelector(".address-wrapper").id = divid + "-wrapper";
-
-            // address links
-            clonedTemplate.querySelector(".address-link").innerHTML = createAddressLink(a, true);
-            clonedTemplate.querySelector(".address-open").addEventListener("click", () => {
-                $(this._id + ' .address-wrapper:not(#' + divid + '-wrapper)').hide();
-                $("#" + divid + "-wrapper").toggle();
-            }, false);
-            clonedTemplate.querySelector(".address-cancel").addEventListener("click", () => {
-                $("#" + divid + "-wrapper").hide();
-            }, false);
-
-            document.getElementById(this.id).appendChild(clonedTemplate);
-
-            //this.addressForm[a.addressId]
-            var editForm = new AddressForm({ id: divid }).render().set(a);
-
-            if (this.onsave) {
-                $("#" + divid + "-wrapper button.address-save").click(() => {
-                    if (editForm.validate()) {
-                        this.onsave(a.addressId, editForm.read());
-                        $("#" + divid + "-wrapper").hide();
-                    }
-                });
-            }
+        //Addresses Grid
+        ui.addressesGrid = new ej.grids.Grid({
+            width: '100%',
+            toolbar: [
+                { template: '<label class="edit-label" style="width: 300px">direcciones</label>' },
+                { template: '<button class="e-btn" id="address-add-btn"></button>', tooltipText: 'agregar direccion' },
+                { template: '<button class="e-btn" id="address-edit-btn"></button>', tooltipText: 'editar direccion' },
+                { template: '<button class="e-btn" id="address-delete-btn"></button>', tooltipText: 'eliminar direccion' },
+                { template: '<button class="e-btn" id="address-update-btn"></button>', tooltipText: 'guardar' },
+                { template: '<button class="e-btn" id="address-cancel-btn"></button>', tooltipText: 'cancelar' },
+            ],
+            columns: [
+                { width: 60, commands: [{ type: 'google maps', buttonOption: { cssClass: 'e-flat', iconCss: 'fa fa-map-marker-alt', click: onAddressClick } }] },
+                { field: 'completeAddress' },
+            ],
+            //Events
         });
+        ui.addressesGrid.appendTo(this._id);
+        ui.addressAddBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-plus' });
+        ui.addressEditBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-pencil-alt' });
+        ui.addressDeleteBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-trash-alt' });
+        ui.addressSaveBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-check' });
+        ui.addressCancelBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-times' });
+        ui.addressAddBtn.appendTo('#address-add-btn');
+        ui.addressEditBtn.appendTo('#address-edit-btn');
+        ui.addressDeleteBtn.appendTo('#address-delete-btn');
+        ui.addressSaveBtn.appendTo('#address-update-btn');
+        ui.addressCancelBtn.appendTo('#address-cancel-btn');
     }
 
-    addAddress() {
-
-        var address = this.addresses[0];
-
-        var divid = "address-" + address.addressId;
-        var clonedTemplate = this.templateElement.content.cloneNode(true);
-        clonedTemplate.querySelector(".address-container").id = divid;
-        clonedTemplate.querySelector(".address-wrapper").id = divid + "-wrapper";
-
-        clonedTemplate.querySelector(".address-open").addEventListener("click", () => {
-            $(this._id + ' .address-wrapper:not(#' + divid + '-wrapper)').hide();
-            $("#" + divid + "-wrapper").toggle();
-        }, false);
-        clonedTemplate.querySelector(".address-cancel").addEventListener("click", () => {
-            $("#" + divid + "-wrapper").hide();
-        }, false);
-
-        document.getElementById(this.id).appendChild(clonedTemplate);
-
-        var editForm = new AddressForm({ id: divid }).render().set(address);
-
-        $("#" + divid + "-wrapper").show();
-        //$(".address-wrapper").style.display = "block";
-        $(this._id).find('.address-open').hide();
-
-        if (this.onsave) {
-            $("#" + divid + "-wrapper button.address-save").click(() => {
-                if (editForm.validate()) {
-                    this.onsave(address.addressId, editForm.read());
-                    $("#" + divid + "-wrapper").hide();
-                }
-            });
-        }
+    onAddressClick(args) {
+        var addressSelected = ui.addressesGrid.getRowObjectFromUID(args.target.closest('.e-row').getAttribute('data-uid')).data;
+        window.open("http://maps.google.com/?q=" + addressSelected.completeAddress);
     }
+
 }
