@@ -108,18 +108,19 @@ function defineComponents() {
     //Addresses Grid
     ui.addressesGrid = new ej.grids.Grid({
         width: '100%',
+        editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Inline', template: '#address-template' }, //
         toolbar: [
             { template: '<label class="edit-label" style="width: 300px">direcciones</label>' },
-            { template: '<button class="e-btn" id="address-add-btn"></button>', tooltipText : 'agregar direccion' }, 
-            { template: '<button class="e-btn" id="address-edit-btn"></button>', tooltipText : 'editar direccion' }, 
-            { template: '<button class="e-btn" id="address-delete-btn"></button>', tooltipText : 'eliminar direccion' }, 
-            { template: '<button class="e-btn" id="address-update-btn"></button>', tooltipText : 'guardar' }, 
-            { template: '<button class="e-btn" id="address-cancel-btn"></button>', tooltipText : 'cancelar' }, 
+            { template: '<button class="e-btn" id="address-add-btn"></button>', tooltipText: 'agregar direccion' },
+            { template: '<button class="e-btn" id="address-edit-btn"></button>', tooltipText: 'editar direccion' },
+            { template: '<button class="e-btn" id="address-delete-btn"></button>', tooltipText: 'eliminar direccion' },
+            { template: '<button class="e-btn" id="address-update-btn"></button>', tooltipText: 'guardar' },
+            { template: '<button class="e-btn" id="address-cancel-btn"></button>', tooltipText: 'cancelar' },
         ],
         columns: [
-            { width: 60, commands: [  { type: 'google maps',  buttonOption: { cssClass: 'e-flat', iconCss:'fa fa-map-marker-alt', click: onAddressClick } }] },
+            { width: 60, commands: [{ type: 'google maps', buttonOption: { cssClass: 'e-flat', iconCss: 'fa fa-map-marker-alt', click: onAddressClick } }] },
             { field: 'completeAddress' },
-        ], 
+        ],
         //Events
     });
     ui.addressesGrid.appendTo('#addressesGrid');
@@ -133,6 +134,15 @@ function defineComponents() {
     ui.addressDeleteBtn.appendTo('#address-delete-btn');
     ui.addressSaveBtn.appendTo('#address-update-btn');
     ui.addressCancelBtn.appendTo('#address-cancel-btn');
+
+    ui.addressAddBtn.element.onclick = function () {
+        //document.getElementById('addressesGrid_content_table').style.display = "none";
+        //document.getElementById('address-template').style.display = "block";
+        ui.addressesGrid.addRecord();
+    };
+    ui.addressCancelBtn.element.onclick = function () {
+        ui.addressesGrid.closeEdit();
+    };
 
 
     //Emails Grid
@@ -148,7 +158,7 @@ function defineComponents() {
         ],
         columns: [
             { field: 'EmailAddress' },
-        ], 
+        ],
     });
     ui.emailsGrid.appendTo('#emailsGrid');
     ui.emailAddBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-plus' });
@@ -175,9 +185,9 @@ function defineComponents() {
             { template: '<button class="e-btn" id="phone-cancel-btn"></button>', tooltipText: 'cancelar' },
         ],
         columns: [
-            { field: 'PhoneType', width : '30%' },
-            { field: 'PhoneNumber', width : '70%' },
-        ], 
+            { field: 'PhoneType', width: '30%' },
+            { field: 'PhoneNumber', width: '70%' },
+        ],
     });
     ui.phonesGrid.appendTo('#phonesGrid');
     ui.phoneAddBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-plus' });
@@ -204,7 +214,7 @@ function defineComponents() {
         ],
         columns: [
             { field: 'UserName' },
-        ], 
+        ],
     });
     ui.organizationUsersGrid.appendTo('#organizationUsersGrid');
     ui.orguserAddBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-plus' });
@@ -402,5 +412,5 @@ function setOrg(args) {
 
 function onAddressClick(args) {
     ui.addressSelected = ui.addressesGrid.getRowObjectFromUID(args.target.closest('.e-row').getAttribute('data-uid')).data;
-    window.open("http://maps.google.com/?q=" + ui.addressSelected.completeAddress );
+    window.open("http://maps.google.com/?q=" + ui.addressSelected.completeAddress);
 }

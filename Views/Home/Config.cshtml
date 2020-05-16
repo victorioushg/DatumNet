@@ -22,6 +22,22 @@
                 <input class="edit-ddl association-type" type="text" placeholder="tipo de empresa" />
                 <div class="row">
                     <div id="addressesGrid" style="margin-left:15px; margin-right:15px"></div>
+                    @*<div id="address-template" class="form-org col-md-12" style="display:none;" >*@
+                    <script id='dialogtemplate' type="text/x-template">
+                        <div class="edit-ddl">
+                            <input class="edit-ddl address-type" type="text">
+                        </div>
+                        <input class="edit-field address-1 required" type="text" placeholder="Address" title="Address">
+                        <input class="edit-field address-2" type="text" placeholder="Address 2" title="Address 2">
+                        <input class="edit-field address-3" type="text" placeholder="Address 3" title="Address 3">
+                        <input class="edit-field address-postal-code required" type="zipcode" placeholder="Postal Code" title="Postal Code">
+                        <input class="edit-field address-city" type="text" placeholder="City" title="City">
+                        <input class="edit-field address-county" type="text" placeholder="County" title="County">
+                        <input class="edit-field address-state" type="text" placeholder="State" title="State">
+                        <input class="edit-field address-country" type="text" placeholder="Country" title="Country">
+                    </script>
+
+                    @*</div>*@
                 </div>
                 <div class="row">
                     <div id="emailsGrid" style="margin-left:15px; margin-right:15px"></div>
@@ -74,6 +90,21 @@
     </div>
 </div>
 
+<script id="address-template" type="text/x-template">
+    @*<template id="address-template">*@
+    <div class="edit-ddl">
+        <input class="edit-ddl address-type" type="text">
+    </div>
+    <input class="edit-field form-control address-1 required" type="text" placeholder="Address" title="Address">
+    <input class="edit-field form-control address-2" type="text" placeholder="Address 2" title="Address 2">
+    <input class="edit-field form-control address-3" type="text" placeholder="Address 3" title="Address 3">
+    <input class="edit-field form-control address-postal-code required" type="zipcode" placeholder="Postal Code" title="Postal Code">
+    <input class="edit-field form-control address-city" type="text" placeholder="City" title="City">
+    <input class="edit-field form-control address-county" type="text" placeholder="County" title="County">
+    <input class="edit-field form-control address-state" type="text" placeholder="State" title="State">
+    <input class="edit-field form-control address-country" type="text" placeholder="Country" title="Country">
+    @*</template>*@
+</script>
 
 <script id="orgTemplate" type="text/x-template">
     <div class="card">
