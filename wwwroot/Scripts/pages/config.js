@@ -25,7 +25,11 @@ $(function () {
                                     phoneType: p.value,
                                     value: p.value
                                 }));
-                                defineComponents();
+                                api("/api/application/address/types", null,
+                                    addressTypes => {
+                                        dta.addressTypes = addressTypes
+                                        defineComponents();
+                                    });
                             });
                     });
                 });
@@ -106,43 +110,50 @@ function defineComponents() {
     ui.associationTypeDdl.appendTo(' .association-type');
 
     //Addresses Grid
-    ui.addressesGrid = new ej.grids.Grid({
-        width: '100%',
-        editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Inline', template: '#address-template' }, //
-        toolbar: [
-            { template: '<label class="edit-label" style="width: 300px">direcciones</label>' },
-            { template: '<button class="e-btn" id="address-add-btn"></button>', tooltipText: 'agregar direccion' },
-            { template: '<button class="e-btn" id="address-edit-btn"></button>', tooltipText: 'editar direccion' },
-            { template: '<button class="e-btn" id="address-delete-btn"></button>', tooltipText: 'eliminar direccion' },
-            { template: '<button class="e-btn" id="address-update-btn"></button>', tooltipText: 'guardar' },
-            { template: '<button class="e-btn" id="address-cancel-btn"></button>', tooltipText: 'cancelar' },
+    ui.addressesGrid = new simplegrid({
+        id: '#addressesGrid',
+        mode: 'Inline',
+        template: '#address-template',
+        buttons: [
+            { id: "address-add-btn" },
+            { id: "address-edit-btn" },
+            { id: "address-delete-btn" },
+            { id: "address-update-btn" },
+            { id: "address-cancel-btn" },
         ],
         columns: [
             { width: 60, commands: [{ type: 'google maps', buttonOption: { cssClass: 'e-flat', iconCss: 'fa fa-map-marker-alt', click: onAddressClick } }] },
             { field: 'completeAddress' },
         ],
         //Events
+        actionComplete: function(args) {
+            if ((args.requestType === 'beginEdit' || args.requestType === 'add')) {
+                new ej.dropdowns.DropDownList({
+                    //value: args.rowData.AddressType,
+                    popupHeight: '200px',
+                    floatLabelType: 'Always',
+                    dataSource: dta.addressTypes,
+                    fields: { text: 'typeDescription', value: 'addressType' },
+                    placeholder: 'tipo direccion'
+                }, args.form.elements.namedItem('addressType'));
+                // Set initial Focus
+                //if (args.requestType === 'beginEdit') {
+                //    (args.form.elements.namedItem('CustomerID')).focus();
+                //}
+            }
+        },
     });
-    ui.addressesGrid.appendTo('#addressesGrid');
-    ui.addressAddBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-plus' });
-    ui.addressEditBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-pencil-alt' });
-    ui.addressDeleteBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-trash-alt' });
-    ui.addressSaveBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-check' });
-    ui.addressCancelBtn = new ej.buttons.Button({ cssClass: `edit-label`, iconCss: 'fas fa-times' });
-    ui.addressAddBtn.appendTo('#address-add-btn');
-    ui.addressEditBtn.appendTo('#address-edit-btn');
-    ui.addressDeleteBtn.appendTo('#address-delete-btn');
-    ui.addressSaveBtn.appendTo('#address-update-btn');
-    ui.addressCancelBtn.appendTo('#address-cancel-btn');
+    ui.addressesGrid.render();
 
-    ui.addressAddBtn.element.onclick = function () {
-        //document.getElementById('addressesGrid_content_table').style.display = "none";
-        //document.getElementById('address-template').style.display = "block";
-        ui.addressesGrid.addRecord();
-    };
-    ui.addressCancelBtn.element.onclick = function () {
-        ui.addressesGrid.closeEdit();
-    };
+    //ui.ddlLocationTypes = new ej.dropdowns.DropDownList({
+    //    dataSource: dta.addressTypes,
+    //    fields: { text: 'addressType', value: 'addressType' },
+    //    width: "100%",
+    //    placeholder: "tipo de direccionnnn",
+    //    //change: "onChangeLocationType",
+    //});
+    //ui.ddlLocationTypes.appendTo('#addressType');
+
 
 
     //Emails Grid
